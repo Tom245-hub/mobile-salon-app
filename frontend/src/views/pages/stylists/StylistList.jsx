@@ -1,98 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
 import Card from '../../components/Card';
+import request from '../../../utils/request';
 
-/* API - start */
-const data = [
-    [
-      {
-        title: 'Edyta',
-        url: '/stylistki/warszawa/01-edyta',
-        img: '/img/stylist/warszawa/01-edyta/01-edyta.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Patrycja',
-        url: '/stylistki/warszawa/02-patrycja',
-        img: '/img/stylist/warszawa/02-patrycja/02-patrycja.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Dagmara',
-        url: '/stylistki/warszawa/06-dagmara',
-        img: '/img/stylist/warszawa/06-dagmara/06-dagmara.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Polina',
-        url: '/stylistki/warszawa/07-polina',
-        img: '/img/stylist/warszawa/07-polina/07-polina.jpg',
-        position: [
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Ola',
-        url: '/stylistki/warszawa/08-ola',
-        img: '/img/stylist/warszawa/08-ola/08-ola.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Martyna',
-        url: '/stylistki/warszawa/09-martyna',
-        img: '/img/stylist/warszawa/09-martyna/09-martyna.jpg',
-        position: [
-          'wizażystka',
-        ],
-      },
-    ],
-    [
-      {
-        title: 'Ilona',
-        url: '/stylistki/krakow/03-ilona',
-        img: '/img/stylist/krakow/03-ilona/03-ilona.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-      {
-        title: 'Małgorzata',
-        url: '/stylistki/krakow/04-malgorzata',
-        img: '/img/stylist/krakow/04-malgorzata/04-malgorzata.jpg',
-        position: [
-          'fryzjerka',
-          'wizażystka',
-        ],
-      },
-    ],
-    [
-      {
-        title: 'Ola',
-        url: '/stylistki/wroclaw/05-ola',
-        img: '/img/stylist/05-ola/05-ola.jpeg',
-        position: [
-          'wizażystka',
-        ],
-      },
-    ]
-  ]
-  /* API - end */
 
 const Intro = styled.div`
   font-family: ${props => props.theme.fonts.secondary};
@@ -134,15 +46,26 @@ const FilterPosition = styled.div`
 
 const StylistList = () => {
 
+    const [stylistList, setStylistList] = useState([]);
+
+    const fetchData = async () => {
+        const {data} = await request.get('/backend/constrollers/StylistApiController.php');
+        setStylistList(data.stylistList);
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     return (
         <div className="container my-5">
 
             <Intro className="row d-flex justify-content-center mb-5">
                 <div className="col-8">
-                    <h2 class="text-center mb-3">Jesteśmy zespołem stylistów chcących tworzyć nowy standard usługi dla Waszej wygody.</h2>
-                    <h3 class="text-center mb-3">Dzięki Wam możemy mieć pracę, którą kochamy.</h3>
-                    <h4 class="text-center mb-3">Do naszego zespołu trafiają wyłącznie styliści z doświadczeniem,<br />
+                    <h2 className="text-center mb-3">Jesteśmy zespołem stylistów chcących tworzyć nowy standard usługi dla Waszej wygody.</h2>
+                    <h3 className="text-center mb-3">Dzięki Wam możemy mieć pracę, którą kochamy.</h3>
+                    <h4 className="text-center mb-3">Do naszego zespołu trafiają wyłącznie styliści z doświadczeniem,<br />
                     zamiłowaniem i kreatywnym spojrzeniem na stylizację wizerunku.<br />
                     Zapraszamy do galerii naszych prac.</h4>
                 </div>
@@ -171,7 +94,7 @@ const StylistList = () => {
 
             <div className="row">
 
-                {data[0].map((item, index) =>
+                {stylistList.map((item, index) =>
                 
                     <div key={index} className="col-3 mb-3">
                         <Card
@@ -185,9 +108,7 @@ const StylistList = () => {
                 )}
                     
             </div>
-
-
-
+            
         </div>
     );
 }
