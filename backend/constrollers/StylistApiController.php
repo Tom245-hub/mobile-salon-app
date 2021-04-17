@@ -82,6 +82,91 @@ class StylistApiController extends DBParams
                 ],
                 [
                     'id_stylist' => 7,
+                    'title'      => 'Joanna',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Dla Joanny największą wartością w życiu jest wolność, którą wyraża w pasji kreowania wizerunku. Lubi sprawiać, by kobieta poczułą się jeszcze bardziej piękna i wyjątkowa. Detal, szczegół, precyzja to dla niej podstawa tworzenia. Podczas praktyki zawodowej miała wielką przyjemność współpracować z Ewą Chodakowską, “Wysokimi Obcasami”, “Twoim Stylem”, “Galerią Centrum”, przy sesjach zdjęciowych, jak i na planach produkcji firmowych. Jednym z jej hobby jest tworzenie biżuterii. Kilka lat temu w Warszawskiej pracowni jubilerskiej rozpoczęła szkolenie, dzięki któremu dziś roztapia granulki srebra, nadając im nową, niepowtarzalną formę.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 10,
+                ],
+                [
+                    'id_stylist' => 8,
+                    'title'      => 'Karolina',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Karolina skończyła Studio Sztuki w 2004 roku. Przez wszystkie lata pracowała w zawodzie. W ostatnim czasie zajęła II miejsce w ogólnopolskim konkursie “Bitwa na Pędzle” organizowanym przez BeautyDays i INGLOT',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 13,
+                ],
+                [
+                    'id_stylist' => 9,
+                    'title'      => 'Beata',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Fryzjerstwo jest pasją Beaty od czasów dzieciństwa. Szczególnie odnajduję się w uczesaniach, stylizacjach wieczorowych i koloryzacjach. Chcąc zadbać kompleksowo o urodę swoich klientek wykonuje także usługi stylizacji paznokci. Pracuje tylko na profesjonalnych kosmetykach włoskiej firmy Emme Diciotto. Stawia na jakość i dobrą kondycję włosów.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => false,
+                    ],
+                    'experience'  => 5,
+                ],
+                [
+                    'id_stylist' => 10,
+                    'title'      => 'Patrycja',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => '“Nie jesteśmy idealne, ale każda z nas jest wyjątkowa” – ten cytat jest dla Patrycji odzwierciedleniem jej pracy. Za swoje zadanie uważa podkreślenie makijażem i fryzurą urody, a nie przemalowaniem na kogoś innego. W dążeniu do idealnych makijaży pomagają jej szkolenia, w których często uczestniczy między innymi z Magdą Pieczonką, Maxineczką, Armani i Dior.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 8,
+                ],
+                [
+                    'id_stylist' => 11,
+                    'title'      => 'Aleksandra',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Od samego początku praca dla Aleksandry wywodziła się z pasji, chęci do dalszego pogłębiania wiedzy oraz do poznania wszelkich technik i tajników pracy jako wizażystka. Swoje umiejętności rozwijała zarówno samodzielnie, jak i pod okiem profesjonalistów, dzięki czemu stale poszerza swoją wiedzę w dziedzinach z branży beauty. Z zamiłowania do zawodu, od zawsze towarzyszy jej chęć pomocy i służenia radą osobom zagubionym w ciągle zmieniającym się świecie urody, a dzięki umiejętności postawienia się w sytuacji drugiej osoby, wiele jej rad skutkuje pozytywnym odbiorem i skutecznością wynikającą z nabytego w pracy doświadczenia.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 3,
+                ],
+                [
+                    'id_stylist' => 12,
+                    'title'      => 'Kasia',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Wizażem interesowała się od zawsze ale dopiero po skońćzeniu 30 lat postanowiłą się zająć tym na poważnie. W tej chwili kończy renomowaną szkołę Beauty Art. Najbardziej lubi pracę z klientkami indywidualnymi tzw. “zwykłymi kobietami”, które dzięki makijażowi rozkwitają.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 5,
+                ],
+                [
+                    'id_stylist' => 13,
+                    'title'      => 'Weronika',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Weronika jest stylistką z zamiłowania do piękna i upiększania. Dokłada wszelkich starań, aby być na bieżąco ze wszystkimi światowymi trendami w sferze beauty. Zapraszamy do skorzystania z jej usług.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 2,
+                ],
+                
+                [
+                    'id_stylist' => 14,
                     'title'      => 'Ilona',
                     'url'        => '/stylistki/krakow/03-ilona',
                     'img'        => '/img/stylist/krakow/03-ilona/03-ilona.jpg',
@@ -93,7 +178,7 @@ class StylistApiController extends DBParams
                     'experience'  => 10,
                 ],
                 [
-                    'id_stylist' => 8,
+                    'id_stylist' => 15,
                     'title'      => 'Małgorzata',
                     'url'        => '/stylistki/krakow/04-malgorzata',
                     'img'        => '/img/stylist/krakow/04-malgorzata/04-malgorzata.jpg',
@@ -105,7 +190,31 @@ class StylistApiController extends DBParams
                     'experience'  => 11,
                 ],
                 [
-                    'id_stylist' => 9,
+                    'id_stylist' => 16,
+                    'title'      => 'Justyna',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Dla Justyny makijaż jest formą kreacji wizerunku. W swojej pracy bazuje na technikach poznanych dzięki różnorodnym kursom jakie odbyła oraz ukończeniu szkoły wizażu z tytułem czeladnika. Jako wizażystka pracuje od 8 lat. Każdy projekt traktuje jako indywidualną i spójną całość. Tworzenie makijażu to dla niej sztuka, dlatego zdarza się, że łamie sztywne schematy. Prace Justyny opublikował magazyn L’Officiel, Elle i portal Vogue Italia.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 8,
+                ],
+                [
+                    'id_stylist' => 17,
+                    'title'      => 'Yana',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Yana jest wizażystką rozkochaną w swoim zawodzie. W pracy najbardziej pasjonuje ją przemiana. Każdą z klientek traktuje w indywidualny sposób. Ogromną radość sprawia jej możliwość wydobycia i podkreślenia tego, co w każdej kobiecie jest najpiękniejsze. Za nic w świecie nie chce robić nic innego, bo kocha to co robi. Przekonuje się o tym codziennie – wystarczy jeden szczery uśmiech na twarzy zadowolonej klientki.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => true,
+                    ],
+                    'experience'  => 2,
+                ],
+                [
+                    'id_stylist' => 18,
                     'title'      => 'Ola',
                     'url'        => '/stylistki/wroclaw/05-ola',
                     'img'        => '/img/stylist/05-ola/05-ola.jpeg',
@@ -116,7 +225,54 @@ class StylistApiController extends DBParams
                     ],
                     'experience'  => 3,
                 ],
-
+                [
+                    'id_stylist' => 19,
+                    'title'      => 'Tetiana',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Pasją Tetiany jest fryzjerstwo, a zwłaszcza fryzury ślubne i okazjonalne. Ukończyła technikum fryzjerskie we Wrocławiu. W każdą fryzurę stara się wkładać maksimum swoich umiejętności. Najważniejsze dla niej jest zadowolenie klientek.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => false,
+                    ],
+                    'experience'  => 7,
+                ],
+                [
+                    'id_stylist' => 20,
+                    'title'      => 'Aleksandra',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Aleksandra jest fryzjerem/stylistą z doświadczenia i pasji. Kocha to co robi i zawsze podejmuje się rzeczy “niemożliwych” do zrobienia. Miła, zaangażowana, pełna pasji i pomysłów.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => false,
+                    ],
+                    'experience'  => 5,
+                ],
+                [
+                    'id_stylist' => 21,
+                    'title'      => 'Diana',
+                    'url'        => 'DO UZ',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Diana zajmuje się fryzjerstwem od 6 lat. Fryzjerstwo jest jej pasją, dlatego wkłada w to mnóstwo serca. Każdą z klientek traktuje w indywidualny sposób. Jest bardzo komunikatywna. Ma za sobą międzynarodowe konkursy, w których zdobywała I miejsca.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => false,
+                    ],
+                    'experience'  => 6,
+                ],
+                [
+                    'id_stylist' => 22,
+                    'title'      => 'Julia',
+                    'url'        => 'DO UZ poznan',
+                    'img'        => 'DO UZ',
+                    'text'       => 'Absolwentka szkoły Beauty Art – Make Up Artist and Beauty Stylist. Pasjonatka makijażu, współpracująca przy sesjach zdjęciowych, zleceniach komercyjnych indywidualnych oraz teatralnych. Do każdego makijażu podchodzi z zaangażowaniem czy jest to zlecenie ślubne czy biznesowe. Artystyczne wyzwania oraz charakteryzację są dla niej zawsze miłym wyzwaniem.',
+                    'position'   => [
+                        'hair_stylist' => true,
+                        'makeup_stylist' => false,
+                    ],
+                    'experience'  => 10,
+                ],
         ];
 
         $response['stylistList'] = $stylistList;
