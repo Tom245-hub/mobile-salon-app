@@ -28,7 +28,8 @@ const Header = () => {
     }
 
     return (
-        <Container className="container-fluid container-header bg-light position-absolute top-0">
+        // <Container className="container-fluid container-header bg-light position-absolute top-0">
+        <Container className="container-fluid container-header bg-light ">
 
             <TopBar 
                 activeTopBar={activeTopBar}

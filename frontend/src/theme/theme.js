@@ -6,6 +6,11 @@ export default{
     warning: '#9683ff',
     dark: '#31303b',
     light: '#f9f6f3',
+
+    grayDark: '#404040',
+    gray: '#808080',
+    grayLight: '#BFBFBF',
+    graySuperLight: '#E6E6E6',
   },
   fonts: {
     primary: 'Nunito Sans, sans-serif',
