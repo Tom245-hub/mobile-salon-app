@@ -9,43 +9,22 @@ class StylistApiController extends DBParams
 
         $stylistList = [
             [
-                'id_service' => 1,
-                'title'      => 'Fryzury ślubne z dojazdem',
+                'id_stylist' => 1,
+                'title'      => 'Edyta',
                 'url'        => '/uslugi/fryzury-slubne',
                 'img'        => '/img/fryzury-slubne-mobile-salon.jpg',
                 'text'       => 'Upięcia, koki z welonem, warkocze, ozdoby.',
             ],
-            [
-                'id_service' => 2,
-                'title'      => 'Makijaże ślubne z dojazdem',
-                'url'        => '/uslugi/makijaze-slubne',
-                'img'        => '/img/makijaze-slubne-mobile-salon.jpg',
-                'text'       => 'Trwałe i piękne, delikatne lub wyraźne.',
-            ],
-            [
-                'id_service' => 3,
-                'title'      => 'Fryzury okazyjne z dojazdem',
-                'url'        => '/uslugi/fryzury-okazyjne',
-                'img'        => '/img/fryzjerki-slubne-mobile-salon.jpg',
-                'text'       => 'Trwałe i piękne, delikatne lub wyraźne.',
-            ],
-            [
-                'id_service' => 4,
-                'title'      => 'Makijaże okazyjne z dojazdem',
-                'url'        => '/uslugi/makijaze-okazyjne',
-                'img'        => '/img/fryzjerki-slubne-mobile-salon.jpg',
-                'text'       => 'Trwałe i piękne, delikatne lub wyraźne.',
-            ],
         ];
     
 
-        $response['stylistList'] = $stylisteList;
+        $response['stylistList'] = $stylistList;
         
         echo json_encode($response);
     }
 }
 
-$api = new StylisteApiController();
+$api = new StylistApiController();
 echo $api->indexAction();
 
 
