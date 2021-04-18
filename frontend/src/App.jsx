@@ -6,7 +6,7 @@ import Layout from './views/layout/Layout';
 import HomeScreen from './views/pages/home/HomeScreen';
 
 import StylistList from './views/pages/stylists/StylistList';
-// import StylistScreen from './views/stylist/StylistScreen';
+import StylistScreen from './views/pages/stylists/StylistScreen';
 
 import HairWeddingScreen from './views/pages/services/HairWeddingScreen';
 import MakeupWeddingScreen from './views/pages/services/MakeupWeddingScreen';
@@ -23,9 +23,9 @@ const App = () => {
         <Layout>
           <Switch>
             <Route path="/" exact component={HomeScreen} />
-            <Route path="/stylistki" component={StylistList} />
+            <Route path="/stylistki" exact component={StylistList} />
 
-            {/* <Route path="/stylistki/:id" component={StylistScreen} /> */}
+            <Route path="/stylistki/:city/:id" component={StylistScreen} />
 
             <Route path="/uslugi/fryzury-slubne" component={HairWeddingScreen} />
             <Route path="/uslugi/makijaze-slubne" component={MakeupWeddingScreen} />

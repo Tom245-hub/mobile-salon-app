@@ -217,7 +217,7 @@ class StylistApiController extends DBParams
                     'id_stylist' => 18,
                     'title'      => 'Ola',
                     'url'        => '/stylistki/wroclaw/05-ola',
-                    'img'        => '/img/stylist/05-ola/05-ola.jpeg',
+                    'img'        => 'DO UZ',
                     'text'       => 'Aleksandra ukończyła kurs makijażu profesjonalnego I stopnia w prestiżowej szkole – Pro Academy School of Makeup we Wrocławiu. Swoją pracę wykonuje przy sesjach zdjęciowych, na targach kosmetycznych jak również z klientkami indywidualnymi. Każdej klientce poświęca wiele uwagi, aby jak najlepiej sprostać wymaganym oczekiwaniom. Systematycznie kształci zasób swojej wiedzy uczestnicząc w szkoleniach i śledząc najnowsze wydarzenia w świecie makijażu.',
                     'position'   => [
                         'hair_stylist' => false,
