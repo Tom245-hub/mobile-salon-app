@@ -333,16 +333,6 @@ const stylistsData = [
   },
 ];
 
-// const stylistsData = [
-//   {
-//     authors: ["Bartłomiej Borowczyk"],
-//     id: uuid(),
-//     img: "https://img-a.udemycdn.com/course/240x135/1673856_ff13_5.jpg",
-//     price: 69.99,
-//     title: "Web developer od podstaw w 15 dni",
-//   },
-// ];
-
 exports.getStylists = (request, response, next) => {
   try {
     response.status(200).json({
@@ -384,8 +374,28 @@ exports.getStylist = (request, response, next) => {
 
 exports.postStylist = (request, response, next) => {
   try {
-    const { authors, img, price, title } = request.body;
-    if (!img || !url || !title) {
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      birthYear,
+      zipcode,
+      hairStylExp,
+      makeupStylExp,
+      city,
+    } = request.body;
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !birthYear ||
+      !zipcode ||
+      !hairStylExp ||
+      !makeupStylExp ||
+      !city
+    ) {
       response.status(400).json({
         message: "Nie podano wszystkich wymaganych informacji",
       });
@@ -393,22 +403,28 @@ exports.postStylist = (request, response, next) => {
       return;
     }
 
-    const isStylistExist = stylistsData.some(
-      ({ title: currentTitle }) => currentTitle === title
-    );
-    if (isStylistExist) {
-      response.status(409).json({
-        message: `Istnieje już w bazie stylistka ${title}`,
-      });
+    // const isStylistExist = stylistsData.some(
+    //   ({ title: currentTitle }) => currentTitle === title
+    // );
+    // if (isStylistExist) {
+    //   response.status(409).json({
+    //     message: `Istnieje już w bazie stylistka ${title}`,
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
 
     const newStylist = {
-      id: uuid(),
-      img,
-      url,
-      title,
+      // id: uuid(),
+      firstName,
+      lastName,
+      email,
+      phone,
+      birthYear,
+      zipcode,
+      hairStylExp,
+      makeupStylExp,
+      city,
     };
 
     stylistsData.push(newStylist);

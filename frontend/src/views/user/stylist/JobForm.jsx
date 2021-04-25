@@ -1,6 +1,18 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import request from "../../../utils/request";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  Button,
+  OverlayTrigger,
+  Tooltip,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -19,6 +31,8 @@ const validationSchema = () =>
     email: Yup.string()
       .required("Musisz wpisać email")
       .email("Niepoprawny adres email"),
+    birthYear: Yup.string().required("Musisz wpisać rok urodzenia"),
+    zipcode: Yup.string().required("Musisz wpisać kod pocztowy"),
   });
 
 const JobForm = () => {
@@ -27,10 +41,29 @@ const JobForm = () => {
     lastName: "",
     email: "",
     phone: "",
+    birthYear: "",
+    zipcode: "",
   };
 
-  const submitForm = (values) => {
-    console.log(values);
+  const submitForm = async (values) => {
+    const stylistObject = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      phone: values.phone,
+      birthYear: values.birthYear,
+      zipcode: values.zipcode,
+      hairStylExp: values.hairStylExp,
+      makeupStylExp: values.makeupStylExp,
+      city: values.city,
+    };
+
+    console.log(stylistObject);
+
+    const { data, status } = await request.post("/stylists", stylistObject);
+    if (status === 201) {
+      setStylists(data.stylists);
+    }
   };
 
   return (
@@ -60,13 +93,8 @@ const JobForm = () => {
                   </div>
                   <div className="form-row">
                     <div className="col">
-                      <input
-                        className={
-                          "form-control mb-2" +
-                          (formik.errors.firstName && touched.firstName
-                            ? " has-error"
-                            : "")
-                        }
+                      <Form.Control
+                        className="mb-2"
                         id="firstName"
                         type="text"
                         name="firstName"
@@ -77,13 +105,8 @@ const JobForm = () => {
                       />
                     </div>
                     <div className="col">
-                      <input
-                        className={
-                          "form-control mb-2" +
-                          (formik.errors.lastName && touched.lastName
-                            ? " has-error"
-                            : "")
-                        }
+                      <Form.Control
+                        className="mb-2"
                         id="lastName"
                         type="text"
                         name="lastName"
@@ -94,16 +117,10 @@ const JobForm = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="form-row mb-5">
+                  <div className="form-row">
                     <div className="col">
-                      <input
-                        className={
-                          "form-control mb-2" +
-                          (formik.errors.email && touched.phone
-                            ? " has-error"
-                            : "")
-                        }
+                      <Form.Control
+                        className="mb-2"
                         id="email"
                         type="email"
                         name="email"
@@ -114,13 +131,8 @@ const JobForm = () => {
                       />
                     </div>
                     <div className="col">
-                      <input
-                        className={
-                          "form-control mb-2" +
-                          (formik.errors.phone && touched.phone
-                            ? " has-error"
-                            : "")
-                        }
+                      <Form.Control
+                        className="mb-2"
                         id="phone"
                         name="phone"
                         type="number"
@@ -131,27 +143,63 @@ const JobForm = () => {
                       />
                     </div>
                   </div>
-
+                  <div className="form-row mb-5">
+                    <div className="col">
+                      <Form.Control
+                        className="mb-2"
+                        id="birthYear"
+                        type="number"
+                        name="birthYear"
+                        placeholder="Rok urodzenia"
+                        value={values.birthYear}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </div>
+                    <div className="col">
+                      <InputGroup className="mb-2 mr-sm-2">
+                        <Form.Control
+                          id="zipcode"
+                          placeholder="Kod pocztowy"
+                          name="zipcode"
+                          type="text"
+                          value={values.zipcode}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        <InputGroup.Append>
+                          <InputGroup.Text>
+                            <OverlayTrigger
+                              placement="top"
+                              overlay={
+                                <Tooltip id="tooltip-top">
+                                  Na podstawie kodu pocztowego będziemy
+                                  przypisywać zamówienia do Twojego konta.
+                                </Tooltip>
+                              }
+                            >
+                              <FontAwesomeIcon icon={faQuestionCircle} />
+                            </OverlayTrigger>
+                          </InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </div>
+                  </div>
                   {errors.firstName && touched.firstName && (
                     <div className="alert alert-danger">{errors.firstName}</div>
                   )}
-
                   {errors.lastName && touched.lastName && (
                     <div className="alert alert-danger">{errors.lastName}</div>
                   )}
-
                   {errors.email && touched.email && (
                     <div className="alert alert-danger">{errors.email}</div>
                   )}
-
                   {errors.phone && touched.phone && (
                     <div className="alert alert-danger">{errors.phone}</div>
                   )}
-
                   <div className="form-row d-flex justify-content-center mb-3">
                     <h3>Doświadczenie</h3>
                   </div>
-
                   <div className="form-row">
                     <div className="col d-flex align-items-center">
                       <h6 className="mb-2">
@@ -159,16 +207,22 @@ const JobForm = () => {
                       </h6>
                     </div>
                     <div className="col">
-                      <select className="form-control mb-2">
-                        <option>Nie mam doświadczenia</option>
-                        <option>6 miesięcy</option>
-                        <option>1 rok</option>
-                        <option>2 lata</option>
-                        <option>3 lata</option>
-                      </select>
+                      <Form.Control
+                        as="select"
+                        className="mb-2"
+                        name="hairStylExp"
+                        value={values.hairStylExp}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
+                        <option value="0">Nie mam doświadczenia</option>
+                        <option value="0.5">6 miesięcy</option>
+                        <option value="1">1 rok</option>
+                        <option value="2">2 lata</option>
+                        <option value="3">3 lata</option>
+                      </Form.Control>
                     </div>
                   </div>
-
                   <div className="form-row mb-5">
                     <div className="col d-flex align-items-center">
                       <h6 className="mb-2">
@@ -176,20 +230,25 @@ const JobForm = () => {
                       </h6>
                     </div>
                     <div className="col">
-                      <select className="form-control mb-2">
-                        <option>Nie mam doświadczenia</option>
-                        <option>6 miesięcy</option>
-                        <option>1 rok</option>
-                        <option>2 lata</option>
-                        <option>3 lata</option>
-                      </select>
+                      <Form.Control
+                        as="select"
+                        className="mb-2"
+                        name="makeupStylExp"
+                        value={values.makeupStylExp}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
+                        <option value="0">Nie mam doświadczenia</option>
+                        <option value="0.5">6 miesięcy</option>
+                        <option value="1">1 rok</option>
+                        <option value="2">2 lata</option>
+                        <option value="3">3 lata</option>
+                      </Form.Control>
                     </div>
                   </div>
-
                   <div className="form-row d-flex justify-content-center mb-3">
                     <h3>Informacje o usługach</h3>
                   </div>
-
                   <div className="form-row">
                     <div className="col d-flex align-items-center">
                       <h6 className="mb-2">
@@ -197,16 +256,22 @@ const JobForm = () => {
                       </h6>
                     </div>
                     <div className="col">
-                      <select className="form-control mb-2">
-                        <option>Warszawa</option>
-                        <option>Kraków</option>
-                        <option>Wrocław</option>
-                        <option>Poznań</option>
-                        <option>Gdańsk</option>
-                      </select>
+                      <Form.Control
+                        as="select"
+                        className="mb-2"
+                        name="city"
+                        value={values.city}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
+                        <option value="Warszawa">Warszawa</option>
+                        <option value="Kraków">Kraków</option>
+                        <option value="Wrocław">Wrocław</option>
+                        <option value="Poznań">Poznań</option>
+                        <option value="Gdańsk">Gdańsk</option>
+                      </Form.Control>
                     </div>
                   </div>
-
                   <div className="form-row mb-5">
                     <div className="col d-flex align-items-center">
                       <h6 className="mb-2">
@@ -214,17 +279,14 @@ const JobForm = () => {
                       </h6>
                     </div>
                     <div className="col">
-                      <input type="file" className="form-control-file mb-2" />
-                      <input type="file" className="form-control-file mb-2" />
-                      <input type="file" className="form-control-file mb-2" />
-                      <input type="file" className="form-control-file mb-2" />
-                      <input type="file" className="form-control-file mb-2" />
+                      <Form.File name="file1" className="mb-2" />
+                      <Form.File name="file2" className="mb-2" />
+                      <Form.File name="file3" className="mb-2" />
+                      <Form.File name="file4" className="mb-2" />
+                      <Form.File name="file5" className="mb-2" />
                     </div>
                   </div>
-
-                  <button className="btn btn-primary" type="submit">
-                    Wyslij
-                  </button>
+                  <Button type="submit">Wyślij</Button>
                 </form>
               </div>
             </div>
