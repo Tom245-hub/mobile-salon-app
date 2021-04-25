@@ -9,19 +9,24 @@ const StoreProvider = ({ children }) => {
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
 
+  // const fetchDataStylist = async () => {
+  //   const { data } = await request.get("/StylistApiController.php");
+  //   setStylistList(data.stylistList);
+  // };
+
   const fetchDataStylist = async () => {
-    const { data } = await request.get("/StylistApiController.php");
-    setStylistList(data.stylistList);
+    const { data } = await request.get("/stylists");
+    setStylistList(data.stylists);
   };
 
   const fetchDataService = async () => {
-    const { data } = await request.get("/ServiceApiController.php");
-    setServiceList(data.serviceList);
+    const { data } = await request.get("/services");
+    setServiceList(data.services);
   };
 
   const fetchDataSlide = async () => {
-    const { data } = await request.get("/SliderApiController.php");
-    setSlideList(data.slideList);
+    const { data } = await request.get("/slider");
+    setSlideList(data.slider);
   };
 
   useEffect(() => {

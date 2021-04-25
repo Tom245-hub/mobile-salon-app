@@ -12,9 +12,9 @@ export const showAvailableServices = (data) => {
     let avilableServices = [];
 
     data.map(item =>
-        Object.keys(item.services).map(service => !avilableServices.includes(service) && avilableServices.push(service))
+                Object.keys(item.services).map(service => !avilableServices.includes(service) && avilableServices.push(service))
     )
-
 
     return avilableServices;
 }
+

@@ -2,4 +2,5 @@ backend/config
 frontend/build
 frontend/node_modules
 frontend/public/img
+backend/node_modules
 
