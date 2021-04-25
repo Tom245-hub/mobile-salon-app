@@ -9,11 +9,6 @@ const StoreProvider = ({ children }) => {
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
 
-  // const fetchDataStylist = async () => {
-  //   const { data } = await request.get("/StylistApiController.php");
-  //   setStylistList(data.stylistList);
-  // };
-
   const fetchDataStylist = async () => {
     const { data } = await request.get("/stylists");
     setStylistList(data.stylists);
