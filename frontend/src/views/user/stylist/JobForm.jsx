@@ -16,6 +16,9 @@ import {
   Tooltip,
   Form,
   InputGroup,
+  Col,
+  Container,
+  Row,
 } from "react-bootstrap";
 
 const validationSchema = () =>
@@ -101,15 +104,15 @@ const JobForm = () => {
           } = formik;
 
           return (
-            <div className="container min-vh-100 py-5">
-              <div className="row d-flex justify-content-center py-5">
-                <div className="col-6">
-                  <form onSubmit={handleSubmit} noValidate>
-                    <div className="form-row d-flex justify-content-center mb-3">
+            <Container className="min-vh-100 py-5">
+              <Row className="d-flex justify-content-center py-5">
+                <Col md={6}>
+                  <Form onSubmit={handleSubmit} noValidate>
+                    <Form.Row className="d-flex justify-content-center mb-3">
                       <h3>Twoje dane</h3>
-                    </div>
-                    <div className="form-row">
-                      <div className="col">
+                    </Form.Row>
+                    <Form.Row>
+                      <Col md="6">
                         <Form.Control
                           className="mb-2"
                           id="firstName"
@@ -120,8 +123,8 @@ const JobForm = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md="6">
                         <Form.Control
                           className="mb-2"
                           id="lastName"
@@ -132,10 +135,10 @@ const JobForm = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="col">
+                      </Col>
+                    </Form.Row>
+                    <Form.Row>
+                      <Col md="6">
                         <Form.Control
                           className="mb-2"
                           id="email"
@@ -146,8 +149,8 @@ const JobForm = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md="6">
                         <Form.Control
                           className="mb-2"
                           id="phone"
@@ -158,10 +161,10 @@ const JobForm = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                      </div>
-                    </div>
-                    <div className="form-row mb-5">
-                      <div className="col">
+                      </Col>
+                    </Form.Row>
+                    <Form.Row className="mb-5">
+                      <Col md="6">
                         <Form.Control
                           className="mb-2"
                           id="birthYear"
@@ -172,8 +175,8 @@ const JobForm = () => {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md="6">
                         <InputGroup className="mb-2 mr-sm-2">
                           <Form.Control
                             id="zipcode"
@@ -200,8 +203,8 @@ const JobForm = () => {
                             </InputGroup.Text>
                           </InputGroup.Append>
                         </InputGroup>
-                      </div>
-                    </div>
+                      </Col>
+                    </Form.Row>
                     {errors.firstName && touched.firstName && (
                       <div className="alert alert-danger">
                         {errors.firstName}
@@ -218,16 +221,17 @@ const JobForm = () => {
                     {errors.phone && touched.phone && (
                       <div className="alert alert-danger">{errors.phone}</div>
                     )}
-                    <div className="form-row d-flex justify-content-center mb-3">
+
+                    <Form.Row className="d-flex justify-content-center mb-3">
                       <h3>Doświadczenie</h3>
-                    </div>
-                    <div className="form-row">
-                      <div className="col d-flex align-items-center">
+                    </Form.Row>
+                    <Form.Row>
+                      <Col md={6} className="d-flex align-items-center">
                         <h6 className="mb-2">
                           Ile lat zajmujesz się stylizacją fryzur?
                         </h6>
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md={6}>
                         <Form.Control
                           as="select"
                           className="mb-2"
@@ -242,15 +246,15 @@ const JobForm = () => {
                           <option value="2">2 lata</option>
                           <option value="3">3 lata</option>
                         </Form.Control>
-                      </div>
-                    </div>
-                    <div className="form-row mb-5">
-                      <div className="col d-flex align-items-center">
+                      </Col>
+                    </Form.Row>
+                    <Form.Row className="mb-5">
+                      <Col md={6} className="d-flex align-items-center">
                         <h6 className="mb-2">
                           Ile lat zajmujesz się stylizacją makijaży?
                         </h6>
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md={6}>
                         <Form.Control
                           as="select"
                           className="mb-2"
@@ -265,18 +269,18 @@ const JobForm = () => {
                           <option value="2">2 lata</option>
                           <option value="3">3 lata</option>
                         </Form.Control>
-                      </div>
-                    </div>
-                    <div className="form-row d-flex justify-content-center mb-3">
+                      </Col>
+                    </Form.Row>
+                    <Form.Row className="d-flex justify-content-center mb-3">
                       <h3>Informacje o usługach</h3>
-                    </div>
-                    <div className="form-row">
-                      <div className="col d-flex align-items-center">
+                    </Form.Row>
+                    <Form.Row>
+                      <Col md={6} className="d-flex align-items-center">
                         <h6 className="mb-2">
                           W jakim oddziale chcesz pracować?
                         </h6>
-                      </div>
-                      <div className="col">
+                      </Col>
+                      <Col md={6}>
                         <Form.Control
                           as="select"
                           className="mb-2"
@@ -292,41 +296,41 @@ const JobForm = () => {
                           <option value="Poznań">Poznań</option>
                           <option value="Gdańsk">Gdańsk</option>
                         </Form.Control>
-                      </div>
-                    </div>
+                      </Col>
+                    </Form.Row>
                     {Number(values.hairStylExp) > 0 && (
-                      <div className="form-row mb-5">
-                        <div className="col d-flex align-items-center">
+                      <Form.Row className="mb-5">
+                        <Col md={6} className="d-flex align-items-center">
                           <h6 className="mb-2">
                             Dodaj min. 3 zdjęcia swoich najlepszych fryzur
                           </h6>
-                        </div>
-                        <div className="col">
+                        </Col>
+                        <Col>
                           <Form.File name="fileHair1" className="mb-2" />
                           <Form.File name="fileHair2" className="mb-2" />
                           <Form.File name="fileHair3" className="mb-2" />
-                        </div>
-                      </div>
+                        </Col>
+                      </Form.Row>
                     )}
                     {Number(values.makeupStylExp) > 0 && (
-                      <div className="form-row mb-5">
-                        <div className="col d-flex align-items-center">
+                      <Form.Row className="mb-5">
+                        <Col md={6} className="d-flex align-items-center">
                           <h6 className="mb-2">
                             Dodaj min. 3 zdjęcia swoich najlepszych makijaży
                           </h6>
-                        </div>
-                        <div className="col">
+                        </Col>
+                        <Col md={6}>
                           <Form.File name="fileMakeup1" className="mb-2" />
                           <Form.File name="fileMakeup2" className="mb-2" />
                           <Form.File name="fileMakeup3" className="mb-2" />
-                        </div>
-                      </div>
+                        </Col>
+                      </Form.Row>
                     )}
                     <Button type="submit">Wyślij</Button>
-                  </form>
-                </div>
-              </div>
-            </div>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
           );
         }}
       </Formik>
