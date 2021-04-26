@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
   const [stylistList, setStylistList] = useState([]);
+  const [orderList, setOrderList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
 
@@ -24,10 +25,16 @@ const StoreProvider = ({ children }) => {
     setSlideList(data.slider);
   };
 
+  const fetchDataOrder = async () => {
+    const { data } = await request.get("/orders");
+    setOrderList(data.orders);
+  };
+
   useEffect(() => {
     fetchDataStylist();
     fetchDataService();
     fetchDataSlide();
+    fetchDataOrder();
   }, []);
 
   return (
@@ -39,6 +46,8 @@ const StoreProvider = ({ children }) => {
         setServiceList,
         slideList,
         setSlideList,
+        orderList,
+        setOrderList,
       }}
     >
       {children}
