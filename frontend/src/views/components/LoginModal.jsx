@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import { Modal } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+import request from "../../utils/request";
+import { StoreContext } from "../../store/StoreProvider";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -14,6 +17,9 @@ const validationSchema = () =>
   });
 
 const LoginModal = (props) => {
+  const { setUser } = useContext(StoreContext);
+  const history = useHistory();
+
   const initialValues = {
     email: "",
     password: "",
@@ -21,9 +27,20 @@ const LoginModal = (props) => {
 
   const submitForm = async (values) => {
     const loginObject = {
-      email: values.email,
+      login: values.email,
       password: values.password,
     };
+
+    const { data, status } = await request.post("/users", loginObject);
+
+    if (status === 200) {
+      setUser(data.user);
+      props.setLoginModal(false);
+      history.push("/strefa-stylistki/konto");
+    } else if (status === 404) {
+      console.log("test3");
+      // obsługa błędów z serwera
+    }
 
     console.log(loginObject);
   };

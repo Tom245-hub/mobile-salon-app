@@ -19,6 +19,8 @@ import HairEventScreen from "./views/pages/services/HairEventScreen";
 import MakeupEventScreen from "./views/pages/services/MakeupEventScreen";
 import OrderForm from "./views/user/client/OrderForm";
 import JobForm from "./views/user/stylist/JobForm";
+import Account from "./views/user/stylist/Account";
+import Orders from "./views/user/stylist/Orders";
 
 const App = () => {
   return (
@@ -51,6 +53,8 @@ const App = () => {
               />
 
               <Route path="/strefa-stylistki/rekrutacja" component={JobForm} />
+              <Route path="/strefa-stylistki/konto" component={Account} />
+
               <Route path="/strefa-klientki/zamowienie" component={OrderForm} />
 
               {/* <Route path="/stylistki/:idStylist(\d+)-:name" component={StylistScreen} />

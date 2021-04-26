@@ -9,6 +9,7 @@ const StoreProvider = ({ children }) => {
   const [orderList, setOrderList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
+  const [user, setUser] = useState(null);
 
   const fetchDataStylist = async () => {
     const { data } = await request.get("/stylists");
@@ -48,6 +49,8 @@ const StoreProvider = ({ children }) => {
         setSlideList,
         orderList,
         setOrderList,
+        user,
+        setUser,
       }}
     >
       {children}
