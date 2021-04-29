@@ -38,79 +38,38 @@ const LoginModal = (props) => {
       props.setLoginModal(false);
       history.push("/strefa-stylistki/konto");
     } else if (status === 404) {
-      console.log("test3");
+      // console.log("test3");
       // obsługa błędów z serwera
     }
 
-    console.log(loginObject);
+    // console.log(loginObject);
   };
   return (
-    <Modal
-      size="sm"
-      show={props.loginModal}
-      onHide={() => props.setLoginModal(false)}
-      aria-labelledby="confirm-modal"
-    >
+    <Modal size='sm' show={props.loginModal} onHide={() => props.setLoginModal(false)} aria-labelledby='confirm-modal'>
       <Modal.Header closeButton>
-        <Modal.Title id="confirm-modal">{props.titleText}</Modal.Title>
+        <Modal.Title id='confirm-modal'>{props.titleText}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {/* ///////////////////////////////////////////////////////////////////////// */}
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={submitForm}
-        >
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
           {(formik) => {
-            const {
-              values,
-              handleChange,
-              handleSubmit,
-              errors,
-              touched,
-              handleBlur,
-              isValid,
-            } = formik;
+            const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;
 
             return (
-              <div className="container">
-                <div className="row d-flex justify-content-center">
-                  <div className="col-12">
+              <div className='container'>
+                <div className='row d-flex justify-content-center'>
+                  <div className='col-12'>
                     <form onSubmit={handleSubmit} noValidate>
-                      <input
-                        className="form-control mb-2"
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
+                      <input className='form-control mb-2' id='email' type='email' name='email' placeholder='Email' value={values.email} onChange={handleChange} onBlur={handleBlur} />
 
-                      <input
-                        className="form-control mb-2"
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="Hasło"
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
+                      <input className='form-control mb-2' id='password' type='password' name='password' placeholder='Hasło' value={values.password} onChange={handleChange} onBlur={handleBlur} />
 
-                      {errors.email && touched.email && (
-                        <div className="alert alert-danger">{errors.email}</div>
-                      )}
+                      {errors.email && touched.email && <div className='alert alert-danger'>{errors.email}</div>}
 
-                      {errors.password && touched.password && (
-                        <div className="alert alert-danger">
-                          {errors.password}
-                        </div>
-                      )}
+                      {errors.password && touched.password && <div className='alert alert-danger'>{errors.password}</div>}
 
-                      <button className="btn btn-primary" type="submit">
+                      <button className='btn btn-primary' type='submit'>
                         Zaloguj
                       </button>
                     </form>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link, Route, Switch, HashRouter as Router } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -9,12 +9,14 @@ import Orders from "./Orders";
 import PersonalData from "./PersonalData";
 
 const Account = (props) => {
-  const { loggedUser, user } = useContext(StoreContext);
+  const { loggedUser } = useContext(StoreContext);
   const history = useHistory();
 
-  if (!user) {
+  if (!loggedUser) {
     history.push("/");
   }
+
+  // console.log(loggedUser);
 
   return (
     <Router>

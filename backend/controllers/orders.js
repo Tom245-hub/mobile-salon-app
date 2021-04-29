@@ -2,11 +2,14 @@ const { v4: uuid } = require("uuid");
 
 const ordersData = [
   {
-    id: uuid(),
-    idStylist: 7,
+    status: "nowe",
+    idOrder: 1,
+    idStylist: 1,
     idClient: 56,
+    date: "12 październik 2021",
+    time: "9:00",
     adress: {
-      street: "Marszłakowska",
+      street: "Marszłkowska",
       buildNumber: "5a",
       localNumber: "77",
       floor: "4",
@@ -14,30 +17,30 @@ const ordersData = [
       city: "Warszawa",
     },
     services: [
-      [
-        {
+      {
+        hair: {
           idService: 1,
           hair: "Ślubne upięcie włosów",
           price: 239,
         },
-        {
+        makeup: {
           idService: 2,
           makeup: "Makijaż ślubny",
           price: 199,
         },
-      ],
-      [
-        {
+      },
+      {
+        hair: {
           idService: 5,
           hair: "Wieczorowe upięcie włosów",
           price: 199,
         },
-        {
+        makeup: {
           idService: 8,
           makeup: "Makijaż wieczorowy",
           price: 199,
         },
-      ],
+      },
     ],
   },
 ];
@@ -50,8 +53,7 @@ exports.getOrders = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders",
+      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders",
     });
   }
 };
@@ -75,8 +77,7 @@ exports.getOrder = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders/:id",
+      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders/:id",
     });
   }
 };
@@ -119,8 +120,7 @@ exports.postOrder = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /orders",
+      message: "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /orders",
     });
   }
 };

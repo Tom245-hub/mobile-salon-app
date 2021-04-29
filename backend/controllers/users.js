@@ -1,24 +1,24 @@
 const usersData = [
   {
-    id: 1,
+    idUser: 1,
     accessLevel: 0,
     login: "e",
     password: "1",
   },
   {
-    id: 2,
+    idUser: 2,
     accessLevel: 0,
     login: "patrycja",
     password: "pat",
   },
   {
-    id: 101,
+    idUser: 101,
     accessLevel: 1,
     login: "AnnaNowak",
     password: "clientaann",
   },
   {
-    id: 201,
+    idUser: 201,
     accessLevel: 2,
     login: "Admin",
     password: "******",

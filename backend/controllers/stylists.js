@@ -1,9 +1,9 @@
-const { v4: uuid } = require("uuid");
+// const { v4: uuid } = require("uuid");
 
 const stylistsData = [
   {
-    // id: 1,
-    id: uuid(),
+    idStylist: 1,
+    // idStylist: uuid(),
     title: "Edyta",
     url: "/stylistki/1",
     img: "/img/stylist/warszawa/01-edyta/01-edyta.jpg",
@@ -17,8 +17,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 2,
-    id: uuid(),
+    idStylist: 2,
+    // idStylist: uuid(),
     title: "Patrycja",
     url: "/stylistki/2",
     img: "/img/stylist/warszawa/02-patrycja/02-patrycja.jpg",
@@ -32,8 +32,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 6,
-    id: uuid(),
+    idStylist: 6,
+    // idStylist: uuid(),
     title: "Dagmara",
     url: "/stylistki/6",
     img: "/img/stylist/warszawa/06-dagmara/06-dagmara.jpg",
@@ -47,8 +47,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 7,
-    id: uuid(),
+    idStylist: 7,
+    // idStylist: uuid(),
     title: "Polina",
     url: "/stylistki/7",
     img: "/img/stylist/warszawa/07-polina/07-polina.jpg",
@@ -62,8 +62,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 8,
-    id: uuid(),
+    idStylist: 8,
+    // idStylist: uuid(),
     title: "Ola",
     url: "/stylistki/8",
     img: "/img/stylist/warszawa/08-ola/08-ola.jpg",
@@ -77,8 +77,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 9,
-    id: uuid(),
+    idStylist: 9,
+    // idStylist: uuid(),
     title: "Martyna",
     url: "/stylistki/9",
     img: "/img/stylist/warszawa/09-martyna/09-martyna.jpg",
@@ -92,8 +92,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 14,
-    id: uuid(),
+    idStylist: 14,
+    // idStylist: uuid(),
     title: "Joanna",
     url: "/stylistki/14",
     img: "/img/stylist/warszawa/14-joanna/14-joanna.jpg",
@@ -107,8 +107,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 15,
-    id: uuid(),
+    idStylist: 15,
+    // idStylist: uuid(),
     title: "Karolina",
     url: "/stylistki/15",
     img: "/img/stylist/warszawa/15-karolina/15-karolina.jpg",
@@ -122,8 +122,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 18,
-    id: uuid(),
+    idStylist: 18,
+    // idStylist: uuid(),
     title: "Beata",
     url: "/stylistki/18",
     img: "/img/stylist/warszawa/18-beata/18-beata.jpg",
@@ -137,8 +137,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 10,
-    id: uuid(),
+    idStylist: 10,
+    // idStylist: uuid(),
     title: "Patrycja",
     url: "/stylistki/10",
     img: "/img/stylist/warszawa/10-patrycja/10-patrycja.jpg",
@@ -152,8 +152,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 11,
-    id: uuid(),
+    idStylist: 11,
+    // idStylist: uuid(),
     title: "Aleksandra",
     url: "/stylistki/11",
     img: "/img/stylist/warszawa/11-aleksandra/11-aleksandra.jpg",
@@ -167,8 +167,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 12,
-    id: uuid(),
+    idStylist: 12,
+    // idStylist: uuid(),
     title: "Kasia",
     url: "/stylistki/12",
     img: "/img/stylist/warszawa/12-kasia/12-kasia.jpg",
@@ -182,8 +182,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 13,
-    id: uuid(),
+    idStylist: 13,
+    // idStylist: uuid(),
     title: "Weronika",
     url: "/stylistki/13",
     img: "/img/stylist/warszawa/13-weronika/13-weronika.jpg",
@@ -197,8 +197,8 @@ const stylistsData = [
     city: "Warszawa",
   },
   {
-    // id: 3,
-    id: uuid(),
+    idStylist: 3,
+    // idStylist: uuid(),
     title: "Ilona",
     url: "/stylistki/3",
     img: "/img/stylist/krakow/03-ilona/03-ilona.jpg",
@@ -212,8 +212,8 @@ const stylistsData = [
     city: "Kraków",
   },
   {
-    // id: 4,
-    id: uuid(),
+    idStylist: 4,
+    // idStylist: uuid(),
     title: "Małgorzata",
     url: "/stylistki/4",
     img: "/img/stylist/krakow/04-malgorzata/04-malgorzata.jpg",
@@ -227,8 +227,8 @@ const stylistsData = [
     city: "Kraków",
   },
   {
-    // id: 16,
-    id: uuid(),
+    idStylist: 16,
+    // idStylist: uuid(),
     title: "Justyna",
     url: "/stylistki/16",
     img: "/img/stylist/krakow/16-justyna/16-justyna.jpg",
@@ -242,8 +242,8 @@ const stylistsData = [
     city: "Kraków",
   },
   {
-    // id: 17,
-    id: uuid(),
+    idStylist: 17,
+    // idStylist: uuid(),
     title: "Yana",
     url: "/stylistki/16",
     img: "/img/stylist/krakow/17-yana/17-yana.jpg",
@@ -257,8 +257,8 @@ const stylistsData = [
     city: "Kraków",
   },
   {
-    // id: 5,
-    id: uuid(),
+    idStylist: 5,
+    // idStylist: uuid(),
     title: "Ola",
     url: "/stylistki/5",
     img: "/img/stylist/wroclaw/05-ola/05-ola.jpeg",
@@ -272,8 +272,8 @@ const stylistsData = [
     city: "Wrocław",
   },
   {
-    // id: 19,
-    id: uuid(),
+    idStylist: 19,
+    // idStylist: uuid(),
     title: "Tetiana",
     url: "/stylistki/19",
     img: "/img/stylist/wroclaw/19-tetiana/19-tetiana.jpg",
@@ -287,13 +287,12 @@ const stylistsData = [
     city: "Wrocław",
   },
   {
-    // id: 20,
-    id: uuid(),
+    idStylist: 20,
+    // idStylist: uuid(),
     title: "Aleksandra",
     url: "/stylistki/20",
     img: "/img/stylist/wroclaw/20-aleksandra/20-aleksandra.jpeg",
-    text:
-      "Aleksandra jest fryzjerem/stylistą z doświadczenia i pasji. Kocha to co robi i zawsze podejmuje się rzeczy “niemożliwych” do zrobienia. Miła, zaangażowana, pełna pasji i pomysłów.",
+    text: "Aleksandra jest fryzjerem/stylistą z doświadczenia i pasji. Kocha to co robi i zawsze podejmuje się rzeczy “niemożliwych” do zrobienia. Miła, zaangażowana, pełna pasji i pomysłów.",
     position: {
       hair_stylist: true,
       makeup_stylist: false,
@@ -302,8 +301,8 @@ const stylistsData = [
     city: "Wrocław",
   },
   {
-    // id: 21,
-    id: uuid(),
+    idStylist: 21,
+    // idStylist: uuid(),
     title: "Diana",
     url: "/stylistki/21",
     img: "/img/stylist/wroclaw/21-diana/21-diana.jpeg",
@@ -317,8 +316,8 @@ const stylistsData = [
     city: "Wrocław",
   },
   {
-    // id: 22,
-    id: uuid(),
+    idStylist: 22,
+    // idStylist: uuid(),
     title: "Julia",
     url: "/stylistki/22",
     img: "/img/stylist/poznan/22-julia/22-julia.jpg",
@@ -341,8 +340,7 @@ exports.getStylists = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /stylists",
+      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /stylists",
     });
   }
 };
@@ -350,7 +348,7 @@ exports.getStylists = (request, response, next) => {
 exports.getStylist = (request, response, next) => {
   try {
     const { id } = request.params;
-    const stylistToSend = stylistsData.find((stylist) => stylist.id === id);
+    const stylistToSend = stylistsData.find((stylist) => stylist.idStylist === id);
 
     if (!stylistToSend) {
       response.status(404).json({
@@ -366,36 +364,15 @@ exports.getStylist = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /stylists/:id",
+      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /stylists/:id",
     });
   }
 };
 
 exports.postStylist = (request, response, next) => {
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      birthYear,
-      zipcode,
-      hairStylExp,
-      makeupStylExp,
-      city,
-    } = request.body;
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !phone ||
-      !birthYear ||
-      !zipcode ||
-      !hairStylExp ||
-      !makeupStylExp ||
-      !city
-    ) {
+    const { firstName, lastName, email, phone, birthYear, zipcode, hairStylExp, makeupStylExp, city } = request.body;
+    if (!firstName || !lastName || !email || !phone || !birthYear || !zipcode || !hairStylExp || !makeupStylExp || !city) {
       response.status(400).json({
         message: "Nie podano wszystkich wymaganych informacji",
       });
@@ -415,7 +392,7 @@ exports.postStylist = (request, response, next) => {
     // }
 
     const newStylist = {
-      // id: uuid(),
+      // idStylist: uuid(),
       firstName,
       lastName,
       email,
@@ -435,8 +412,7 @@ exports.postStylist = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /stylists",
+      message: "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /stylists",
     });
   }
 };
@@ -452,9 +428,7 @@ exports.putStylist = (request, response, next) => {
       return;
     }
 
-    const indexStylistToUpdate = stylistsData.findIndex(
-      (stylist) => stylist.id === id
-    );
+    const indexStylistToUpdate = stylistsData.findIndex((stylist) => stylist.id === id);
     if (indexStylistToUpdate === -1) {
       response.status(404).json({
         message: "Nie znaleziono stylistki o podanym id",
@@ -471,8 +445,7 @@ exports.putStylist = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie PUT w endpointcie /stylists",
+      message: "Oops! Coś poszło nie tak, przy metodzie PUT w endpointcie /stylists",
     });
   }
 };
@@ -482,9 +455,7 @@ exports.deleteStylist = (request, response, next) => {
     const { id } = request.params;
 
     console.log(id);
-    const indexStylistToDelete = stylistsData.findIndex(
-      (stylist) => stylist.id === id
-    );
+    const indexStylistToDelete = stylistsData.findIndex((stylist) => stylist.id === id);
 
     if (indexStylistToDelete === -1) {
       response.status(404).json({
@@ -499,8 +470,7 @@ exports.deleteStylist = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie DELETE w endpointcie /stylists/:id",
+      message: "Oops! Coś poszło nie tak, przy metodzie DELETE w endpointcie /stylists/:id",
     });
   }
 };

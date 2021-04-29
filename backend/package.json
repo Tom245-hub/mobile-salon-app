@@ -4,6 +4,7 @@
   "description": "Backend for MS app",
   "main": "server.js",
   "scripts": {
+    "watch": "nodemon",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,5 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
