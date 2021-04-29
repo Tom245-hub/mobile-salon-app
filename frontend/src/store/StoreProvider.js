@@ -7,22 +7,22 @@ export const StoreContext = createContext(null);
 const StoreProvider = ({ children }) => {
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
-
   const [user, setUser] = useState(null);
-  // console.log(user);
   const [orderList, setOrderList] = useState([]);
   const [stylistList, setStylistList] = useState([]);
 
-  const [loggedUser, setLoggedUser] = useState({});
-  // console.log(loggedUser);
+  if (user) {
+    console.log("zalogowany");
+  } else if (!user) {
+    console.log("niezalogowany");
+  }
+
+  const [loggedUser, setLoggedUser] = useState();
 
   useEffect(() => {
     if (user && user.accessLevel === 0) {
       const stylist = stylistList.filter((stylist) => stylist.idStylist === user.idUser)[0];
-      // console.log(stylist);
       const orders = orderList.filter((order) => order.idStylist === stylist.idStylist);
-      // console.log(orders);
-
       setLoggedUser({ user, stylist, orders });
     }
   }, [user, stylistList, orderList]);
@@ -122,14 +122,6 @@ const StoreProvider = ({ children }) => {
     fetchDataSlide();
     fetchDataOrder();
   }, []);
-
-  // useEffect(() => {
-  //   if (user && user.accessLevel === 0) {
-  //     const stylist = stylistList.filter((stylist) => stylist.id === user.id)[0];
-  //     const dataUserStylist = { ...user, ...stylist };
-  //     setLoggedUser(dataUserStylist);
-  //   }
-  // }, [user, stylistList]);
 
   return (
     <StoreContext.Provider

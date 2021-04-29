@@ -9,7 +9,7 @@ import Orders from "./Orders";
 import PersonalData from "./PersonalData";
 
 const Account = (props) => {
-  const { loggedUser } = useContext(StoreContext);
+  const { loggedUser, setLoggedUser } = useContext(StoreContext);
   const history = useHistory();
 
   if (!loggedUser) {
@@ -18,21 +18,28 @@ const Account = (props) => {
 
   // console.log(loggedUser);
 
+  const handleClickLogOut = () => {
+    setLoggedUser(false);
+    history.push("/");
+  };
+
   return (
     <Router>
       <div className='container-fluid min-vh-100'>
         <div className='row min-vh-100'>
-          <div className='col-2 bg-light'>
+          <div className='col-2 bg-light p-0'>
             <nav>
               <ul>
-                <li>Zalogowany: {loggedUser && loggedUser.user.login}</li>
-                <li>
+                <li className='text-center bg-primary text-white mb-2 py-3'>
+                  Zalogowany: {loggedUser && loggedUser.user.login} <a onClick={handleClickLogOut}>(wyloguj)</a>
+                </li>
+                <li className='text-center mb-2'>
                   <Link to='/strefa-stylistki/konto'>Informacje</Link>
                 </li>
-                <li>
+                <li className='text-center mb-2'>
                   <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
                 </li>
-                <li>
+                <li className='text-center mb-2'>
                   <Link to='/strefa-stylistki/konto/zamowienia'>Zamówienia</Link>
                 </li>
               </ul>

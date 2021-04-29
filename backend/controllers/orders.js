@@ -1,4 +1,4 @@
-const { v4: uuid } = require("uuid");
+// const { v4: uuid } = require("uuid");
 
 const ordersData = [
   {
@@ -29,6 +29,36 @@ const ordersData = [
           price: 199,
         },
       },
+      {
+        hair: {
+          idService: 5,
+          hair: "Wieczorowe upięcie włosów",
+          price: 199,
+        },
+        makeup: {
+          idService: 8,
+          makeup: "Makijaż wieczorowy",
+          price: 199,
+        },
+      },
+    ],
+  },
+  {
+    status: "nowe",
+    idOrder: 2,
+    idStylist: 1,
+    idClient: 34,
+    date: "30 wrzesień 2021",
+    time: "12:00",
+    adress: {
+      street: "Brazylijska",
+      buildNumber: "12",
+      localNumber: "104",
+      floor: "9",
+      zipcode: "03-322",
+      city: "Warszawa",
+    },
+    services: [
       {
         hair: {
           idService: 5,
