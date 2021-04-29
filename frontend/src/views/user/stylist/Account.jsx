@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, Route, Switch, HashRouter as Router } from "react-router-dom";
 
 import { StoreContext } from "../../../store/StoreProvider";
@@ -8,43 +8,33 @@ import Orders from "./Orders";
 import PersonalData from "./PersonalData";
 
 const Account = (props) => {
-  const { user } = useContext(StoreContext);
+  const { loggedUser } = useContext(StoreContext);
 
   return (
     <Router>
-      <div className="container-fluid min-vh-100">
-        <div className="row min-vh-100">
-          <div className="col-2 bg-light">
+      <div className='container-fluid min-vh-100'>
+        <div className='row min-vh-100'>
+          <div className='col-2 bg-light'>
             <nav>
               <ul>
-                <li>Zalogowany: {user && user.login}</li>
+                <li>Zalogowany: {loggedUser && loggedUser.user.login}</li>
                 <li>
-                  <Link to="/strefa-stylistki/konto">Informacje</Link>
+                  <Link to='/strefa-stylistki/konto'>Informacje</Link>
                 </li>
                 <li>
-                  <Link to="/strefa-stylistki/konto/dane">Twoje dane</Link>
+                  <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
                 </li>
                 <li>
-                  <Link to="/strefa-stylistki/konto/zamowienia">
-                    Zamówienia
-                  </Link>
+                  <Link to='/strefa-stylistki/konto/zamowienia'>Zamówienia</Link>
                 </li>
               </ul>
             </nav>
           </div>
-          <div className="col-10">
+          <div className='col-10'>
             <Switch>
-              <Route exact path="/strefa-stylistki/konto" component={Info} />
-              <Route
-                exact
-                path="/strefa-stylistki/konto/dane"
-                render={() => <PersonalData />}
-              />
-              <Route
-                exact
-                path="/strefa-stylistki/konto/zamowienia"
-                render={() => <Orders />}
-              />
+              <Route exact path='/strefa-stylistki/konto' component={Info} />
+              <Route exact path='/strefa-stylistki/konto/dane' render={() => <PersonalData />} />
+              <Route exact path='/strefa-stylistki/konto/zamowienia' render={() => <Orders />} />
             </Switch>
           </div>
         </div>

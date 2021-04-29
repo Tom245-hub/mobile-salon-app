@@ -1,27 +1,25 @@
-// const { coursesData } = require("./courses");
-
 const usersData = [
   {
-    accessLevel: 0,
-    // budget: 150,
-    // courses: [coursesData[0].id, coursesData[1].id, coursesData[2].id],
-    login: "User",
-    password: "123456",
-  },
-  {
+    id: 1,
     accessLevel: 0,
     login: "e",
     password: "1",
   },
   {
+    id: 2,
     accessLevel: 0,
-    login: "Diana",
-    password: "diana123",
+    login: "patrycja",
+    password: "pat",
   },
   {
+    id: 101,
     accessLevel: 1,
-    // budget: 1000000,
-    // courses: [coursesData.map((course) => course.id)],
+    login: "AnnaNowak",
+    password: "clientaann",
+  },
+  {
+    id: 201,
+    accessLevel: 2,
     login: "Admin",
     password: "******",
   },
@@ -55,61 +53,7 @@ exports.postUser = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /users",
+      message: "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /users",
     });
   }
 };
-
-// exports.patchUser = (request, response, next) => {
-//   try {
-//     const { login, courseId } = request.body;
-
-//     const course = coursesData.find((course) => course.id === courseId);
-//     const user = usersData.find((user) => user.login === login);
-
-//     if (!course) {
-//       response.status(404).json({
-//         message: "Nie znaleziono kursu o podanym Id",
-//       });
-
-//       return;
-//     } else if (!user) {
-//       response.status(404).json({
-//         message: "Nie znaleziono uzytkownika o podanym loginie",
-//       });
-
-//       return;
-//     }
-
-//     const hasUserCourseAlready = user.courses.some((id) => id === courseId);
-//     if (hasUserCourseAlready) {
-//       response.status(200).json({
-//         user,
-//       });
-
-//       return;
-//     }
-
-//     const hasUserEnoughtMoney = user.budget - course.price >= 0;
-//     if (!hasUserEnoughtMoney) {
-//       response.status(403).json({
-//         message: "Uzytkownik nie posiada wystarczających funduszy",
-//       });
-
-//       return;
-//     }
-
-//     user.budget = Number((user.budget - course.price).toFixed(2));
-//     user.courses.push(courseId);
-//     response.status(202).json({
-//       user,
-//     });
-//   } catch (error) {
-//     response.status(500).json({
-//       error,
-//       message:
-//         "Oops! Coś poszło nie tak, przy metodzie PATCH w endpointcie /users",
-//     });
-//   }
-// };

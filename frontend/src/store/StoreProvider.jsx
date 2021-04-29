@@ -10,6 +10,7 @@ const StoreProvider = ({ children }) => {
   const [serviceList, setServiceList] = useState([]);
   const [slideList, setSlideList] = useState([]);
   const [user, setUser] = useState(null);
+  const [loggedUser, setLoggedUser] = useState();
 
   const fetchDataStylist = async () => {
     const { data } = await request.get("/stylists");
@@ -38,6 +39,14 @@ const StoreProvider = ({ children }) => {
     fetchDataOrder();
   }, []);
 
+  useEffect(() => {
+    if (user && user.accessLevel === 0) {
+      const stylist = stylistList.filter((stylist) => stylist.id === user.id)[0];
+      const dataUserStylist = { user, stylist };
+      setLoggedUser(dataUserStylist);
+    }
+  }, [user]);
+
   return (
     <StoreContext.Provider
       value={{
@@ -51,6 +60,8 @@ const StoreProvider = ({ children }) => {
         setOrderList,
         user,
         setUser,
+        loggedUser,
+        setLoggedUser,
       }}
     >
       {children}
