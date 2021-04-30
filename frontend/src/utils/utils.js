@@ -1,20 +1,15 @@
 export const showAvailableCities = (data) => {
-    let cities = [];
+  let cities = [];
 
-    data.map(item =>
-        !cities.includes(item.city) && cities.push(item.city)
-    )
+  data.map((item) => !cities.includes(item.city) && cities.push(item.city));
 
-    return cities;
-}
+  return cities;
+};
 
 export const showAvailableServices = (data) => {
-    let avilableServices = [];
+  let avilableServices = [];
 
-    data.map(item =>
-                Object.keys(item.services).map(service => !avilableServices.includes(service) && avilableServices.push(service))
-    )
+  data.map((item) => Object.keys(item.services).map((service) => !avilableServices.includes(service) && avilableServices.push(service)));
 
-    return avilableServices;
-}
-
+  return avilableServices;
+};

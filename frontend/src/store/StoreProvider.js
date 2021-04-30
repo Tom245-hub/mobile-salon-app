@@ -11,11 +11,12 @@ const StoreProvider = ({ children }) => {
   const [orderList, setOrderList] = useState([]);
   const [stylistList, setStylistList] = useState([]);
 
-  if (user) {
-    console.log("zalogowany");
-  } else if (!user) {
-    console.log("niezalogowany");
-  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // if (user) {
+  //   console.log("zalogowany");
+  // } else if (!user) {
+  //   console.log("niezalogowany");
+  // }
 
   const [loggedUser, setLoggedUser] = useState();
 

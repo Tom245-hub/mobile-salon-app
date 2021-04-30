@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import request from "../../../utils/request";
+import { StoreContext } from "../../../store/StoreProvider";
+
+import Image from "../../components/Image";
 
 const StylistScreen = () => {
-  // let { id } = useParams();
-  // const [stylist, setStylist] = useState({});
+  const { stylistList } = useContext(StoreContext);
+  // console.log(stylistList);
+  let { id } = useParams();
+  // console.log(id);
 
-  // const fetchData = async (id) => {
-  //   const { data } = await request.get("/StylistApiController.php");
-  //   let stylist = data.stylistList.filter((item) => item.id_stylist == id);
-  //   setStylist(stylist[0]);
-  // };
-
-  // useEffect(() => {
-  //   fetchData(id);
-  // }, []);
+  const stylist = stylistList.length && stylistList.filter((stylist) => stylist.idStylist == id)[0];
+  // console.log(stylist);
 
   return (
-    <div className="container my-5">
-      {/* <h3>stylistka ID: {id}</h3>
-      <br />
-      <h3>stylistka title: {stylist.title}</h3>
-      <br />
-      <h3>stylistka img profile: {stylist.img}</h3>
-      <br />
-      <h3>stylistka text: {stylist.text}</h3>
-      <br />
-      <h3>stylistka city: {stylist.city}</h3>
-      <br />
-      <h3>stylistka expt: {stylist.experience}</h3>
-      <br />
-      {console.log(stylist)} */}
+    <div className='container-fluid'>
+      <div className='container my-5 bg-light'>
+        <div className='row'>
+          <div className='col-4'>
+            <Image height='80%' img={stylist.img} />
+          </div>
+          <div className='col-3'>
+            <h2>{stylist.title}</h2>
+            <h3>{stylist.city}</h3>
+            <h3>Doświadczenie: {stylist.experience} lat</h3>
+          </div>
+          <div className='col-5'>
+            <h5>{stylist.text}</h5>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
