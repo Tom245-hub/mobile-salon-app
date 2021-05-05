@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+import { Children } from "react";
 import styled from "styled-components";
 
 import { StoreContext } from "../../../store/StoreProvider";
 
 import Card from "../../components/Card";
+import FormGroup from "../../components/FormGroup";
+import { PageTitle, PageSubTitle } from "../../components/Title";
 
 const Intro = styled.div`
   font-family: ${(props) => props.theme.fonts.secondary};
@@ -46,60 +49,62 @@ const StylistList = () => {
   const { stylistList } = useContext(StoreContext);
 
   return (
-    <div className="container my-5">
-      <Intro className="row d-flex justify-content-center mb-5">
-        <div className="col-8">
-          <h2 className="text-center mb-3">
-            Jesteśmy zespołem stylistów chcących tworzyć nowy standard usługi
-            dla Waszej wygody.
-          </h2>
-          <h3 className="text-center mb-3">
-            Dzięki Wam możemy mieć pracę, którą kochamy.
-          </h3>
-          <h4 className="text-center mb-3">
-            Do naszego zespołu trafiają wyłącznie styliści z doświadczeniem,
-            <br />
-            zamiłowaniem i kreatywnym spojrzeniem na stylizację wizerunku.
-            <br />
-            Zapraszamy do galerii naszych prac.
-          </h4>
-        </div>
-      </Intro>
-
-      <FilterCity className="row d-flex justify-content-center mb-3">
-        <div className="col-8">
-          <ul className="d-flex justify-content-between">
-            <li>WARSZAWA</li>
-            <li>KRAKÓW</li>
-            <li>WROCŁAW</li>
-            <li>POZNAŃ</li>
-            <li>GDAŃSK</li>
-          </ul>
-        </div>
-      </FilterCity>
-
-      <FilterPosition className="row d-flex justify-content-center mb-3">
-        <div className="col-8">
-          <ul className="d-flex justify-content-center">
-            <li className="mx-2">fryzjerka</li>
-            <li className="mx-2">wizażystka</li>
-          </ul>
-        </div>
-      </FilterPosition>
-
-      <div className="row">
-        {stylistList.map((item, index) => (
-          <div key={index} className="col-3 mb-3">
-            <Card
-              img={item.img}
-              url={item.url}
-              title={item.title}
-              bgColorHover={true}
-            />
+    <>
+      <div className='container py-5'>
+        <PageTitle>Stylistki Mobile Salon</PageTitle>
+        <Intro className='row d-flex justify-content-center'>
+          <div className='col-12 col-md-8'>
+            <h2 className='text-center mb-3'>Jesteśmy zespołem stylistów chcących tworzyć nowy standard usługi dla Waszej wygody.</h2>
+            <h3 className='text-center mb-3'>Dzięki Wam możemy mieć pracę, którą kochamy.</h3>
+            <h4 className='text-center mb-3'>
+              Do naszego zespołu trafiają wyłącznie styliści z doświadczeniem,
+              <br />
+              zamiłowaniem i kreatywnym spojrzeniem na stylizację wizerunku.
+              <br />
+              Zapraszamy do galerii naszych prac.
+            </h4>
           </div>
-        ))}
+        </Intro>
       </div>
-    </div>
+      <div className='container-fluid py-5 bg-light'>
+        <div className='container'>
+          <FilterCity className='row d-flex justify-content-center mb-3'>
+            <div className='col-12 col-md-8'>
+              <ul className='d-flex justify-content-between'>
+                <li>WARSZAWA</li>
+                <li>KRAKÓW</li>
+                <li>WROCŁAW</li>
+                <li>POZNAŃ</li>
+                <li>GDAŃSK</li>
+              </ul>
+            </div>
+          </FilterCity>
+          <FilterPosition className='row d-flex justify-content-center mb-3'>
+            <div className='col-12 col-md-8'>
+              <ul className='d-flex justify-content-center'>
+                <li className='mx-2'>fryzjerka</li>
+                <li className='mx-2'>wizażystka</li>
+              </ul>
+            </div>
+          </FilterPosition>
+          <div className='row'>
+            {stylistList.map((item, index) => (
+              <div key={index} className='col-6 col-md-3 mb-3'>
+                <Card img={item.img} url={item.url} title={item.title} bgColorHover={true} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className='container py-5'>
+        <PageSubTitle>Konsultacje telefoniczne</PageSubTitle>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-10 col-md-6'>
+            <FormGroup placeholder='Twój telefon' btnText='Zamów konsultację' />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

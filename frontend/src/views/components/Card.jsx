@@ -6,7 +6,7 @@ import Image from "./Image";
 
 const Container = styled.div`
   height: 100%;
-  transition: 0.2s ease-in-out;
+  transition: 0.5s ease-in-out;
 
   h2 {
     font-size: 18px;
@@ -21,7 +21,10 @@ const Container = styled.div`
   }
 
   &:hover {
-    background-color: ${(props) => props.bgColorHover && props.theme.colors.warning};
+    background-color: ${(props) => props.bgColorHover && props.theme.colors.primary};
+    h2 {
+      color: ${(props) => props.bgColorHover && props.theme.colors.graySuperLight};
+    }
   }
 
   &:hover {

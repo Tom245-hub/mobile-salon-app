@@ -5,6 +5,7 @@ import { faFacebook, faInstagram, faGoogle } from "@fortawesome/free-brands-svg-
 import styled from "styled-components";
 
 import LoginModal from "../../components/LoginModal";
+import FormGroup from "../../components/FormGroup";
 
 const OpenModalLink = styled.a`
   &:hover {
@@ -81,14 +82,7 @@ const Footer = () => {
                 <div className='col-4'>
                   <h5 className='mb-3'>NEWSLETTER</h5>
 
-                  <div className='input-group'>
-                    <input className='form-control' type='email' placeholder='Twój email' />
-                    <div className='input-group-append'>
-                      <button className='btn btn-primary' type='button'>
-                        Zapisz się
-                      </button>
-                    </div>
-                  </div>
+                  <FormGroup placeholder='Twój email' btnText='Zapisz się' />
                 </div>
               </div>
             </div>
