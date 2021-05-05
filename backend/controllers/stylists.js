@@ -15,6 +15,59 @@ const stylistsData = [
     },
     experience: 10,
     city: "Warszawa",
+    portfolio: [
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-01.jpg",
+        title: "Stylizacja włosów w loki",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-02.jpg",
+        title: "Stylizacja włosów w loki",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-03.jpg",
+        title: "Stylizacja włosów z upięciem",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-04.jpg",
+        title: "Stylizacja włosów z upięciem",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-05.jpg",
+        title: "Stylizacja włosów z upięciem i warkoczem",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-06.jpg",
+        title: "Stylizacja włosów z upięciem i warkoczem",
+      },
+      {
+        img: "/img/stylist/warszawa/01-edyta/01-fryzura-07.jpg",
+        title: "Stylizacja włosów z warkoczem i lokami",
+      },
+    ],
+    reviews: [
+      {
+        idReview: 1,
+        idClient: 200,
+        idStylist: 1,
+        text: "Piękna fryzura śluba w wykonaniu Edyty. Dziękuję.",
+        stars: 5,
+      },
+      {
+        idReview: 2,
+        idClient: 201,
+        idStylist: 1,
+        text: "Makijaż utrzymał sie bardzo długo. Stylistka dojechała na czas.",
+        stars: 5,
+      },
+      {
+        idReview: 3,
+        idClient: 202,
+        idStylist: 1,
+        text: "Polecam makijaże Pani Edyty i Mobile Salon!",
+        stars: 5,
+      },
+    ],
   },
   {
     idStylist: 2,

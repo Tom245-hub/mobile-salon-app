@@ -34,7 +34,6 @@ const StyledContainer = styled.div`
 const StylistProfileText = (props) => {
   const hairStylist = props.stylist && props.stylist.position.hairStylist && "fryzjerka";
   const makeupStylist = props.stylist && props.stylist.position.makeupStylist && "wizażystka";
-  console.log(hairStylist);
 
   return (
     <StyledContainer>

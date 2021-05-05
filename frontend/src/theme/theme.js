@@ -12,6 +12,8 @@ export default {
     gray: "#808080",
     grayLight: "#BFBFBF",
     graySuperLight: "#E6E6E6",
+
+    gold: "#CFB53B",
   },
   fonts: {
     primary: "Nunito Sans, sans-serif",
