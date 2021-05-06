@@ -4,30 +4,22 @@ import styled from "styled-components";
 
 import "../../../node_modules/slick-carousel/slick/slick.css";
 
+import Image from "./Image";
+
 const ContainerSlide = styled.div`
   position: relative;
-  text-align: center;
 `;
 
-const Text = styled.h4`
-  font-family: ${(props) => props.theme.fonts.artist};
-`;
-
-const BoxStars = styled.span`
-  color: ${(props) => props.theme.colors.gold};
-`;
-
-const SliderReviews = (props) => {
+const SliderImages = (props) => {
   return (
     <Slider {...props.settings}>
       {props.data.map((item, index) => (
         <ContainerSlide key={index}>
-          <Text>{item.comment}</Text>
-          <BoxStars>{props.showStars(item.stars)}</BoxStars>
+          <Image margin={props.margin} height={props.height} title={item.title} img={item.img} />
         </ContainerSlide>
       ))}
     </Slider>
   );
 };
 
-export default SliderReviews;
+export default SliderImages;

@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-import Image from "./Image";
 
 const ContainerCard = styled.div`
   height: 100%;
@@ -29,20 +26,29 @@ const ContainerCard = styled.div`
   }
 `;
 
-const Card = (props) => {
-  const title = props.title && <h2 className='px-2 py-4'>{props.title}</h2>;
-  const text = props.text && <h3 className='px-2 py-2'>{props.text}</h3>;
-
+const TablePrices = (props) => {
   return (
-    <Link to={props.url}>
-      <ContainerCard margin={props.margin} bgColorHover={props.bgColorHover}>
-        <Image scale={true} height='60%' title={props.title} img={props.img} />
-
-        {title}
-        {text}
-      </ContainerCard>
-    </Link>
+    <>
+      <table className='table'>
+        <thead>
+          <tr className='table-primary'>
+            <th scope='col'>Usługa</th>
+            <th scope='col'>Cena</th>
+            <th scope='col'>Czas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.data.map((item) => (
+            <tr key={item.idService}>
+              <td>{item.title}</td>
+              <td>{item.price} zł</td>
+              <td>{item.time} h</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
-export default Card;
+export default TablePrices;

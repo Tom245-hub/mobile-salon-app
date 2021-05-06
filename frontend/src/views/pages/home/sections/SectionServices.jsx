@@ -6,20 +6,21 @@ import Card from "../../../components/Card";
 import { PageSubTitle } from "../../../components/Title";
 
 const SectionServices = () => {
-  const { serviceList } = useContext(StoreContext);
-
-  const services = serviceList.map((item, index) => (
-    <div key={index} className='col-3'>
-      <Card img={item.img} url={item.url} title={item.title} bgColorHover={true} />
-    </div>
-  ));
+  const { categoryList } = useContext(StoreContext);
+  // console.log(categoryList);
 
   return (
     <>
       <ZipCode />
       <PageSubTitle>Poznaj nasze usługi</PageSubTitle>
 
-      <div className='row'>{services}</div>
+      <div className='row'>
+        {categoryList.map((item, index) => (
+          <div key={index} className='col-3'>
+            <Card img={item.img} url={item.url} title={item.title} bgColorHover={true} />
+          </div>
+        ))}
+      </div>
     </>
   );
 };

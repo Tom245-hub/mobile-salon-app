@@ -1,9 +1,17 @@
-// const { v4: uuid } = require("uuid");
+const { picturesData } = require("./pictures");
+const { reviewsData } = require("./reviews");
+
+const getPictures = (idStylist) => {
+  return picturesData.filter((picture) => picture.idStylist === idStylist);
+};
+
+const getReviews = (idStylist) => {
+  return reviewsData.filter((review) => review.idStylist === idStylist);
+};
 
 const stylistsData = [
   {
     idStylist: 1,
-    // idStylist: uuid(),
     title: "Edyta",
     url: "/stylistki/1",
     img: "/img/stylist/warszawa/01-edyta/01-edyta.jpg",
@@ -15,63 +23,11 @@ const stylistsData = [
     },
     experience: 10,
     city: "Warszawa",
-    portfolio: [
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-01.jpg",
-        title: "Stylizacja włosów w loki",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-02.jpg",
-        title: "Stylizacja włosów w loki",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-03.jpg",
-        title: "Stylizacja włosów z upięciem",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-04.jpg",
-        title: "Stylizacja włosów z upięciem",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-05.jpg",
-        title: "Stylizacja włosów z upięciem i warkoczem",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-06.jpg",
-        title: "Stylizacja włosów z upięciem i warkoczem",
-      },
-      {
-        img: "/img/stylist/warszawa/01-edyta/01-fryzura-07.jpg",
-        title: "Stylizacja włosów z warkoczem i lokami",
-      },
-    ],
-    reviews: [
-      {
-        idReview: 1,
-        idClient: 200,
-        idStylist: 1,
-        text: "Piękna fryzura śluba w wykonaniu Edyty. Dziękuję.",
-        stars: 5,
-      },
-      {
-        idReview: 2,
-        idClient: 201,
-        idStylist: 1,
-        text: "Makijaż utrzymał sie bardzo długo. Stylistka dojechała na czas.",
-        stars: 5,
-      },
-      {
-        idReview: 3,
-        idClient: 202,
-        idStylist: 1,
-        text: "Polecam makijaże Pani Edyty i Mobile Salon!",
-        stars: 5,
-      },
-    ],
+    portfolio: getPictures(1),
+    reviews: getReviews(1),
   },
   {
     idStylist: 2,
-    // idStylist: uuid(),
     title: "Patrycja",
     url: "/stylistki/2",
     img: "/img/stylist/warszawa/02-patrycja/02-patrycja.jpg",
@@ -401,7 +357,7 @@ exports.getStylists = (request, response, next) => {
 exports.getStylist = (request, response, next) => {
   try {
     const { id } = request.params;
-    const stylistToSend = stylistsData.find((stylist) => stylist.idStylist === id);
+    const stylistToSend = stylistsData.find((stylist) => stylist.idStylist == id);
 
     if (!stylistToSend) {
       response.status(404).json({
@@ -507,7 +463,7 @@ exports.deleteStylist = (request, response, next) => {
   try {
     const { id } = request.params;
 
-    console.log(id);
+    // console.log(id);
     const indexStylistToDelete = stylistsData.findIndex((stylist) => stylist.id === id);
 
     if (indexStylistToDelete === -1) {

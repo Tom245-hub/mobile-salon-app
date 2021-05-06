@@ -5,11 +5,14 @@ import request from "../utils/request";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
+  const [stylistList, setStylistList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
   const [slideList, setSlideList] = useState([]);
   const [user, setUser] = useState(null);
   const [orderList, setOrderList] = useState([]);
-  const [stylistList, setStylistList] = useState([]);
+
+  console.log(categoryList);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   // if (user) {
@@ -107,6 +110,11 @@ const StoreProvider = ({ children }) => {
     setServiceList(data.services);
   };
 
+  const fetchDataCategory = async () => {
+    const { data } = await request.get("/categories");
+    setCategoryList(data.categories);
+  };
+
   const fetchDataSlide = async () => {
     const { data } = await request.get("/slider");
     setSlideList(data.slider);
@@ -119,6 +127,7 @@ const StoreProvider = ({ children }) => {
 
   useEffect(() => {
     fetchDataStylist();
+    fetchDataCategory();
     fetchDataService();
     fetchDataSlide();
     fetchDataOrder();
@@ -139,6 +148,8 @@ const StoreProvider = ({ children }) => {
         setUser,
         loggedUser,
         setLoggedUser,
+        categoryList,
+        setCategoryList,
       }}
     >
       {children}

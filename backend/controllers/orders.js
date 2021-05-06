@@ -1,11 +1,19 @@
-// const { v4: uuid } = require("uuid");
+const { servicesData } = require("./services");
+
+const getServices = (array) => {
+  let services = [];
+  for (let i = 0; i <= array.length; i++) {
+    services.push(servicesData.filter((service) => service.idService === array[i]));
+  }
+  return services;
+};
 
 const ordersData = [
   {
-    status: "nowe",
     idOrder: 1,
     idStylist: 1,
-    idClient: 56,
+    idClient: 1,
+    status: "nowe",
     date: "12 październik 2021",
     time: "9:00",
     adress: {
@@ -16,41 +24,16 @@ const ordersData = [
       zipcode: "01-300",
       city: "Warszawa",
     },
-    services: [
-      {
-        hair: {
-          idService: 1,
-          hair: "Ślubne upięcie włosów",
-          price: 239,
-        },
-        makeup: {
-          idService: 2,
-          makeup: "Makijaż ślubny",
-          price: 199,
-        },
-      },
-      {
-        hair: {
-          idService: 5,
-          hair: "Wieczorowe upięcie włosów",
-          price: 199,
-        },
-        makeup: {
-          idService: 8,
-          makeup: "Makijaż wieczorowy",
-          price: 199,
-        },
-      },
-    ],
+    services: getServices([1, 2]),
   },
   {
-    status: "nowe",
     idOrder: 2,
     idStylist: 1,
-    idClient: 34,
+    idClient: 2,
+    status: "nowe",
     date: "30 wrzesień 2021",
     time: "12:00",
-    adress: {
+    adressDelivery: {
       street: "Brazylijska",
       buildNumber: "12",
       localNumber: "104",
@@ -58,20 +41,7 @@ const ordersData = [
       zipcode: "03-322",
       city: "Warszawa",
     },
-    services: [
-      {
-        hair: {
-          idService: 5,
-          hair: "Wieczorowe upięcie włosów",
-          price: 199,
-        },
-        makeup: {
-          idService: 8,
-          makeup: "Makijaż wieczorowy",
-          price: 199,
-        },
-      },
-    ],
+    services: getServices([3, 3, 5]),
   },
 ];
 

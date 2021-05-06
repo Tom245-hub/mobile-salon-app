@@ -5,7 +5,7 @@ import SectionServices from "./sections/SectionServices";
 import SectionTeam from "./sections/SectionTeam";
 import SectionSlider from "./sections/SectionSlider";
 
-const HomeScreen = () => {
+const HomePage = () => {
   return (
     <div className='container-fluid p-0'>
       <div className='container-fluid p-0 mb-5'>
@@ -25,4 +25,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomePage;

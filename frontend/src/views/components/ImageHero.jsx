@@ -1,11 +1,11 @@
 import React, { Children } from "react";
 import styled from "styled-components";
+import SliderInfo from "./SliderInfo";
 
 const ContainerImage = styled.div`
   position: relative;
   padding-top: ${(props) => props.height};
   overflow: hidden;
-  margin: ${(props) => props.margin};
 `;
 
 const BoxImage = styled.div`
@@ -22,14 +22,15 @@ const BoxImage = styled.div`
   }
 `;
 
-const Image = (props) => {
+const ImageHero = (props) => {
   return (
-    <ContainerImage margin={props.margin} height={props.height}>
+    <ContainerImage height={props.height}>
       <BoxImage>
         <img src={props.img} alt={props.alt || props.title} />
       </BoxImage>
+      <SliderInfo title={props.title} />
     </ContainerImage>
   );
 };
 
-export default Image;
+export default ImageHero;

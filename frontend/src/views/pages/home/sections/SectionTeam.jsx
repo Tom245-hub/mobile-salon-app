@@ -1,13 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { StoreContext } from "../../../../store/StoreProvider";
 
-import SliderDefault from "../../../components/SliderDefault";
 import Image from "../../../components/Image";
+import SliderCards from "../../../components/SliderCards";
 import { PageSubTitle } from "../../../components/Title";
+import PrevArrow from "../../../components/PrevArrow";
+import NextArrow from "../../../components/NextArrow";
+import FilterCity from "../../../components/FilterCity";
 
 const SectionTeam = () => {
   const { stylistList } = useContext(StoreContext);
+  const [filterCity, setFilterCity] = useState("Warszawa");
+  // console.log(stylistList);
+
+  const filteredCity = stylistList.length > 0 && stylistList.filter((stylist) => stylist.city === filterCity);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    slidesToShow: 4,
+  };
 
   return (
     <>
@@ -21,14 +38,10 @@ const SectionTeam = () => {
         <div className='col-7 d-flex flex-column justify-content-between'>
           <h6>Do zespołu Mobile Salon trafiają jedynie stylistki z doświadczeniem, pasją i kreatywnym podejściem do stylizacji. </h6>
 
-          <div>{/* <SliderDefault slidesToShow={3} data={data} info={false} /> */}</div>
+          <div>{filteredCity && <SliderCards margin='0 0.5rem' bgColorHover={false} settings={settings} slidesToShow={3} data={filteredCity} errorInfo='Prowadzimy rekrutację stylistek.' />}</div>
 
           <div>
-            {/* <a onClick={() => setData(teamData[1])}>WARSZAWA</a>
-              <a onClick={() => setData(teamData[2])}>KRAKÓW</a>
-              <a onClick={() => setData(teamData[3])}>WROCŁAW</a>
-              <a onClick={() => setData(teamData[4])}>POZNAŃ</a>
-              <a onClick={() => setData(teamData[5])}>GDAŃSK</a> */}
+            <FilterCity filterCity={filterCity} setFilterCity={setFilterCity} />
           </div>
         </div>
       </div>
