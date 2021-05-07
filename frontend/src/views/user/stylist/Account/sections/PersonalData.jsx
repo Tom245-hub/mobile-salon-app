@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import { StoreContext } from "../../../store/StoreProvider";
+import { StoreContext } from "../../../../../store/StoreProvider";
+
+import PageTitle from "../../../../components/fonts/PageTitle";
 
 const PersonalData = (props) => {
-  const { loggedUser } = useContext(StoreContext);
-  const user = loggedUser.user;
-  const stylist = loggedUser.stylist;
+  const { user } = useContext(StoreContext);
+  // const user = loggedUser.user;
+  // const stylist = loggedUser.stylist;
   const history = useHistory();
 
   if (!loggedUser) {
@@ -19,7 +21,7 @@ const PersonalData = (props) => {
 
   return (
     <div className='container-fluid my-5'>
-      <h2 className='text-center mb-3'>Twoje dane</h2>
+      <PageTitle>Twoje dane</PageTitle>
       <div className='row'>
         <div className='col-6'>
           <p>Imię: {stylist.title}</p>

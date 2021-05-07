@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import { StoreContext } from "../../../store/StoreProvider";
+import { StoreContext } from "../../../../../store/StoreProvider";
 
-import OrderBox from "../../components/OrderBox";
+import OrderBox from "../../../../components/OrderBox";
+import PageTitle from "../../../../components/fonts/PageTitle";
 
 const Orders = (props) => {
   const { loggedUser } = useContext(StoreContext);
@@ -17,7 +18,7 @@ const Orders = (props) => {
   // console.log(orders);
   return (
     <div className='container-fluid my-5'>
-      <h2 className='text-center mb-3'>Twoje zamówienia</h2>
+      <PageTitle>Twoje zamówienia</PageTitle>
       {orders.map((order) => (
         <OrderBox key={order.idOrder} {...order} />
       ))}

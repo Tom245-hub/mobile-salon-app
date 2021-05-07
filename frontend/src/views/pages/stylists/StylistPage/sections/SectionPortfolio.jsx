@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PageSubTitle } from "../../../../components/Title";
+import SectionTitle from "../../../../components/fonts/SectionTitle";
 import SliderImages from "../../../../components/SliderImages";
 import PrevArrow from "../../../../components/PrevArrow";
 import NextArrow from "../../../../components/NextArrow";
@@ -18,7 +18,7 @@ const SectionPortfolio = (props) => {
 
   return (
     <>
-      <PageSubTitle>Prace stylistki</PageSubTitle>
+      <SectionTitle>Prace stylistki</SectionTitle>
       <div className='row'>
         <div className='col-12'>{props.stylist && <SliderImages settings={settings} margin='0.5rem' data={props.stylist.portfolio} info={false} height='70%' />}</div>
       </div>

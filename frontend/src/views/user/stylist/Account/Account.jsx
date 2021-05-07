@@ -1,25 +1,36 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, Route, Switch, HashRouter as Router } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-import { StoreContext } from "../../../store/StoreProvider";
+import { StoreContext } from "../../../../store/StoreProvider";
+import request from "../../../../utils/request";
 
-import Info from "./Info";
-import Orders from "./Orders";
-import PersonalData from "./PersonalData";
+import Info from "./sections/Info";
+import Orders from "./sections/Orders";
+import PersonalData from "./sections/PersonalData";
 
 const Account = (props) => {
-  const { loggedUser, setLoggedUser } = useContext(StoreContext);
+  const { user, setUser } = useContext(StoreContext);
+  const [orderList, setOrderList] = useState([]);
   const history = useHistory();
 
-  if (!loggedUser) {
+  const fetchDataOrder = async () => {
+    const { data } = await request.get("/orders");
+    setOrderList(data.orders);
+  };
+
+  useEffect(() => {
+    fetchDataOrder();
+  }, []);
+
+  if (!user) {
     history.push("/");
   }
 
-  // console.log(loggedUser);
+  console.log(user);
 
   const handleClickLogOut = () => {
-    setLoggedUser(false);
+    setUser(false);
     history.push("/");
   };
 
@@ -31,7 +42,7 @@ const Account = (props) => {
             <nav>
               <ul>
                 <li className='text-center bg-primary text-white mb-2 py-3'>
-                  Zalogowany: {loggedUser && loggedUser.user.login} <a onClick={handleClickLogOut}>(wyloguj)</a>
+                  Zalogowany: {user && user.login} <a onClick={handleClickLogOut}>(wyloguj)</a>
                 </li>
                 <li className='text-center mb-2'>
                   <Link to='/strefa-stylistki/konto'>Informacje</Link>

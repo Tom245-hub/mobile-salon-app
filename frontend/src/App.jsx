@@ -11,16 +11,17 @@ import "./index.scss";
 
 import Layout from "./views/layout/Layout";
 import HomePage from "./views/pages/home/HomePage";
-import StylistList from "./views/pages/stylists/StylistList";
+import StylistsListPage from "./views/pages/stylists/StylistsListPage/StylistsListPage";
 import StylistPage from "./views/pages/stylists/StylistPage/StylistPage";
 
 import ServicesListPage from "./views/pages/services/ServicesListPage/ServicesListPage";
 import ServicePage from "./views/pages/services/ServicePage/ServicePage";
 
-import OrderForm from "./views/user/client/OrderForm";
-import JobForm from "./views/user/stylist/JobForm";
-import Account from "./views/user/stylist/Account";
-import Orders from "./views/user/stylist/Orders";
+import OrderForm from "./views/user/client/OrderForm/OrderForm";
+
+import JobForm from "./views/user/stylist/JobForm/JobForm";
+import Account from "./views/user/stylist/Account/Account";
+import Orders from "./views/user/stylist/Account/sections/Orders";
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
             <Switch>
               <Route path='/' exact component={HomePage} />
 
-              <Route path='/stylistki' exact component={StylistList} />
+              <Route path='/stylistki' exact component={StylistsListPage} />
               <Route path='/stylistki/:id' component={StylistPage} />
 
               <Route path='/uslugi' exact component={ServicesListPage} />

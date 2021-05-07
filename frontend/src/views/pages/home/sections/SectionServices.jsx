@@ -3,7 +3,7 @@ import { StoreContext } from "../../../../store/StoreProvider";
 
 import ZipCode from "../../../components/ZipCode";
 import Card from "../../../components/Card";
-import { PageSubTitle } from "../../../components/Title";
+import SectionTitle from "../../../components/fonts/SectionTitle";
 
 const SectionServices = () => {
   const { categoryList } = useContext(StoreContext);
@@ -12,7 +12,7 @@ const SectionServices = () => {
   return (
     <>
       <ZipCode />
-      <PageSubTitle>Poznaj nasze usługi</PageSubTitle>
+      <SectionTitle>Poznaj nasze usługi</SectionTitle>
 
       <div className='row'>
         {categoryList.map((item, index) => (

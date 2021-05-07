@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import SliderReviews from "../../../../components/SliderReviews";
-import { PageSubTitle } from "../../../../components/Title";
+import SectionTitle from "../../../../components/fonts/SectionTitle";
 
 import PrevArrow from "../../../../components/PrevArrow";
 import NextArrow from "../../../../components/NextArrow";
@@ -64,7 +64,7 @@ const SectionReviews = (props) => {
 
   return (
     <>
-      <PageSubTitle>Opinie Klientek</PageSubTitle>
+      <SectionTitle>Opinie Klientek</SectionTitle>
       <div className='row'>
         <div className='col-12'>{props.stylist && <SliderReviews data={props.stylist.reviews} settings={settings} margin='0.5rem' showStars={showStars} />}</div>
       </div>

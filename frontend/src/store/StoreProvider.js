@@ -8,28 +8,30 @@ const StoreProvider = ({ children }) => {
   const [stylistList, setStylistList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [cityList, setCityList] = useState([]);
   const [slideList, setSlideList] = useState([]);
   const [user, setUser] = useState(null);
-  const [orderList, setOrderList] = useState([]);
 
-  console.log(categoryList);
+  const [loginModal, setLoginModal] = useState(false);
+
+  // console.log(categoryList);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  // if (user) {
-  //   console.log("zalogowany");
-  // } else if (!user) {
-  //   console.log("niezalogowany");
-  // }
+  if (user) {
+    console.log("zalogowany");
+  } else if (!user) {
+    console.log("niezalogowany");
+  }
 
-  const [loggedUser, setLoggedUser] = useState();
+  // const [loggedUser, setLoggedUser] = useState();
 
-  useEffect(() => {
-    if (user && user.accessLevel === 0) {
-      const stylist = stylistList.filter((stylist) => stylist.idStylist === user.idUser)[0];
-      const orders = orderList.filter((order) => order.idStylist === stylist.idStylist);
-      setLoggedUser({ user, stylist, orders });
-    }
-  }, [user, stylistList, orderList]);
+  // useEffect(() => {
+  //   if (user && user.accessLevel === 0) {
+  //     const stylist = stylistList.filter((stylist) => stylist.idStylist === user.idUser)[0];
+  //     const orders = orderList.filter((order) => order.idStylist === stylist.idStylist);
+  //     setLoggedUser({ user, stylist, orders });
+  //   }
+  // }, [user, stylistList, orderList]);
 
   // Testowanie
   // const [loggedUser, setLoggedUser] = useState({
@@ -105,6 +107,11 @@ const StoreProvider = ({ children }) => {
     setStylistList(data.stylists);
   };
 
+  const fetchDataCity = async () => {
+    const { data } = await request.get("/cities");
+    setCityList(data.cities);
+  };
+
   const fetchDataService = async () => {
     const { data } = await request.get("/services");
     setServiceList(data.services);
@@ -120,17 +127,18 @@ const StoreProvider = ({ children }) => {
     setSlideList(data.slider);
   };
 
-  const fetchDataOrder = async () => {
-    const { data } = await request.get("/orders");
-    setOrderList(data.orders);
-  };
+  // const fetchDataOrder = async () => {
+  //   const { data } = await request.get("/orders");
+  //   setOrderList(data.orders);
+  // };
 
   useEffect(() => {
     fetchDataStylist();
+    fetchDataCity();
     fetchDataCategory();
     fetchDataService();
     fetchDataSlide();
-    fetchDataOrder();
+    // fetchDataOrder();
   }, []);
 
   return (
@@ -142,14 +150,18 @@ const StoreProvider = ({ children }) => {
         setServiceList,
         slideList,
         setSlideList,
-        orderList,
-        setOrderList,
+        // orderList,
+        // setOrderList,
         user,
         setUser,
-        loggedUser,
-        setLoggedUser,
+        // loggedUser,
+        // setLoggedUser,
         categoryList,
         setCategoryList,
+        cityList,
+        setCityList,
+        loginModal,
+        setLoginModal,
       }}
     >
       {children}

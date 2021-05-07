@@ -1,107 +1,66 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-import { StoreContext } from "../../../../store/StoreProvider";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
+import { StoreContext } from "../../../../store/StoreProvider";
 import Card from "../../../components/Card";
-
-const ContainerSubmenu = styled.div`
-  border-top: 1px solid rgba(#111, 0.2);
-  border-bottom: 1px solid rgba(#111, 0.2);
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 2;
-  overflow: hidden;
-  display: none;
-`;
+import LinkList from "../../../components/LinkList";
+import ContainerSubmenu from "../../../components/ContainerSubmenu";
 
 const TopMenu = (props) => {
-  const { categoryList } = useContext(StoreContext);
+  const { categoryList, cityList } = useContext(StoreContext);
+
+  // console.log(categoryList);
 
   return (
-    <ul className='TopMenu menu-top d-flex h-100'>
-      <li className='menu-item d-flex align-items-center mx-2'>
-        <Link to='/uslugi' className='item-link' onMouseEnter={() => props.handleMouseEnter(1)}>
+    <ul className='d-flex h-100'>
+      <li className='d-flex align-items-center mx-2'>
+        <Link to='/uslugi' onMouseEnter={() => props.handleMouseEnter(1)}>
           USŁUGI <FontAwesomeIcon icon={faChevronDown} />
         </Link>
 
-        <ContainerSubmenu className={"container-fluid bg-white py-5" + (props.activeSubmenu === 1 ? " d-block" : "")} onMouseLeave={props.handleMouseLeave}>
-          <div className='row w-100 d-flex justify-content-around px-5'>
-            <div className='col d-flex flex-row align-items-center'>
-              <div className='d-flex flex-column'>
-                <h4 className='mb-3'>Usługi</h4>
-                <Link className='mb-2' to='/uslugi/fryzury-slubne' onClick={() => props.setActiveSubmenu(0)} className='submenu-link'>
-                  Fryzury ślubne
-                </Link>
-                <Link className='mb-2' to='/uslugi/makijaze-slubne' onClick={() => props.setActiveSubmenu(0)} className='submenu-link'>
-                  Makijaże ślubne
-                </Link>
-                <Link className='mb-2' to='/uslugi/fryzury-okazyjne' onClick={() => props.setActiveSubmenu(0)} className='submenu-link'>
-                  Fryzury okazyjne
-                </Link>
-                <Link className='mb-2' to='/uslugi/makijaze-okazyjne' onClick={() => props.setActiveSubmenu(0)} className='submenu-link'>
-                  Makijaże okazyjne
-                </Link>
-              </div>
+        <ContainerSubmenu id={1} activeSubmenu={props.activeSubmenu} handleMouseLeave={props.handleMouseLeave}>
+          <div className='col d-flex flex-row align-items-center'>
+            <div className='d-flex flex-column'>
+              <LinkList title='Usługi' links={categoryList} setActiveSubmenu={props.setActiveSubmenu} />
             </div>
-
-            {categoryList.map((item, index) => (
-              <div key={index} className='col'>
-                <Card img={item.img} url={item.url} title={item.title} text={item.text} bgColorHover={false} />
-              </div>
-            ))}
           </div>
+
+          {categoryList.map((item, index) => (
+            <div key={index} className='col'>
+              <Card img={item.img} url={item.url} title={item.title} text={item.text} bgColorHover={false} />
+            </div>
+          ))}
         </ContainerSubmenu>
       </li>
 
-      <li className='menu-item d-flex align-items-center mx-2'>
-        <Link to='/stylistki' className='item-link' onMouseEnter={() => props.handleMouseEnter(2)}>
+      <li className='d-flex align-items-center mx-2'>
+        <Link to='/stylistki' onMouseEnter={() => props.handleMouseEnter(2)}>
           STYLISTKI <FontAwesomeIcon icon={faChevronDown} />
         </Link>
 
-        <ContainerSubmenu className={"container-fluid bg-white py-5" + (props.activeSubmenu === 2 ? " d-block" : "")} onMouseLeave={props.handleMouseLeave}>
-          <div className='row px-5'>
-            <div className='col d-flex flex-column'>
-              <h4 className='mb-3'>Miasta</h4>
-              <Link to='/stylistki?city=warszawa'>Warszawa</Link>
-              <Link to='#'>Kraków</Link>
-              <Link to='#'>Wrocław</Link>
-              <Link to='#'>Poznań</Link>
-              <Link to='#'>Gdańsk</Link>
-            </div>
+        <ContainerSubmenu id={2} activeSubmenu={props.activeSubmenu} handleMouseLeave={props.handleMouseLeave}>
+          <div className='col d-flex flex-column'>
+            <LinkList title='Miasta' links={cityList} />
           </div>
         </ContainerSubmenu>
       </li>
 
-      <li className='menu-item d-flex align-items-center mx-2'>
-        <Link to='#' className='item-link' onMouseEnter={() => props.handleMouseEnter(3)}>
+      <li className='d-flex align-items-center mx-2'>
+        <Link to='#' onMouseEnter={() => props.handleMouseEnter(3)}>
           BLOG <FontAwesomeIcon icon={faChevronDown} />
         </Link>
 
-        <ContainerSubmenu className={"container-fluid bg-white py-5" + (props.activeSubmenu === 3 ? " d-block" : "")} onMouseLeave={props.handleMouseLeave}>
-          <div className='row px-5'>
-            <div className='col d-flex flex-column'>
-              <h4 className='mb-3'>Najnowsze artykuły</h4>
-              <Link className='mb-2' to='#'>
-                Trendy fryzur ślubnych 2021
-              </Link>
-              <Link className='mb-2' to='#'>
-                Jak przygotować się do wizyty makijażystki?
-              </Link>
-            </div>
+        <ContainerSubmenu id={3} activeSubmenu={props.activeSubmenu} handleMouseLeave={props.handleMouseLeave}>
+          <div className='col d-flex flex-column'>
+            <LinkList title='Najnowsze artykuły' links={cityList} />
           </div>
         </ContainerSubmenu>
       </li>
 
-      <li className='menu-item d-flex align-items-center mx-2'>
-        <Link to='#' className='item-link'>
-          KONTAKT
-        </Link>
+      <li className='d-flex align-items-center mx-2'>
+        <Link to='#'>KONTAKT</Link>
       </li>
     </ul>
   );

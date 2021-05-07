@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import styled from "styled-components";
 
-import LoginModal from "../../components/LoginModal";
+import { StoreContext } from "../../../store/StoreProvider";
 import FormGroup from "../../components/FormGroup";
-
-const OpenModalLink = styled.a`
-  &:hover {
-    cursor: pointer;
-  }
-`;
+import LinkOpenModal from "../../components/LinkOpenModal";
 
 const Footer = () => {
-  const [loginModal, setLoginModal] = useState(false);
+  const { setLoginModal } = useContext(StoreContext);
 
   return (
     <>
-      <LoginModal setLoginModal={setLoginModal} loginModal={loginModal} titleText='Logowanie stylistki' />
+      {/* <LoginModal setLoginModal={setLoginModal} loginModal={loginModal} titleText='Logowanie stylistki' /> */}
       <footer className='container-fluid h-100 bg-light'>
         <div className='container'>
           <div className='row py-4'>
@@ -32,7 +26,7 @@ const Footer = () => {
                   <Link to='#'>warunki</Link>
                 </li>
                 <li>
-                  <OpenModalLink onClick={() => setLoginModal(true)}>logowanie</OpenModalLink>
+                  <LinkOpenModal setLoginModal={setLoginModal}>logowanie</LinkOpenModal>
                 </li>
               </ul>
             </div>
@@ -81,7 +75,6 @@ const Footer = () => {
 
                 <div className='col-4'>
                   <h5 className='mb-3'>NEWSLETTER</h5>
-
                   <FormGroup placeholder='Twój email' btnText='Zapisz się' />
                 </div>
               </div>

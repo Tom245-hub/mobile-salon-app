@@ -4,16 +4,18 @@ import { StoreContext } from "../../store/StoreProvider";
 
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
+import LoginModal from "./LoginModal/LoginModal";
 
 const Layout = (props) => {
-  const { loggedUser } = useContext(StoreContext);
+  const { loggedUser, loginModal, setLoginModal } = useContext(StoreContext);
 
   return (
-    <div>
+    <>
       <Header />
       {props.children}
       {!loggedUser && <Footer />}
-    </div>
+      <LoginModal setLoginModal={setLoginModal} loginModal={loginModal} titleText='Logowanie stylistki' />
+    </>
   );
 };
 

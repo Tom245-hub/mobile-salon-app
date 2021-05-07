@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const stylistsRoutes = require("./routes/stylists");
+const citiesRoutes = require("./routes/cities");
 const clientsRoutes = require("./routes/clients");
 
 const servicesRoutes = require("./routes/services");
@@ -20,6 +21,7 @@ server.use(bodyParser.json());
 server.use(cors());
 
 server.use("/stylists", stylistsRoutes);
+server.use("/cities", citiesRoutes);
 server.use("/clients", clientsRoutes);
 
 server.use("/services", servicesRoutes);

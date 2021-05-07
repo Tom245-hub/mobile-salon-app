@@ -4,7 +4,7 @@ import { StoreContext } from "../../../../store/StoreProvider";
 
 import Image from "../../../components/Image";
 import SliderCards from "../../../components/SliderCards";
-import { PageSubTitle } from "../../../components/Title";
+import SectionTitle from "../../../components/fonts/SectionTitle";
 import PrevArrow from "../../../components/PrevArrow";
 import NextArrow from "../../../components/NextArrow";
 import FilterCity from "../../../components/FilterCity";
@@ -28,7 +28,7 @@ const SectionTeam = () => {
 
   return (
     <>
-      <PageSubTitle>Poznaj Stylistki Mobile Salon</PageSubTitle>
+      <SectionTitle>Poznaj Stylistki Mobile Salon</SectionTitle>
 
       <div className='row'>
         <div className='col-5'>

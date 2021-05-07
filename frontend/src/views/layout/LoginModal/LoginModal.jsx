@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import { Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import request from "../../utils/request";
-import { StoreContext } from "../../store/StoreProvider";
+import request from "../../../utils/request";
+import { StoreContext } from "../../../store/StoreProvider";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -41,8 +41,6 @@ const LoginModal = (props) => {
       // console.log("test3");
       // obsługa błędów z serwera
     }
-
-    // console.log(loginObject);
   };
   return (
     <Modal size='sm' show={props.loginModal} onHide={() => props.setLoginModal(false)} aria-labelledby='confirm-modal'>
@@ -50,8 +48,6 @@ const LoginModal = (props) => {
         <Modal.Title id='confirm-modal'>{props.titleText}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {/* ///////////////////////////////////////////////////////////////////////// */}
-
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
           {(formik) => {
             const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;
@@ -79,8 +75,6 @@ const LoginModal = (props) => {
             );
           }}
         </Formik>
-
-        {/* ////////////////////////////////////////////////////////////////// */}
       </Modal.Body>
     </Modal>
   );

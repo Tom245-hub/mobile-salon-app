@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const FilterLink = styled.a`
+  font-weight: 700;
+  color: ${(props) => props.theme.colors.dark};
   cursor: pointer;
-  font-weight: ${(props) => props.active && "700"};
 `;
 
 const FilterCity = (props) => {

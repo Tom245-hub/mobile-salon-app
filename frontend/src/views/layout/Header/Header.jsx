@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faChevronDown, faTimes, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 import { StoreContext } from "../../../store/StoreProvider";
@@ -10,13 +8,10 @@ import TopBar from "./sections/TopBar";
 import UserBox from "./sections/UserBox";
 import CityBox from "./sections/CityBox";
 import TopMenu from "./sections/TopMenu";
-
-const Container = styled.header`
-  z-index: 105;
-`;
+import ContainerHeader from "../../components/ContainerHeader";
 
 const Header = () => {
-  const { loggedUser } = useContext(StoreContext);
+  const { user } = useContext(StoreContext);
   const [activeSubmenu, setActiveSubmenu] = useState(0);
   const [city, setCity] = useState();
 
@@ -32,17 +27,17 @@ const Header = () => {
 
   return (
     // <Container className="container-fluid container-header bg-light position-absolute top-0">
-    <Container className='container-fluid container-header bg-light '>
-      {!loggedUser && <TopBar activeTopBar={activeTopBar} setActiveTopBar={setActiveTopBar} city={city} setCity={setCity} />}
+    <ContainerHeader>
+      {!user && <TopBar activeTopBar={activeTopBar} setActiveTopBar={setActiveTopBar} city={city} setCity={setCity} />}
 
-      <div className='row row-header-nav position-relative'>
+      <div className='row mx-0 position-relative'>
         <div className='col-2 d-flex flex-row align-items-center'>
           <Link to='/'>
             <img className='img-fluid' src='/img/logotyp_symbol_white.png' alt='mobile_salon_logo' />
           </Link>
         </div>
 
-        {!loggedUser && (
+        {!user && (
           <>
             <div className='col-6 d-flex flex-row justify-content-center align-items-center position-static'>
               <TopMenu handleMouseEnter={handleMouseEnter} activeSubmenu={activeSubmenu} setActiveSubmenu={setActiveSubmenu} handleMouseLeave={handleMouseLeave} />
@@ -58,7 +53,7 @@ const Header = () => {
           </>
         )}
       </div>
-    </Container>
+    </ContainerHeader>
   );
 };
 

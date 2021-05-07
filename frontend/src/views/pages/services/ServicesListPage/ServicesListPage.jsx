@@ -3,8 +3,9 @@ import { StoreContext } from "../../../../store/StoreProvider";
 
 import Card from "../../../components/Card";
 import ImageHero from "../../../components/ImageHero";
-import { PageTitle, PageSubTitle } from "../../../components/Title";
-import SectionPrices from "./SectionPrices";
+import PageTitle from "../../../components/fonts/PageTitle";
+import SectionTitle from "../../../components/fonts/SectionTitle";
+import SectionPrices from "./sections/SectionPrices";
 
 const ServicesListPage = () => {
   const { categoryList } = useContext(StoreContext);
@@ -33,7 +34,7 @@ const ServicesListPage = () => {
         </div>
       </div>
       <div className='container py-5 mb-5'>
-        <PageSubTitle>Co jeszcze mamy w ofercie?</PageSubTitle>
+        <SectionTitle>Co jeszcze mamy w ofercie?</SectionTitle>
         <div className='row d-flex justify-content-center'>
           <div className='col-8'>Bony podarunkowe, usługi dla firm</div>
         </div>
