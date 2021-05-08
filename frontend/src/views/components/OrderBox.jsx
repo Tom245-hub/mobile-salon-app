@@ -1,13 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ordersData } from "../../../../backend/controllers/orders";
-
-import Image from "./Image";
 
 const Container = styled.div`
   border: 1px solid ${(props) => props.theme.colors.gray};
   border-radius: 3px;
+  margin-bottom: 1rem;
 `;
 
 const Row = styled.div`
@@ -15,72 +12,105 @@ const Row = styled.div`
 `;
 
 const ColStatus = styled.div`
-  width: 20%;
+  width: 25%;
   background-color: ${(props) => props.theme.colors.graySuperLight};
   padding: ${(props) => props.theme.gaps.m};
 `;
 
 const ColServices = styled.div`
-  width: 60%;
+  width: 50%;
   background-color: #fff;
   padding: ${(props) => props.theme.gaps.m};
 `;
 
 const ColAdress = styled.div`
-  width: 20%;
+  width: 25%;
   background-color: ${(props) => props.theme.colors.graySuperLight};
   padding: ${(props) => props.theme.gaps.m};
 `;
 
-const ColAccept = styled.div`
-  width: 50%;
-  background-color: ${(props) => props.theme.colors.success};
-  padding: ${(props) => props.theme.gaps.m};
-`;
-
-const ColCancel = styled.div`
-  width: 50%;
-  background-color: ${(props) => props.theme.colors.warning};
-  padding: ${(props) => props.theme.gaps.m};
-`;
-
 const OrderBox = (props) => {
-  //   console.log(props.services);
+  // console.log(props.services);
   return (
     <Container>
       <Row>
         <ColStatus>
-          <ul>
-            <li>Status: {props.status}</li>
-            <li>Data: {props.date}</li>
-            <li>Godz: {props.time}</li>
-          </ul>
+          <table className='w-100'>
+            <tbody>
+              <tr>
+                <td className='pr-2'>ID zamówienia: </td>
+                <td>{props.idOrder}</td>
+              </tr>
+              <tr>
+                <td className='pr-2'>Status: </td>
+                <td>{props.statusOrder}</td>
+              </tr>
+              <tr>
+                <td>Data: </td>
+                <td>{props.date}</td>
+              </tr>
+              <tr>
+                <td>Godz: </td>
+                <td>{props.time}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button onClick={props.handleAccept} className='btn btn-primary my-3 mr-2'>
+            Akceptuj
+          </button>
+          <button className='btn btn-warning my-3 mr-2'>Odrzuć</button>
         </ColStatus>
         <ColServices>
-          Okazja zamówienia: Dzień Ślubu
-          <ul>
-            {props.services.map((person, index) => (
-              <li key={index}>
-                Włosy: {person.hair.hair} Cena: {person.hair.price} zł / Makijaż: {person.makeup.makeup} Cena: {person.makeup.price} zł
-              </li>
-            ))}
-          </ul>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th scope='col'>Usługa</th>
+                <th scope='col'>Cena</th>
+                <th scope='col'>Czas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.services.length > 0 &&
+                props.services.map((service, index) => (
+                  <tr key={index}>
+                    <td>{service.title}</td>
+                    <td>{service.price} zł</td>
+                    <td>{service.time} h</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </ColServices>
         <ColAdress>
-          Adres:
-          <ul>
-            <li>Miasto: {props.adress.city}</li>
-            <li>Kod pocztowy: {props.adress.zipcode}</li>
-            <li>Ulica: {props.adress.street}</li>
-            <li>Numer domu: {props.adress.buildNumber}</li>
-            <li>Numer lokalu: {props.adress.localNumber}</li>
-            <li>Piętro: {props.adress.floor}</li>
-          </ul>
+          <table className='w-100'>
+            <tbody>
+              <tr>
+                <td>Miasto: </td>
+                <td>{props.adressDelivery.city}</td>
+              </tr>
+              <tr>
+                <td>Kod pocztowy: </td>
+                <td>{props.adressDelivery.zipcode}</td>
+              </tr>
+              <tr>
+                <td>Ulica: </td>
+                <td>{props.adressDelivery.street}</td>
+              </tr>
+              <tr>
+                <td>Numer domu: </td>
+                <td>{props.adressDelivery.buildNumber}</td>
+              </tr>
+              <tr>
+                <td>Numer lokalu: </td>
+                <td>{props.adressDelivery.localNumber}</td>
+              </tr>
+              <tr>
+                <td>Piętro: </td>
+                <td>{props.adressDelivery.floor}</td>
+              </tr>
+            </tbody>
+          </table>
         </ColAdress>
-      </Row>
-      <Row>
-        <ColAccept>Akceptuj</ColAccept>
-        <ColCancel>Odrzuć</ColCancel>
       </Row>
     </Container>
   );

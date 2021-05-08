@@ -2,8 +2,8 @@ const { servicesData } = require("./services");
 
 const getServices = (array) => {
   let services = [];
-  for (let i = 0; i <= array.length; i++) {
-    services.push(servicesData.filter((service) => service.idService === array[i]));
+  for (let i = 0; i < array.length; i++) {
+    services.push(servicesData.filter((service) => service.idService === array[i])[0]);
   }
   return services;
 };
@@ -13,10 +13,10 @@ const ordersData = [
     idOrder: 1,
     idStylist: 1,
     idClient: 1,
-    status: "nowe",
+    statusOrder: "nowe",
     date: "12 październik 2021",
     time: "9:00",
-    adress: {
+    adressDelivery: {
       street: "Marszłkowska",
       buildNumber: "5a",
       localNumber: "77",
@@ -30,7 +30,7 @@ const ordersData = [
     idOrder: 2,
     idStylist: 1,
     idClient: 2,
-    status: "nowe",
+    statusOrder: "nowe",
     date: "30 wrzesień 2021",
     time: "12:00",
     adressDelivery: {
@@ -93,17 +93,6 @@ exports.postOrder = (request, response, next) => {
       return;
     }
 
-    // const isStylistExist = stylistsData.some(
-    //   ({ title: currentTitle }) => currentTitle === title
-    // );
-    // if (isStylistExist) {
-    //   response.status(409).json({
-    //     message: `Istnieje już w bazie stylistka ${title}`,
-    //   });
-
-    //   return;
-    // }
-
     const newOrder = {
       // id: uuid(),
       firstName,
@@ -121,6 +110,45 @@ exports.postOrder = (request, response, next) => {
     response.status(500).json({
       error,
       message: "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /orders",
+    });
+  }
+};
+
+exports.putOrder = (request, response, next) => {
+  try {
+    const { statusOrder } = request.body;
+
+    if (!statusOrder) {
+      response.status(400).json({
+        message: "Nie podano wszystkich wymaganych informacji",
+      });
+
+      return;
+    }
+
+    const indexOrderToUpdate = ordersData.findIndex((order) => order.idOrder === 1);
+
+    if (indexOrderToUpdate === -1) {
+      response.status(404).json({
+        message: "Nie znaleziono zamówienia o podanym id",
+      });
+
+      return;
+    }
+
+    let orderToUpdate = ordersData.filter((order) => order.idOrder === 1)[0];
+    orderToUpdate.statusOrder = statusOrder;
+    // console.log(orderToUpdate);
+
+    // ordersData.splice(indexOrderToUpdate, 1, request.body);
+
+    response.status(202).json({
+      orders: ordersData,
+    });
+  } catch (error) {
+    response.status(500).json({
+      error,
+      message: "Oops! Coś poszło nie tak, przy metodzie PUT w endpointcie /orders",
     });
   }
 };

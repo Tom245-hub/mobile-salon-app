@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Link, Route, Switch, HashRouter as Router } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -10,24 +10,26 @@ import Orders from "./sections/Orders";
 import PersonalData from "./sections/PersonalData";
 
 const Account = (props) => {
-  const { user, setUser } = useContext(StoreContext);
-  const [orderList, setOrderList] = useState([]);
+  const { user, setUser, setUserLogged } = useContext(StoreContext);
   const history = useHistory();
+  // console.log("a");
 
-  const fetchDataOrder = async () => {
-    const { data } = await request.get("/orders");
-    setOrderList(data.orders);
+  const fetchDataStylist = async () => {
+    const { data } = await request.get(`/stylists/${user.idUser}`);
+    setUserLogged(data.stylist);
   };
 
   useEffect(() => {
-    fetchDataOrder();
-  }, []);
+    if (user.accessLevel === 0) {
+      fetchDataStylist();
+    }
+  }, [user]);
 
   if (!user) {
     history.push("/");
   }
 
-  console.log(user);
+  // console.log(user);
 
   const handleClickLogOut = () => {
     setUser(false);
