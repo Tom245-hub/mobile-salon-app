@@ -116,9 +116,9 @@ exports.postOrder = (request, response, next) => {
 
 exports.putOrder = (request, response, next) => {
   try {
-    const { statusOrder } = request.body;
+    const { idOrder, statusOrder } = request.body;
 
-    if (!statusOrder) {
+    if (!statusOrder || !idOrder) {
       response.status(400).json({
         message: "Nie podano wszystkich wymaganych informacji",
       });
@@ -126,7 +126,7 @@ exports.putOrder = (request, response, next) => {
       return;
     }
 
-    const indexOrderToUpdate = ordersData.findIndex((order) => order.idOrder === 1);
+    const indexOrderToUpdate = ordersData.findIndex((order) => order.idOrder == idOrder);
 
     if (indexOrderToUpdate === -1) {
       response.status(404).json({
@@ -136,7 +136,7 @@ exports.putOrder = (request, response, next) => {
       return;
     }
 
-    let orderToUpdate = ordersData.filter((order) => order.idOrder === 1)[0];
+    let orderToUpdate = ordersData.filter((order) => order.idOrder == idOrder)[0];
     orderToUpdate.statusOrder = statusOrder;
     // console.log(orderToUpdate);
 

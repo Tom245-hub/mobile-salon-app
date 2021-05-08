@@ -55,7 +55,7 @@ const OrderBox = (props) => {
               </tr>
             </tbody>
           </table>
-          <button onClick={props.handleAccept} className='btn btn-primary my-3 mr-2'>
+          <button onClick={() => props.handleAccept(props.idOrder)} className='btn btn-primary my-3 mr-2'>
             Akceptuj
           </button>
           <button className='btn btn-warning my-3 mr-2'>Odrzuć</button>

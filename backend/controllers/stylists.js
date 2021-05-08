@@ -17,6 +17,7 @@ const getOrders = (idStylist) => {
 const stylistsData = [
   {
     idStylist: 1,
+    activeProfile: true,
     title: "Edyta",
     url: "/stylistki/1",
     img: "/img/stylist/warszawa/01-edyta/01-edyta.jpg",
@@ -27,13 +28,24 @@ const stylistsData = [
       makeupStylist: true,
     },
     experience: 10,
+    hairStylExp: 10,
+    makeupStylExp: 10,
     city: "Warszawa",
+    personalData: {
+      firstName: "Edyta",
+      lastName: "Czyżykowska",
+      email: "",
+      phone: 0,
+      birthYear: 0,
+      zipcode: "",
+    },
     portfolio: getPictures(1),
     reviews: getReviews(1),
     orders: getOrders(1),
   },
   {
     idStylist: 2,
+    activeProfile: true,
     title: "Patrycja",
     url: "/stylistki/2",
     img: "/img/stylist/warszawa/02-patrycja/02-patrycja.jpg",
@@ -345,6 +357,33 @@ const stylistsData = [
     experience: 10,
     city: "Poznań",
   },
+  {
+    idStylist: 150,
+    activeProfile: true,
+    title: "Diana",
+    url: "/stylistki/150",
+    img: "",
+    text: "",
+    position: {
+      hairStylist: true,
+      makeupStylist: true,
+    },
+    experience: 10,
+    hairStylExp: 2,
+    makeupStylExp: 2,
+    city: "Warszawa",
+    personalData: {
+      firstName: "Diana",
+      lastName: "Karp",
+      email: "diana@wp.pl",
+      phone: 345345435,
+      birthYear: 2003,
+      zipcode: "01-300",
+    },
+    portfolio: "",
+    reviews: "",
+    orders: "",
+  },
 ];
 
 exports.getStylists = (request, response, next) => {
@@ -407,16 +446,31 @@ exports.postStylist = (request, response, next) => {
     // }
 
     const newStylist = {
-      // idStylist: uuid(),
-      firstName,
-      lastName,
-      email,
-      phone,
-      birthYear,
-      zipcode,
-      hairStylExp,
-      makeupStylExp,
-      city,
+      idStylist: 150,
+      activeProfile: true,
+      title: firstName,
+      url: "/stylistki/150",
+      img: "",
+      text: "",
+      position: {
+        hairStylist: true,
+        makeupStylist: true,
+      },
+      experience: 10,
+      hairStylExp: hairStylExp,
+      makeupStylExp: makeupStylExp,
+      city: city,
+      personalData: {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        birthYear: birthYear,
+        zipcode: zipcode,
+      },
+      portfolio: "",
+      reviews: "",
+      orders: "",
     };
 
     stylistsData.push(newStylist);

@@ -49,7 +49,7 @@ const JobForm = () => {
       city: values.city,
     };
 
-    console.log(stylistObject);
+    // console.log(stylistObject);
 
     const { data, status } = await request.post("/stylists", stylistObject);
     if (status === 201) {

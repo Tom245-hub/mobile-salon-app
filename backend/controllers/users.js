@@ -12,6 +12,12 @@ const usersData = [
     password: "pat",
   },
   {
+    idUser: 150,
+    accessLevel: 0,
+    login: "d",
+    password: "1",
+  },
+  {
     idUser: 501,
     accessLevel: 1,
     login: "AnnaNowak",

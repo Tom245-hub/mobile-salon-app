@@ -16,12 +16,13 @@ const Orders = () => {
     history.push("/");
   }
 
-  const handleAccept = async () => {
-    const { data, status } = await request.put("/orders", { statusOrder: "oczekujące" });
+  const handleAccept = async (id) => {
+    const { data, status } = await request.put("/orders", { idOrder: id, statusOrder: "oczekujące" });
     if (status === 202) {
       // console.log(userLogged);
       setUserLogged((prev) => {
         return {
+          ...prev,
           orders: data.orders,
         };
       });
@@ -34,6 +35,7 @@ const Orders = () => {
   return (
     <div className='container-fluid my-5'>
       <PageTitle>Twoje zamówienia</PageTitle>
+
       {orders.map((order, index) => (
         <OrderBox key={index} {...order} handleAccept={handleAccept} />
       ))}

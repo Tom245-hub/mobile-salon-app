@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { StoreContext } from "../../../../../store/StoreProvider";
+import CommentText from "../../../../components/fonts/CommentText";
 
 import PageTitle from "../../../../components/fonts/PageTitle";
 
@@ -21,6 +22,7 @@ const PersonalData = () => {
   return (
     <div className='container-fluid my-5'>
       <PageTitle>Twoje dane</PageTitle>
+      <CommentText>Te informacje są dostępne tylko dla Mobile Salon. Klientki ich nie widzą.</CommentText>
       <div className='row'>
         <div className='col-6'>
           <p>Imię: {userLogged.title}</p>

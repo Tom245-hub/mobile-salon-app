@@ -52,7 +52,7 @@ const StylistsListPage = () => {
           <div className='row'>
             {stylistList.map((item, index) => (
               <div key={index} className='col-6 col-md-3 mb-3'>
-                <Card img={item.img} url={item.url} title={item.title} bgColorHover={true} />
+                {item.img && <Card img={item.img} url={item.url} title={item.title} bgColorHover={true} />}
               </div>
             ))}
           </div>

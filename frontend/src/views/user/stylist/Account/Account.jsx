@@ -8,6 +8,7 @@ import request from "../../../../utils/request";
 import Info from "./sections/Info";
 import Orders from "./sections/Orders";
 import PersonalData from "./sections/PersonalData";
+import ProfileData from "./sections/ProfileData";
 
 const Account = (props) => {
   const { user, setUser, setUserLogged } = useContext(StoreContext);
@@ -50,6 +51,9 @@ const Account = (props) => {
                   <Link to='/strefa-stylistki/konto'>Informacje</Link>
                 </li>
                 <li className='text-center mb-2'>
+                  <Link to='/strefa-stylistki/konto/profil'>Twój profil</Link>
+                </li>
+                <li className='text-center mb-2'>
                   <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
                 </li>
                 <li className='text-center mb-2'>
@@ -62,6 +66,7 @@ const Account = (props) => {
             <Switch>
               <Route exact path='/strefa-stylistki/konto' component={Info} />
               <Route exact path='/strefa-stylistki/konto/dane' render={() => <PersonalData />} />
+              <Route exact path='/strefa-stylistki/konto/profil' render={() => <ProfileData />} />
               <Route exact path='/strefa-stylistki/konto/zamowienia' render={() => <Orders />} />
             </Switch>
           </div>
