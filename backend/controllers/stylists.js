@@ -1,5 +1,6 @@
 const { picturesData } = require("./pictures");
 const { reviewsData } = require("./reviews");
+const { ordersData } = require("./orders");
 
 const getPictures = (idStylist) => {
   return picturesData.filter((picture) => picture.idStylist === idStylist);
@@ -7,6 +8,10 @@ const getPictures = (idStylist) => {
 
 const getReviews = (idStylist) => {
   return reviewsData.filter((review) => review.idStylist === idStylist);
+};
+
+const getOrders = (idStylist) => {
+  return ordersData.filter((order) => order.idStylist === idStylist);
 };
 
 const stylistsData = [
@@ -25,6 +30,7 @@ const stylistsData = [
     city: "Warszawa",
     portfolio: getPictures(1),
     reviews: getReviews(1),
+    orders: getOrders(1),
   },
   {
     idStylist: 2,
