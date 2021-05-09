@@ -5,21 +5,23 @@ import request from "../utils/request";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
+  const [stylistListTest, setStylistListTest] = useState([]);
   const [stylistList, setStylistList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [cityList, setCityList] = useState([]);
   const [slideList, setSlideList] = useState([]);
+  console.log(stylistListTest);
 
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   // Testowanie
-  const [user, setUser] = useState({
-    idUser: 1,
-    accessLevel: 0,
-    login: "e",
-    password: "1",
-  });
+  // const [user, setUser] = useState({
+  //   idUser: 1,
+  //   accessLevel: 0,
+  //   login: "e",
+  //   password: "1",
+  // });
   // Testowanie
 
   const [userLogged, setUserLogged] = useState([]);
@@ -28,6 +30,12 @@ const StoreProvider = ({ children }) => {
   const fetchDataStylist = async () => {
     const { data } = await request.get("/stylists");
     setStylistList(data.stylists);
+  };
+
+  const fetchDataStylistTest = async () => {
+    const { data } = await request.get("/stylistsTest");
+
+    setStylistListTest(data);
   };
 
   const fetchDataCity = async () => {
@@ -56,6 +64,7 @@ const StoreProvider = ({ children }) => {
   // };
 
   useEffect(() => {
+    fetchDataStylistTest();
     fetchDataStylist();
     fetchDataCity();
     fetchDataCategory();
@@ -67,14 +76,14 @@ const StoreProvider = ({ children }) => {
   return (
     <StoreContext.Provider
       value={{
+        stylistListTest,
+        setStylistListTest,
         stylistList,
         setStylistList,
         serviceList,
         setServiceList,
         slideList,
         setSlideList,
-        // orderList,
-        // setOrderList,
         user,
         setUser,
         userLogged,

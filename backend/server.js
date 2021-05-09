@@ -2,6 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// db
+require("./db/mongoose");
+const stylistsTest = require("./routes/stylistsTest");
+
 const stylistsRoutes = require("./routes/stylists");
 const citiesRoutes = require("./routes/cities");
 const clientsRoutes = require("./routes/clients");
@@ -19,6 +23,8 @@ const server = express();
 
 server.use(bodyParser.json());
 server.use(cors());
+
+server.use("/stylistsTest", stylistsTest);
 
 server.use("/stylists", stylistsRoutes);
 server.use("/cities", citiesRoutes);

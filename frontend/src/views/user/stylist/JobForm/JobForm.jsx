@@ -51,22 +51,23 @@ const JobForm = () => {
 
     // console.log(stylistObject);
 
-    const { data, status } = await request.post("/stylists", stylistObject);
-    if (status === 201) {
-      setStylistList(data.stylists);
-      setInfoModal(true);
-    }
+    const { data, status } = await request.post("/stylistsTest", stylistObject);
+    // console.log(stylistObject);
+    // if (status === 201) {
+    //   setStylistList(data.stylists);
+    //   setInfoModal(true);
+    // }
   };
 
   return (
     <>
-      <InfoModal
+      {/* <InfoModal
         setInfoModal={setInfoModal}
         infoModal={infoModal}
         titleText='Potwierdzenie wysłania aplikacji'
         bodyText='Dziękujemy za przesłanie aplikacji. Na adres email otrzymasz dalsze
         informacje.'
-      />
+      /> */}
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
         {(formik) => {
           const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;
