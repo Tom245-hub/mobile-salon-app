@@ -5,6 +5,8 @@ const cors = require("cors");
 // db
 require("./db/mongoose");
 const stylistsTest = require("./routes/stylistsTest");
+const picturesTest = require("./routes/picturesTest");
+const clientsTest = require("./routes/clientsTest");
 
 const stylistsRoutes = require("./routes/stylists");
 const citiesRoutes = require("./routes/cities");
@@ -25,6 +27,8 @@ server.use(bodyParser.json());
 server.use(cors());
 
 server.use("/stylistsTest", stylistsTest);
+server.use("/picturesTest", picturesTest);
+server.use("/clientsTest", clientsTest);
 
 server.use("/stylists", stylistsRoutes);
 server.use("/cities", citiesRoutes);

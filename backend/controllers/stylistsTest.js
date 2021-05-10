@@ -1,8 +1,10 @@
 const { db } = require("../db/models/stylist");
 const Stylist = require("../db/models/stylist");
+const Picture = require("../db/models/picture");
 
 exports.getStylistsTest = async (req, res) => {
   try {
+    // const stylists = await Stylist.find({}).populate("pictures");
     const stylists = await Stylist.find({});
     res.status(200).json(stylists);
   } catch (error) {
@@ -16,8 +18,13 @@ exports.getStylistsTest = async (req, res) => {
 exports.getStylistTest = async (req, res) => {
   try {
     const id = req.params.id;
+    // const stylist = await Stylist.findOne({ _id: id }).populate("pictures");
     const stylist = await Stylist.findOne({ _id: id });
-    res.status(200).json(stylist);
+    const picture = await Picture.findOne({ stylist_id: id });
+
+    const result = { stylist, picture};
+
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({
       error,
@@ -25,6 +32,7 @@ exports.getStylistTest = async (req, res) => {
     });
   }
 };
+
 
 exports.postStylistTest = async (req, res) => {
   let stylist;

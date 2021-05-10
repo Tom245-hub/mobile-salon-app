@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const StylistSchema = new mongoose.Schema({
   personalData: {
     firstName: { type: String },
@@ -25,5 +26,12 @@ const StylistSchema = new mongoose.Schema({
 });
 
 const Stylist = mongoose.model("Stylist", StylistSchema);
+
+// StylistSchema.virtual("pictures", {
+//   ref: "Picture",
+//   localField: "\_id",
+//   foreignField: "Stylist",
+//   justOne: false,
+// });
 
 module.exports = Stylist;
