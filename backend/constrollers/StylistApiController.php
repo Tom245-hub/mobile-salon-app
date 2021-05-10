@@ -33,7 +33,7 @@ class StylistApiController extends DBParams
                     'experience'  => 10,
                 ],
                 [
-                    'id_stylist' => 3,
+                    'id_stylist' => 6,
                     'title'      => 'Dagmara',
                     'url'        => '/stylistki/warszawa/06-dagmara',
                     'img'        => '/img/stylist/warszawa/06-dagmara/06-dagmara.jpg',
@@ -45,7 +45,7 @@ class StylistApiController extends DBParams
                     'experience'  => 3,
                 ],
                 [
-                    'id_stylist' => 4,
+                    'id_stylist' => 7,
                     'title'      => 'Polina',
                     'url'        => '/stylistki/warszawa/07-polina',
                     'img'        => '/img/stylist/warszawa/07-polina/07-polina.jpg',
@@ -57,7 +57,7 @@ class StylistApiController extends DBParams
                     'experience'  => 4,
                 ],
                 [
-                    'id_stylist' => 5,
+                    'id_stylist' => 8,
                     'title'      => 'Ola',
                     'url'        => '/stylistki/warszawa/08-ola',
                     'img'        => '/img/stylist/warszawa/08-ola/08-ola.jpg',
@@ -69,7 +69,7 @@ class StylistApiController extends DBParams
                     'experience'  => 8,
                 ],
                 [
-                    'id_stylist' => 6,
+                    'id_stylist' => 9,
                     'title'      => 'Martyna',
                     'url'        => '/stylistki/warszawa/09-martyna',
                     'img'        => '/img/stylist/warszawa/09-martyna/09-martyna.jpg',
@@ -81,7 +81,7 @@ class StylistApiController extends DBParams
                     'experience'  => 2,
                 ],
                 [
-                    'id_stylist' => 7,
+                    'id_stylist' => 14,
                     'title'      => 'Joanna',
                     'url'        => 'DO UZ',
                     'img'        => 'DO UZ',
@@ -93,7 +93,7 @@ class StylistApiController extends DBParams
                     'experience'  => 10,
                 ],
                 [
-                    'id_stylist' => 8,
+                    'id_stylist' => 15,
                     'title'      => 'Karolina',
                     'url'        => 'DO UZ',
                     'img'        => 'DO UZ',
@@ -105,7 +105,7 @@ class StylistApiController extends DBParams
                     'experience'  => 13,
                 ],
                 [
-                    'id_stylist' => 9,
+                    'id_stylist' => 18,
                     'title'      => 'Beata',
                     'url'        => 'DO UZ',
                     'img'        => 'DO UZ',
@@ -166,7 +166,7 @@ class StylistApiController extends DBParams
                 ],
                 
                 [
-                    'id_stylist' => 14,
+                    'id_stylist' => 3,
                     'title'      => 'Ilona',
                     'url'        => '/stylistki/krakow/03-ilona',
                     'img'        => '/img/stylist/krakow/03-ilona/03-ilona.jpg',
@@ -178,7 +178,7 @@ class StylistApiController extends DBParams
                     'experience'  => 10,
                 ],
                 [
-                    'id_stylist' => 15,
+                    'id_stylist' => 4,
                     'title'      => 'Małgorzata',
                     'url'        => '/stylistki/krakow/04-malgorzata',
                     'img'        => '/img/stylist/krakow/04-malgorzata/04-malgorzata.jpg',
@@ -214,7 +214,7 @@ class StylistApiController extends DBParams
                     'experience'  => 2,
                 ],
                 [
-                    'id_stylist' => 18,
+                    'id_stylist' => 5,
                     'title'      => 'Ola',
                     'url'        => '/stylistki/wroclaw/05-ola',
                     'img'        => '/img/stylist/05-ola/05-ola.jpeg',
