@@ -11,6 +11,7 @@ const citiesTest = require("./routes/citiesTest");
 const categoriesTest = require("./routes/categoriesTest");
 const servicesTest = require("./routes/servicesTest");
 const reviewsTest = require("./routes/reviewsTest");
+const usersTest = require("./routes/usersTest");
 
 const stylistsRoutes = require("./routes/stylists");
 const citiesRoutes = require("./routes/cities");
@@ -38,6 +39,7 @@ server.use("/citiesTest", citiesTest);
 server.use("/categoriesTest", categoriesTest);
 server.use("/servicesTest", servicesTest);
 server.use("/reviewsTest", reviewsTest);
+server.use("/usersTest", usersTest);
 
 server.use("/stylists", stylistsRoutes);
 server.use("/cities", citiesRoutes);

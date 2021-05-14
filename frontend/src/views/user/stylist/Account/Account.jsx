@@ -13,11 +13,13 @@ import ProfileData from "./sections/ProfileData";
 const Account = (props) => {
   const { user, setUser, setUserLogged } = useContext(StoreContext);
   const history = useHistory();
-  // console.log("a");
+  console.log(user);
 
   const fetchDataStylist = async () => {
-    const { data } = await request.get(`/stylists/${user.idUser}`);
-    setUserLogged(data.stylist);
+    const { data } = await request.get(`/stylistsTest/${user.user_id}`);
+    // console.log(data);
+
+    setUserLogged(data);
   };
 
   useEffect(() => {
