@@ -22,13 +22,13 @@ const BoxImage = styled.div`
   }
 `;
 
-const ImageHero = (props) => {
+const ImageHero = ({ height, alt, title, img }) => {
   return (
-    <ContainerImage height={props.height}>
+    <ContainerImage height={height}>
       <BoxImage>
-        <img src={props.img} alt={props.alt || props.title} />
+        <img src={img} alt={alt || title} />
       </BoxImage>
-      <SliderInfo title={props.title} />
+      <SliderInfo title={title} />
     </ContainerImage>
   );
 };

@@ -37,7 +37,7 @@ const App = () => {
               <Route path='/stylistki/:id' component={StylistPage} />
 
               <Route path='/uslugi' exact component={ServicesListPage} />
-              <Route path='/uslugi/:id' exact component={ServicePage} />
+              <Route path='/uslugi/:slug' exact component={ServicePage} />
 
               <Route path='/strefa-stylistki/rekrutacja' component={JobForm} />
               <Route path='/strefa-stylistki/konto' component={Account} />
