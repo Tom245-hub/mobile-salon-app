@@ -5,13 +5,11 @@ import request from "../utils/request";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
-  const [stylistListTest, setStylistListTest] = useState([]);
   const [stylistList, setStylistList] = useState([]);
   const [serviceList, setServiceList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [cityList, setCityList] = useState([]);
   const [slideList, setSlideList] = useState([]);
-  console.log(stylistListTest);
 
   const [user, setUser] = useState(null);
 
@@ -28,29 +26,23 @@ const StoreProvider = ({ children }) => {
   const [loginModal, setLoginModal] = useState(false);
 
   const fetchDataStylist = async () => {
-    const { data } = await request.get("/stylists");
-    setStylistList(data.stylists);
-  };
-
-  const fetchDataStylistTest = async () => {
     const { data } = await request.get("/stylistsTest");
-
-    setStylistListTest(data);
+    setStylistList(data);
   };
 
   const fetchDataCity = async () => {
-    const { data } = await request.get("/cities");
-    setCityList(data.cities);
+    const { data } = await request.get("/citiesTest");
+    setCityList(data);
   };
 
   const fetchDataService = async () => {
-    const { data } = await request.get("/services");
-    setServiceList(data.services);
+    const { data } = await request.get("/servicesTest");
+    setServiceList(data);
   };
 
   const fetchDataCategory = async () => {
-    const { data } = await request.get("/categories");
-    setCategoryList(data.categories);
+    const { data } = await request.get("/categoriesTest");
+    setCategoryList(data);
   };
 
   const fetchDataSlide = async () => {
@@ -64,7 +56,6 @@ const StoreProvider = ({ children }) => {
   // };
 
   useEffect(() => {
-    fetchDataStylistTest();
     fetchDataStylist();
     fetchDataCity();
     fetchDataCategory();
@@ -76,8 +67,6 @@ const StoreProvider = ({ children }) => {
   return (
     <StoreContext.Provider
       value={{
-        stylistListTest,
-        setStylistListTest,
         stylistList,
         setStylistList,
         serviceList,

@@ -9,6 +9,8 @@ const clientsTest = require("./routes/clientsTest");
 const sliderTest = require("./routes/sliderTest");
 const citiesTest = require("./routes/citiesTest");
 const categoriesTest = require("./routes/categoriesTest");
+const servicesTest = require("./routes/servicesTest");
+const reviewsTest = require("./routes/reviewsTest");
 
 const stylistsRoutes = require("./routes/stylists");
 const citiesRoutes = require("./routes/cities");
@@ -34,6 +36,8 @@ server.use("/clientsTest", clientsTest);
 server.use("/sliderTest", sliderTest);
 server.use("/citiesTest", citiesTest);
 server.use("/categoriesTest", categoriesTest);
+server.use("/servicesTest", servicesTest);
+server.use("/reviewsTest", reviewsTest);
 
 server.use("/stylists", stylistsRoutes);
 server.use("/cities", citiesRoutes);

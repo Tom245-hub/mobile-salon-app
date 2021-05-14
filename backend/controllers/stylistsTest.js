@@ -1,4 +1,4 @@
-const { db } = require("../db/models/stylist");
+// const { db } = require("../db/models/stylist");
 const Stylist = require("../db/models/stylist");
 // const Picture = require("../db/models/picture");
 
