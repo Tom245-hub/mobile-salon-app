@@ -32,8 +32,7 @@ exports.getSlider = (request, response, next) => {
   } catch (error) {
     response.status(500).json({
       error,
-      message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /slider",
+      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /slider",
     });
   }
 };

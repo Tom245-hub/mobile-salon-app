@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const StylistSchema = new mongoose.Schema({
   personalData: {
     firstName: { type: String },
@@ -23,15 +22,13 @@ const StylistSchema = new mongoose.Schema({
     makeupStylExp: { type: Number },
     city: { type: String },
   },
+  portfolio: {
+    required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Picture",
+  },
 });
 
 const Stylist = mongoose.model("Stylist", StylistSchema);
-
-// StylistSchema.virtual("pictures", {
-//   ref: "Picture",
-//   localField: "\_id",
-//   foreignField: "Stylist",
-//   justOne: false,
-// });
 
 module.exports = Stylist;

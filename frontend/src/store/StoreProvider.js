@@ -54,8 +54,8 @@ const StoreProvider = ({ children }) => {
   };
 
   const fetchDataSlide = async () => {
-    const { data } = await request.get("/slider");
-    setSlideList(data.slider);
+    const { data } = await request.get("/sliderTest");
+    setSlideList(data);
   };
 
   // const fetchDataOrder = async () => {

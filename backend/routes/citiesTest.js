@@ -1,11 +1,10 @@
 const express = require("express");
 
-const clientsTest = require("../controllers/clientsTest");
+const citiesTest = require("../controllers/citiesTest");
 
 const router = express.Router();
 
-router.get("/", clientsTest.getClientsTest);
-// router.get("/:id", clientsTest.getClientTest);
+router.get("/", citiesTest.getCitiesTest);
 
 router.use((request, response) => response.status(404).end());
 

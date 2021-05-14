@@ -1,12 +1,10 @@
 const express = require("express");
 
-const clientsTest = require("../controllers/clientsTest");
+const sliderTest = require("../controllers/sliderTest");
 
 const router = express.Router();
 
-router.get("/", clientsTest.getClientsTest);
-// router.get("/:id", clientsTest.getClientTest);
-
+router.get("/", sliderTest.getSliderTest);
 router.use((request, response) => response.status(404).end());
 
 module.exports = router;

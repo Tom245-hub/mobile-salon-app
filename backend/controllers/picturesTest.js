@@ -1,4 +1,4 @@
-const { db } = require("../db/models/picture");
+// const { db } = require("../db/models/picture");
 const Picture = require("../db/models/picture");
 
 exports.getPicturesTest = async (req, res) => {

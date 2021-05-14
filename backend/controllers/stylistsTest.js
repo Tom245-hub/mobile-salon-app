@@ -1,11 +1,11 @@
 const { db } = require("../db/models/stylist");
 const Stylist = require("../db/models/stylist");
-const Picture = require("../db/models/picture");
+// const Picture = require("../db/models/picture");
 
 exports.getStylistsTest = async (req, res) => {
   try {
     // const stylists = await Stylist.find({}).populate("pictures");
-    const stylists = await Stylist.find({});
+    const stylists = await Stylist.find({}).populate("portfolio");
     res.status(200).json(stylists);
   } catch (error) {
     res.status(500).json({
@@ -20,11 +20,10 @@ exports.getStylistTest = async (req, res) => {
     const id = req.params.id;
     // const stylist = await Stylist.findOne({ _id: id }).populate("pictures");
     const stylist = await Stylist.findOne({ _id: id });
-    const picture = await Picture.findOne({ stylist_id: id });
 
-    const result = { stylist, picture};
+    // const result = { stylist, picture };
 
-    res.status(200).json(result);
+    res.status(200).json(stylist);
   } catch (error) {
     res.status(500).json({
       error,
@@ -32,7 +31,6 @@ exports.getStylistTest = async (req, res) => {
     });
   }
 };
-
 
 exports.postStylistTest = async (req, res) => {
   let stylist;
@@ -62,6 +60,7 @@ exports.postStylistTest = async (req, res) => {
         makeupStylExp: makeupStylExp,
         city: city,
       },
+      portfolio: [],
     };
 
     stylist = new Stylist(stylistData);
