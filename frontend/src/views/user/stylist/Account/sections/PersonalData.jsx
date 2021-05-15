@@ -16,11 +16,11 @@ const PersonalData = () => {
     history.push("/");
   }
 
-  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editModal, setEditModal] = useState({ open: false });
 
   return (
     <>
-      {editModalOpen && <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} />}
+      {editModal.open && <EditModal editModal={editModal} setEditModal={setEditModal} />}
       <div className='container-fluid my-5'>
         <PageTitle>Twoje dane</PageTitle>
         <CommentText>Te informacje są dostępne tylko dla Mobile Salon. Klientki ich nie widzą.</CommentText>
@@ -32,7 +32,7 @@ const PersonalData = () => {
                   <th scope='col'>Imię:</th>
                   <th scope='col'>{userData.firstName}</th>
                   <th scope='col'>
-                    <button onClick={() => setEditModalOpen(true)} className='btn btn-primary btn-sm'>
+                    <button onClick={() => setEditModal({ open: true, name: "Imię", value: userData.firstName })} className='btn btn-primary btn-sm'>
                       Edytuj
                     </button>
                   </th>

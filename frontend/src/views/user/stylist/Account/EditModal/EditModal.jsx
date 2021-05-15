@@ -13,26 +13,28 @@ const validationSchema = () =>
   });
 
 const EditModal = (props) => {
-  const { user, setUser } = useContext(StoreContext);
+  const { user, setUser, setUserLogged } = useContext(StoreContext);
 
   // const history = useHistory();
   const initialValues = {
-    editText: "",
+    editText: props.editModal.value,
   };
 
   const submitForm = async (values) => {
     const editObject = {
       editText: values.editText,
     };
-    console.log(editObject);
 
     const { data, status } = await request.put(`/stylistsTest/${user.user_id}`, editObject);
+    // console.log(data);
+    setUserLogged(data);
+    props.setEditModal({ open: false });
   };
 
   return (
-    <Modal size='lg' show={props.editModalOpen} onHide={() => props.setEditModalOpen(false)} aria-labelledby='confirm-modal'>
+    <Modal size='lg' show={props.editModal.open} onHide={() => props.setEditModal({ open: false })} aria-labelledby='confirm-modal'>
       <Modal.Header closeButton>
-        <Modal.Title id='confirm-modal'>Edycja: /nazwa pola/</Modal.Title>
+        <Modal.Title id='confirm-modal'>Edycja: {props.editModal.name}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -52,7 +54,7 @@ const EditModal = (props) => {
                       <button className='btn btn-primary mr-1' type='submit'>
                         Zapisz
                       </button>
-                      <button onClick={() => props.setEditModalOpen(false)} className='btn btn-warning mr-1' type='button'>
+                      <button onClick={() => props.setEditModal({ open: false })} className='btn btn-warning mr-1' type='button'>
                         Anuluj
                       </button>
                     </form>
