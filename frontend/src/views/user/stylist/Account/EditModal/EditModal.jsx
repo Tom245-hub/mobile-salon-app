@@ -4,16 +4,16 @@ import * as Yup from "yup";
 import { Modal } from "react-bootstrap";
 // import { useHistory } from "react-router-dom";
 
-// import request from "../../../../../utils/request";
-// import { StoreContext } from "../../../../../store/StoreProvider";
+import request from "../../../../../utils/request";
+import { StoreContext } from "../../../../../store/StoreProvider";
 
 const validationSchema = () =>
   Yup.object().shape({
-    text: Yup.string().required("Musisz wpisać treść"),
+    editText: Yup.string().required("Musisz wpisać treść"),
   });
 
 const EditModal = (props) => {
-  // const { user, setUser } = useContext(StoreContext);
+  const { user, setUser } = useContext(StoreContext);
 
   // const history = useHistory();
   const initialValues = {
@@ -25,19 +25,9 @@ const EditModal = (props) => {
       editText: values.editText,
     };
     console.log(editObject);
+
+    const { data, status } = await request.put(`/stylistsTest/${user.user_id}`, editObject);
   };
-
-  //   const { data, status } = await request.put(`/stylists/${user.idUser}`, editObject);
-
-  //   if (status === 200) {
-  //     setUser(data.user);
-  //     props.setLoginModal(false);
-  //     history.push("/strefa-stylistki/konto");
-  //   } else if (status === 404) {
-  //     // console.log("test3");
-  //     // obsługa błędów z serwera
-  //   }
-  // };
 
   return (
     <Modal size='lg' show={props.editModalOpen} onHide={() => props.setEditModalOpen(false)} aria-labelledby='confirm-modal'>
@@ -59,8 +49,11 @@ const EditModal = (props) => {
 
                       {errors.editText && touched.editText && <div className='alert alert-danger'>{errors.editText}</div>}
 
-                      <button className='btn btn-primary' type='submit'>
+                      <button className='btn btn-primary mr-1' type='submit'>
                         Zapisz
+                      </button>
+                      <button onClick={() => props.setEditModalOpen(false)} className='btn btn-warning mr-1' type='button'>
+                        Anuluj
                       </button>
                     </form>
                   </div>

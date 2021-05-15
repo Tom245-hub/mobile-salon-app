@@ -13,7 +13,7 @@ import ProfileData from "./sections/ProfileData";
 const Account = (props) => {
   const { user, setUser, setUserLogged } = useContext(StoreContext);
   const history = useHistory();
-  console.log(user);
+  // console.log(user);
 
   const fetchDataStylist = async () => {
     const { data } = await request.get(`/stylistsTest/${user.user_id}`);

@@ -72,3 +72,15 @@ exports.postStylistTest = async (req, res) => {
 
   res.status(201).json(stylist);
 };
+
+// aktualizowanie stylistki
+exports.putStylistTest = async (req, res) => {
+  const id = req.params.id;
+  const editText = req.body.editText;
+
+  const stylist = await Stylist.findOne({ _id: id });
+  stylist.personalData.firstName = editText;
+  await stylist.save();
+
+  res.status(201).json(stylist);
+};
