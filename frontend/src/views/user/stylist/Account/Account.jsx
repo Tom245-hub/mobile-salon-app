@@ -13,12 +13,9 @@ import ProfileData from "./sections/ProfileData";
 const Account = (props) => {
   const { user, setUser, setUserLogged } = useContext(StoreContext);
   const history = useHistory();
-  // console.log(user);
 
   const fetchDataStylist = async () => {
     const { data } = await request.get(`/stylistsTest/${user.user_id}`);
-    // console.log(data);
-
     setUserLogged(data);
   };
 
@@ -32,10 +29,9 @@ const Account = (props) => {
     history.push("/");
   }
 
-  // console.log(user);
-
   const handleClickLogOut = () => {
-    setUser(false);
+    setUser(null);
+    setUserLogged(null);
     history.push("/");
   };
 

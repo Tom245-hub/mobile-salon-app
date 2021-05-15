@@ -9,7 +9,7 @@ import PageTitle from "../../../../components/fonts/PageTitle";
 
 const ProfileData = () => {
   const { user, userLogged } = useContext(StoreContext);
-  // const [editModal, setEditModal] = useState(false);
+  // const [editModal, setEditModal] = useState({ open: false });
   const history = useHistory();
 
   if (!user) {

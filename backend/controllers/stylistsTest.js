@@ -18,11 +18,7 @@ exports.getStylistsTest = async (req, res) => {
 exports.getStylistTest = async (req, res) => {
   try {
     const id = req.params.id;
-    // const stylist = await Stylist.findOne({ _id: id }).populate("pictures");
     const stylist = await Stylist.findOne({ _id: id });
-
-    // const result = { stylist, picture };
-
     res.status(200).json(stylist);
   } catch (error) {
     res.status(500).json({
@@ -76,10 +72,17 @@ exports.postStylistTest = async (req, res) => {
 // aktualizowanie stylistki
 exports.putStylistTest = async (req, res) => {
   const id = req.params.id;
-  const editText = req.body.editText;
 
   const stylist = await Stylist.findOne({ _id: id });
-  stylist.personalData.firstName = editText;
+
+  stylist.personalData.firstName = req.body.firstName;
+  stylist.personalData.lastName = req.body.lastName;
+  stylist.personalData.email = req.body.email;
+  stylist.personalData.phone = req.body.phone;
+  stylist.personalData.birthYear = req.body.birthYear;
+  stylist.personalData.zipcode = req.body.zipcode;
+  // stylist.personalData.address.city = req.body.address.city;
+
   await stylist.save();
 
   res.status(201).json(stylist);

@@ -7,7 +7,7 @@ const StylistSchema = new mongoose.Schema({
     email: { type: String },
     phone: { type: Number },
     birthYear: { type: Number },
-    zipcode: { type: Number },
+    zipcode: { type: String },
   },
   profileData: {
     title: { type: String },
