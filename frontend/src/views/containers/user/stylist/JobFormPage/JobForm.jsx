@@ -59,13 +59,12 @@ const JobForm = () => {
 
   return (
     <>
-      {/* <InfoModal
+      <InfoModal
         setInfoModal={setInfoModal}
         infoModal={infoModal}
         titleText='Potwierdzenie wysłania aplikacji'
-        bodyText='Dziękujemy za przesłanie aplikacji. Na adres email otrzymasz dalsze
-        informacje.'
-      /> */}
+        bodyText='Dziękujemy za przesłanie aplikacji. Na adres email otrzymasz dalsze informacje.'
+      />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
         {(formik) => {
           const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;

@@ -57,6 +57,8 @@ exports.postStylistTest = async (req, res) => {
         city: city,
       },
       portfolio: [],
+      reviews: [],
+      orders: [],
     };
 
     stylist = new Stylist(stylistData);

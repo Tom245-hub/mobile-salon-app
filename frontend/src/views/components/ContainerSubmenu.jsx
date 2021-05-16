@@ -12,11 +12,11 @@ const StyledContainerSubmenu = styled.div`
   display: none;
 `;
 
-const ContainerSubmenu = (props) => {
+const ContainerSubmenu = ({ activeSubmenu, id, handleMouseLeave, children }) => {
   return (
     <>
-      <StyledContainerSubmenu className={"container-fluid bg-white py-5" + (props.activeSubmenu === props.id ? " d-block" : "")} onMouseLeave={props.handleMouseLeave}>
-        <div className='row w-100 d-flex justify-content-around px-5'>{props.children}</div>
+      <StyledContainerSubmenu className={"container-fluid bg-white py-5" + (activeSubmenu === id ? " d-block" : "")} onMouseLeave={handleMouseLeave}>
+        <div className='row w-100 d-flex justify-content-around px-5'>{children}</div>
       </StyledContainerSubmenu>
     </>
   );

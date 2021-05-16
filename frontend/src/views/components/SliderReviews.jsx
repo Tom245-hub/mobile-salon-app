@@ -1,33 +1,40 @@
 import React from "react";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import "../../../node_modules/slick-carousel/slick/slick.css";
 
-const ContainerSlide = styled.div`
+const StyledContainerSlide = styled.div`
   position: relative;
   text-align: center;
 `;
 
-const Text = styled.h4`
+const StyledText = styled.h4`
   font-family: ${(props) => props.theme.fonts.artist};
 `;
 
-const BoxStars = styled.span`
+const StyledBoxStars = styled.span`
   color: ${(props) => props.theme.colors.gold};
 `;
 
-const SliderReviews = (props) => {
+const SliderReviews = ({ settings, data, showStars }) => {
   return (
-    <Slider {...props.settings}>
-      {props.data.map((item, index) => (
-        <ContainerSlide key={index}>
-          <Text>{item.comment}</Text>
-          <BoxStars>{props.showStars(item.stars)}</BoxStars>
-        </ContainerSlide>
+    <Slider {...settings}>
+      {data.map((item, index) => (
+        <StyledContainerSlide key={index}>
+          <StyledText>{item.comment}</StyledText>
+          <StyledBoxStars>{showStars(item.stars)}</StyledBoxStars>
+        </StyledContainerSlide>
       ))}
     </Slider>
   );
+};
+
+SliderReviews.propTypes = {
+  settings: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
+  showStars: PropTypes.func.isRequired,
 };
 
 export default SliderReviews;

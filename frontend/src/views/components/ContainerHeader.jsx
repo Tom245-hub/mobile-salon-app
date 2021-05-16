@@ -5,8 +5,8 @@ const StyledContainerHeader = styled.div`
   z-index: 105;
 `;
 
-const ContainerHeader = (props) => {
-  return <StyledContainerHeader className={"className='container-fluid bg-light"}>{props.children}</StyledContainerHeader>;
+const ContainerHeader = ({ children }) => {
+  return <StyledContainerHeader className={"className='container-fluid bg-light"}>{children}</StyledContainerHeader>;
 };
 
 export default ContainerHeader;

@@ -32,7 +32,7 @@ const SectionTeam = () => {
 
       <div className='row'>
         <div className='col-5'>
-          <Image img='/img/fryzjerki-slubne-mobile-salon.jpg' height='60%' alt='Mobile Salon' />
+          <Image img='/img/fryzjerki-slubne-mobile-salon.jpg' height='60%' alt='Zespół Mobile Salon' />
         </div>
 
         <div className='col-7 d-flex flex-column justify-content-between'>

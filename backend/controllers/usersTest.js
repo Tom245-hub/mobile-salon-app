@@ -33,3 +33,26 @@ exports.postUserTest = async (req, res) => {
     });
   }
 };
+
+// exports.postNewUserTest = async (req, res) => {
+//   let newUser;
+
+//   try {
+//     // const { firstName, lastName, email, phone, birthYear, zipcode, hairStylExp, makeupStylExp, city } = req.body;
+
+//     const newUserData = {
+//       accessLevel: 0,
+//       login: "d",
+//       password: "1",
+//       user_id: "60a184eee8ea742bd06ad53a",
+//     };
+
+//     newUser = new User(newUserData);
+
+//     await newUser.save();
+//   } catch (err) {
+//     return res.status(422).json({ message: err.message });
+//   }
+
+//   res.status(201).json(newUser);
+// };

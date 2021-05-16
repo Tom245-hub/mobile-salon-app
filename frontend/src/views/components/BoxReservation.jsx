@@ -2,8 +2,13 @@ import React, { Children } from "react";
 import styled from "styled-components";
 
 const StyledBox = styled.div`
-  transition: 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   background-color: ${(props) => props.theme.colors.primary};
+  transition: 0.2s ease-in-out;
   &:hover {
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.secondary};
@@ -19,8 +24,8 @@ const StyledBox = styled.div`
   }
 `;
 
-const BoxReservation = (props) => {
-  return <StyledBox className='d-flex justify-content-center align-items-center px-3'>{props.children}</StyledBox>;
+const BoxReservation = ({ children }) => {
+  return <StyledBox>{children}</StyledBox>;
 };
 
 export default BoxReservation;
