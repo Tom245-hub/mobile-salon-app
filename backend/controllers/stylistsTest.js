@@ -5,7 +5,7 @@ const Stylist = require("../db/models/stylist");
 exports.getStylistsTest = async (req, res) => {
   try {
     // const stylists = await Stylist.find({}).populate("pictures");
-    const stylists = await Stylist.find({}).populate("portfolio");
+    const stylists = await Stylist.find({}).populate("portfolio").populate("reviews");
     res.status(200).json(stylists);
   } catch (error) {
     res.status(500).json({

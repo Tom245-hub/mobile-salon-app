@@ -8,11 +8,12 @@ const SectionList = () => {
   return (
     <>
       <div className='row'>
-        {stylistList.map((item, index) => (
-          <div key={index} className='col-6 col-md-3 mb-3'>
-            {item.profileData.img && <Card img={item.profileData.img} url={item.profileData.url} title={item.profileData.title} bgColorHover={true} />}
-          </div>
-        ))}
+        {stylistList &&
+          stylistList.map((stylist, index) => (
+            <div key={index} className='col-6 col-md-3 mb-3'>
+              {stylist.profileData.img && <Card img={stylist.profileData.img} url={"stylistki/" + stylist._id} title={stylist.profileData.title} bgColorHover={true} />}
+            </div>
+          ))}
       </div>
     </>
   );

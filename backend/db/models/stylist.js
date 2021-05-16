@@ -27,6 +27,11 @@ const StylistSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Picture",
   },
+  reviews: {
+    required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Review",
+  },
 });
 
 const Stylist = mongoose.model("Stylist", StylistSchema);

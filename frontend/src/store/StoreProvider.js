@@ -5,7 +5,9 @@ import request from "../utils/request";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
-  const [stylistList, setStylistList] = useState([]);
+  const [stylistList, setStylistList] = useState(false);
+
+  // stylistList && console.log(stylistList);
   const [serviceList, setServiceList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [cityList, setCityList] = useState([]);

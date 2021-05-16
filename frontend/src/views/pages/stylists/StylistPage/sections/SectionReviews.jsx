@@ -1,6 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { showStars } from "../../../../../utils/utils";
 
 import SliderReviews from "../../../../components/SliderReviews";
 import SectionTitle from "../../../../components/fonts/SectionTitle";
@@ -8,7 +11,8 @@ import SectionTitle from "../../../../components/fonts/SectionTitle";
 import PrevArrow from "../../../../components/PrevArrow";
 import NextArrow from "../../../../components/NextArrow";
 
-const SectionReviews = (props) => {
+const SectionReviews = ({ reviews }) => {
+  console.log(reviews);
   const settings = {
     dots: false,
     infinite: true,
@@ -19,57 +23,20 @@ const SectionReviews = (props) => {
     slidesToShow: 1,
   };
 
-  const showStars = (stars) => {
-    switch (stars) {
-      case 1:
-        return <FontAwesomeIcon icon={faStar} />;
-      case 2:
-        return (
-          <>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-          </>
-        );
-      case 3:
-        return (
-          <>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-          </>
-        );
-      case 4:
-        return (
-          <>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-          </>
-        );
-      case 5:
-        return (
-          <>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-          </>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <SectionTitle>Opinie Klientek</SectionTitle>
       <div className='row'>
-        <div className='col-12'>{props.stylist && <SliderReviews data={props.stylist.reviews} settings={settings} margin='0.5rem' showStars={showStars} />}</div>
+        <div className='col-12'>
+          <SliderReviews data={reviews} settings={settings} margin='0.5rem' showStars={showStars} />
+        </div>
       </div>
     </>
   );
+};
+
+SectionReviews.propTypes = {
+  reviews: PropTypes.array,
 };
 
 export default SectionReviews;
