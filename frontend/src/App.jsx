@@ -9,19 +9,17 @@ import Theme from "./theme/theme";
 
 import "./index.scss";
 
-import Layout from "./views/layout/Layout";
-import HomePage from "./views/pages/home/HomePage";
-import StylistsListPage from "./views/pages/stylists/StylistsListPage/StylistsListPage";
-import StylistPage from "./views/pages/stylists/StylistPage/StylistPage";
+import Layout from "./views/containers/layout/Layout";
+import HomePage from "./views/containers/pages/home/HomePage/HomePage";
+import StylistsListPage from "./views/containers/pages/stylists/StylistsListPage/StylistsListPage";
+import StylistPage from "./views/containers/pages/stylists/StylistPage/StylistPage";
 
-import ServicesListPage from "./views/pages/services/ServicesListPage/ServicesListPage";
-import ServicePage from "./views/pages/services/ServicePage/ServicePage";
+import ServicesListPage from "./views/containers/pages/services/ServicesListPage/ServicesListPage";
+import ServicePage from "./views/containers/pages/services/ServicePage/ServicePage";
 
-import OrderForm from "./views/user/client/OrderForm/OrderForm";
-
-import JobForm from "./views/user/stylist/JobForm/JobForm";
-import Account from "./views/user/stylist/Account/Account";
-import Orders from "./views/user/stylist/Account/sections/Orders";
+import OrderForm from "./views/containers/user/client/OrderFormPage/OrderFormPage";
+import JobForm from "./views/containers/user/stylist/JobFormPage/JobForm";
+import Account from "./views/containers/user/stylist/AccountPage/AccountPage";
 
 const App = () => {
   return (
