@@ -5,10 +5,10 @@ export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
   const [stylistList, setStylistList] = useState(false);
-  const [serviceList, setServiceList] = useState([]);
-  const [categoryList, setCategoryList] = useState([]);
+  const [serviceList, setServiceList] = useState(false);
+  const [categoryList, setCategoryList] = useState(false);
   const [cityList, setCityList] = useState(false);
-  const [slideList, setSlideList] = useState([]);
+  const [slideList, setSlideList] = useState(false);
 
   const [user, setUser] = useState(null);
   const [userLogged, setUserLogged] = useState([]);
@@ -48,7 +48,7 @@ const StoreProvider = ({ children }) => {
 
   return (
     <>
-      {cityList && stylistList && (
+      {cityList && stylistList && serviceList && categoryList && slideList && (
         <StoreContext.Provider
           value={{
             stylistList,
