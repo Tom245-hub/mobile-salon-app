@@ -1,13 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { showStars } from "../../../../../../utils/utils";
 
 import SliderReviews from "../../../../../components/SliderReviews";
 import SectionTitle from "../../../../../components/fonts/SectionTitle";
-
 import PrevArrow from "../../../../../components/PrevArrow";
 import NextArrow from "../../../../../components/NextArrow";
 

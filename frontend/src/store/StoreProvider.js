@@ -7,7 +7,7 @@ const StoreProvider = ({ children }) => {
   const [stylistList, setStylistList] = useState(false);
   const [serviceList, setServiceList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [cityList, setCityList] = useState([]);
+  const [cityList, setCityList] = useState(false);
   const [slideList, setSlideList] = useState([]);
 
   const [user, setUser] = useState(null);
@@ -47,26 +47,30 @@ const StoreProvider = ({ children }) => {
   }, []);
 
   return (
-    <StoreContext.Provider
-      value={{
-        stylistList,
-        setStylistList,
-        serviceList,
-        setServiceList,
-        slideList,
-        setSlideList,
-        user,
-        setUser,
-        userLogged,
-        setUserLogged,
-        categoryList,
-        setCategoryList,
-        cityList,
-        setCityList,
-      }}
-    >
-      {children}
-    </StoreContext.Provider>
+    <>
+      {cityList && stylistList && (
+        <StoreContext.Provider
+          value={{
+            stylistList,
+            setStylistList,
+            serviceList,
+            setServiceList,
+            slideList,
+            setSlideList,
+            user,
+            setUser,
+            userLogged,
+            setUserLogged,
+            categoryList,
+            setCategoryList,
+            cityList,
+            setCityList,
+          }}
+        >
+          {children}
+        </StoreContext.Provider>
+      )}
+    </>
   );
 };
 

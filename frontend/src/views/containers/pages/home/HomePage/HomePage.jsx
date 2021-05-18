@@ -1,5 +1,4 @@
 import React from "react";
-
 import SectionServices from "./sections/SectionServices";
 import SectionTeam from "./sections/SectionTeam";
 import SectionSlider from "./sections/SectionSlider";

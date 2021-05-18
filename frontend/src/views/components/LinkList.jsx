@@ -9,7 +9,7 @@ const LinkList = (props) => {
     <>
       <h4 className='mb-3'>{props.title}</h4>
       <ul>
-        {props.links.map((item, index) => (
+        {/* {props.links.map((item, index) => (
           <li key={index}>
             {props.setActiveSubmenu ? (
               <Link to={item.url} onClick={() => props.setActiveSubmenu(0)}>
@@ -19,7 +19,7 @@ const LinkList = (props) => {
               <Link to={item.url}>{item.title}</Link>
             )}
           </li>
-        ))}
+        ))} */}
       </ul>
     </>
   );

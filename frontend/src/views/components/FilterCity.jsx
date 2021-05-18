@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const FilterLink = styled.a`
@@ -7,20 +8,25 @@ const FilterLink = styled.a`
   cursor: pointer;
 `;
 
-const FilterCity = (props) => {
+const FilterCity = ({ cityList, setFilterCity }) => {
   return (
     <>
       <div className='row'>
         <div className='col-12 d-flex justify-content-between'>
-          <FilterLink onClick={() => props.setFilterCity("Warszawa")}>WARSZAWA</FilterLink>
-          <FilterLink onClick={() => props.setFilterCity("Kraków")}>KRAKÓW</FilterLink>
-          <FilterLink onClick={() => props.setFilterCity("Wrocław")}>WROCŁAW</FilterLink>
-          <FilterLink onClick={() => props.setFilterCity("Poznań")}>POZNAŃ</FilterLink>
-          <FilterLink onClick={() => props.setFilterCity("Gdańsk")}>GDAŃSK</FilterLink>
+          {cityList.map((city, index) => (
+            <FilterLink key={index} onClick={() => setFilterCity(city.title)}>
+              {city.title}
+            </FilterLink>
+          ))}
         </div>
       </div>
     </>
   );
+};
+
+FilterCity.propTypes = {
+  setFilterCity: PropTypes.func,
+  cityList: PropTypes.array,
 };
 
 export default FilterCity;
