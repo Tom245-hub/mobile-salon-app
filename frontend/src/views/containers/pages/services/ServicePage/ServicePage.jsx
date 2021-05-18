@@ -9,9 +9,9 @@ import ImageHero from "../../../../components/ImageHero";
 const ServicePage = () => {
   const { categoryList, serviceList } = useContext(StoreContext);
   let { slug } = useParams();
-  const category = categoryList.length > 0 && categoryList.filter((category) => category.slug == slug)[0];
-  const services = serviceList.length > 0 && serviceList.filter((service) => service.category._id == category._id);
-  console;
+  const category = categoryList.filter((category) => category.slug == slug)[0];
+  const services = serviceList.filter((service) => service.category._id == category._id);
+
   return (
     <>
       <div className='container-fluid'>
@@ -23,7 +23,9 @@ const ServicePage = () => {
       <div className='container-fluid bg-light py-5'>
         <div className='container'>REALIZACJE</div>
       </div>
-      <div className='container py-5'>{services && <SectionPrices services={services} />}</div>
+      <div className='container py-5'>
+        <SectionPrices services={services} />
+      </div>
     </>
   );
 };
