@@ -13,7 +13,6 @@ const SectionServices = () => {
     <>
       <ZipCode />
       <SectionTitle>Poznaj nasze usługi</SectionTitle>
-
       <div className='row'>
         {categoryList.map((item, index) => (
           <div key={index} className='col-3'>

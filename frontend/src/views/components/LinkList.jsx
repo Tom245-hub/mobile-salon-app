@@ -1,28 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import styled from "styled-components";
 
-// const Container = styled.div``;
-
-const LinkList = (props) => {
+const LinkList = ({ title, links, setActiveSubmenu }) => {
   return (
     <>
-      <h4 className='mb-3'>{props.title}</h4>
+      <h4 className='mb-3'>{title}</h4>
       <ul>
-        {/* {props.links.map((item, index) => (
+        {links.map((item, index) => (
           <li key={index}>
-            {props.setActiveSubmenu ? (
-              <Link to={item.url} onClick={() => props.setActiveSubmenu(0)}>
+            {setActiveSubmenu ? (
+              <Link to={item.url} onClick={() => setActiveSubmenu(0)}>
                 {item.title}
               </Link>
             ) : (
               <Link to={item.url}>{item.title}</Link>
             )}
           </li>
-        ))} */}
+        ))}
       </ul>
     </>
   );
+};
+
+LinkList.propTypes = {
+  title: PropTypes.string.isRequired,
+  links: PropTypes.array.isRequired,
+  setActiveSubmenu: PropTypes.func,
 };
 
 export default LinkList;
