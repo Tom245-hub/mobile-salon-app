@@ -71,21 +71,34 @@ exports.postStylistTest = async (req, res) => {
   res.status(201).json(stylist);
 };
 
-// aktualizowanie stylistki
 exports.putStylistTest = async (req, res) => {
-  const id = req.params.id;
+  console.log(req.body);
+  try {
+    const id = req.params.id;
 
-  const stylist = await Stylist.findOne({ _id: id });
+    const stylist = await Stylist.findOne({ _id: id });
+    const { firstName, lastName, email, phone, birthYear, zipcode, title, url, text, hairStylExp, makeupStylExp, city } = req.body;
 
-  stylist.personalData.firstName = req.body.firstName;
-  stylist.personalData.lastName = req.body.lastName;
-  stylist.personalData.email = req.body.email;
-  stylist.personalData.phone = req.body.phone;
-  stylist.personalData.birthYear = req.body.birthYear;
-  stylist.personalData.zipcode = req.body.zipcode;
-  // stylist.personalData.address.city = req.body.address.city;
+    firstName && (stylist.personalData.firstName = firstName);
+    lastName && (stylist.personalData.lastName = lastName);
+    email && (stylist.personalData.email = email);
+    phone && (stylist.personalData.phone = phone);
+    birthYear && (stylist.personalData.birthYear = birthYear);
+    zipcode && (stylist.personalData.zipcode = zipcode);
 
-  await stylist.save();
+    title && (stylist.profileData.title = title);
+    text && (stylist.profileData.text = text);
+    hairStylExp && (stylist.profileData.hairStylExp = hairStylExp);
+    makeupStylExp && (stylist.profileData.makeupStylExp = makeupStylExp);
+    city && (stylist.profileData.city = city);
 
-  res.status(201).json(stylist);
+    await stylist.save();
+
+    res.status(201).json(stylist);
+  } catch (error) {
+    res.status(500).json({
+      error,
+      message: "Błąd w API stylist",
+    });
+  }
 };
