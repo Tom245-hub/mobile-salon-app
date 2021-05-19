@@ -11,8 +11,6 @@ import ContainerSubmenu from "../../../../components/ContainerSubmenu";
 const TopMenu = (props) => {
   const { categoryList, cityList } = useContext(StoreContext);
 
-  // console.log(categoryList);
-
   return (
     <ul className='d-flex h-100'>
       <li className='d-flex align-items-center mx-2'>

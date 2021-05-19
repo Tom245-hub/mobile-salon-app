@@ -3,9 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import { StoreContext } from "../../../../../store/StoreProvider";
 import CommentText from "../../../../components/fonts/CommentText";
-
 import PageTitle from "../../../../components/fonts/PageTitle";
-import EditModal from "../../../modals/EditModal/EditModal";
+import EditModal from "./EditModal/EditModal";
 
 const PersonalData = () => {
   const { user, userLogged } = useContext(StoreContext);

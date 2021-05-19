@@ -72,7 +72,6 @@ exports.postStylistTest = async (req, res) => {
 };
 
 exports.putStylistTest = async (req, res) => {
-  console.log(req.body);
   try {
     const id = req.params.id;
 

@@ -29,7 +29,7 @@ const Orders = () => {
     }
   };
 
-  console.log(userLogged);
+  // console.log(userLogged);
 
   // console.log(orders);
   return (

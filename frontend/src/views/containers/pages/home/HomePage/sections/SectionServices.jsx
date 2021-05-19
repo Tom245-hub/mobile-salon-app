@@ -7,7 +7,6 @@ import SectionTitle from "../../../../../components/fonts/SectionTitle";
 
 const SectionServices = () => {
   const { categoryList } = useContext(StoreContext);
-  // console.log(categoryList);
 
   return (
     <>
