@@ -43,12 +43,12 @@ const EditModal = ({ editModal, setEditModal }) => {
     };
 
     await request
-      .put(`/stylistsTest/${user.user_id}`, editObject)
+      .put(`/stylists/${user.user_id}`, editObject)
       .then(({ data }) => {
         setUserLogged(data);
         setEditModal({ open: false });
         setErrorServer({ isTrue: false });
-        console.log(editObject);
+        // console.log(editObject);
       })
       .catch((error) => {
         console.log(error);

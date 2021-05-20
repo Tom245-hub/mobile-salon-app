@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", stylists.getStylists);
 router.get("/:id", stylists.getStylist);
+router.post("/", stylists.postStylist);
 router.put("/:id", stylists.putStylist);
 
 router.use((request, response) => response.status(404).end());

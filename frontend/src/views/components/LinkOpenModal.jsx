@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledLink = styled.a`
@@ -7,8 +8,12 @@ const StyledLink = styled.a`
   }
 `;
 
-const LinkOpenModal = (props) => {
-  return <StyledLink onClick={() => props.setLoginModal(true)}>{props.children}</StyledLink>;
+const LinkOpenModal = ({ setLoginModal, children }) => {
+  return <StyledLink onClick={() => setLoginModal(true)}>{children}</StyledLink>;
+};
+
+LinkOpenModal.propTypes = {
+  setLoginModal: PropTypes.func.isRequired,
 };
 
 export default LinkOpenModal;

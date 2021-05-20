@@ -1,29 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { OverlayTrigger, Tooltip, InputGroup } from "react-bootstrap";
 
 import request from "../../../../../utils/request";
-import { StoreContext } from "../../../../../store/StoreProvider";
 
 import InfoModal from "../../../modals/InfoModal/InfoModal";
 
-import { Button, OverlayTrigger, Tooltip, Form, InputGroup, Col, Container, Row } from "react-bootstrap";
-
 const validationSchema = () =>
   Yup.object().shape({
-    // firstName: Yup.string().required("Musisz wpisać swoje imię").min(2, "Imię jest za krótkie").max(20, "Imię jest za długie"),
-    // lastName: Yup.string().required("Musisz wpisać swoje nazwisko").min(2, "Nazwisko musi być dłużesze").max(20, "Nazwisko jest za długie"),
-    // phone: Yup.string().required("Musisz wpisać numer telefonu").min(9, "Telefon musi być dłuższy").max(15, "Telefon jest za długi"),
-    // email: Yup.string().required("Musisz wpisać email").email("Niepoprawny adres email"),
-    // birthYear: Yup.string().required("Musisz wpisać rok urodzenia"),
-    // zipcode: Yup.string().required("Musisz wpisać kod pocztowy"),
+    firstName: Yup.string().required("Musisz wpisać swoje imię").min(2, "Imię jest za krótkie").max(20, "Imię jest za długie"),
+    lastName: Yup.string().required("Musisz wpisać swoje nazwisko").min(2, "Nazwisko musi być dłużesze").max(20, "Nazwisko jest za długie"),
+    phone: Yup.string().required("Musisz wpisać numer telefonu").min(9, "Telefon musi być dłuższy").max(15, "Telefon jest za długi"),
+    email: Yup.string().required("Musisz wpisać email").email("Niepoprawny adres email"),
+    birthYear: Yup.string().required("Musisz wpisać rok urodzenia"),
+    zipcode: Yup.string().required("Musisz wpisać kod pocztowy"),
   });
 
 const JobForm = () => {
-  const { setStylistList } = useContext(StoreContext);
   const [infoModal, setInfoModal] = useState(false);
+  const [errorServer, setErrorServer] = useState({ isTrue: false });
 
   const initialValues = {
     firstName: "",
@@ -32,9 +30,6 @@ const JobForm = () => {
     phone: "",
     birthYear: "",
     zipcode: "",
-    // TESTY
-    fileHair: null,
-    // TESTY
   };
 
   const submitForm = async (values) => {
@@ -48,25 +43,15 @@ const JobForm = () => {
       hairStylExp: values.hairStylExp,
       makeupStylExp: values.makeupStylExp,
       city: values.city,
-      // TESTY
-      fileHair: values.fileHair,
-      // TESTY
     };
 
-    console.log(stylistObject);
-
-    const { data, status } = await request.post("/stylistsTest", stylistObject, {
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    console.log(data);
-
-    // if (status === 201) {
-    //   setStylistList(data.stylists);
-    //   setInfoModal(true);
-    // }
+    try {
+      await request.post("/stylists", stylistObject);
+      setInfoModal(true);
+    } catch (error) {
+      console.log(error);
+      setErrorServer({ isTrue: true, info: "Błąd serwera. Skontaktuj się z administratorem." });
+    }
   };
 
   return (
@@ -79,7 +64,7 @@ const JobForm = () => {
       />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
         {(formik) => {
-          const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid, setFieldValue, fieldValue } = formik;
+          const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;
 
           return (
             <div className='container min-vh-100 py-5'>
@@ -192,20 +177,6 @@ const JobForm = () => {
                         </div>
                         <div className='col-md-6'>
                           <input type='file' name='fileHair1' className='mb-2' />
-
-                          {/* TESTY */}
-
-                          <input
-                            type='file'
-                            name='fileHair5'
-                            className='form-control mb-2'
-                            onChange={(event) => {
-                              formik.setFieldValue("fileHair", event.target.files[0]);
-                            }}
-                          />
-
-                          {/* TESTY */}
-
                           <input type='file' name='fileHair2' className='mb-2' />
                           <input type='file' name='fileHair3' className='mb-2' />
                         </div>
@@ -223,6 +194,9 @@ const JobForm = () => {
                         </div>
                       </div>
                     )}
+
+                    {errorServer.isTrue && <div className='alert alert-danger'>{errorServer.info}</div>}
+
                     <button className='btn btn-primary' type='submit'>
                       Wyślij
                     </button>

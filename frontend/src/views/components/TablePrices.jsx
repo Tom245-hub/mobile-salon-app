@@ -1,7 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-const TablePrices = (props) => {
+const TablePrices = () => {
   return (
     <>
       <table className='table'>

@@ -15,8 +15,13 @@ const Account = (props) => {
   const history = useHistory();
 
   const fetchDataStylist = async () => {
-    const { data } = await request.get(`/stylistsTest/${user.user_id}`);
-    setUserLogged(data);
+    try {
+      const { data } = await request.get(`/stylists/${user.user_id}`);
+      setUserLogged(data);
+    } catch (error) {
+      console.log(error);
+      history.push("/");
+    }
   };
 
   useEffect(() => {
@@ -36,41 +41,47 @@ const Account = (props) => {
   };
 
   return (
-    <Router>
-      <div className='container-fluid min-vh-100'>
-        <div className='row min-vh-100'>
-          <div className='col-2 bg-light p-0'>
-            <nav>
-              <ul>
-                <li className='text-center bg-primary text-white mb-2 py-3'>
-                  Zalogowany: {user && user.login} <a onClick={handleClickLogOut}>(wyloguj)</a>
-                </li>
-                <li className='text-center mb-2'>
-                  <Link to='/strefa-stylistki/konto'>Informacje</Link>
-                </li>
-                <li className='text-center mb-2'>
-                  <Link to='/strefa-stylistki/konto/profil'>Twój profil</Link>
-                </li>
-                <li className='text-center mb-2'>
-                  <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
-                </li>
-                <li className='text-center mb-2'>
-                  <Link to='/strefa-stylistki/konto/zamowienia'>Zamówienia</Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className='col-10'>
-            <Switch>
-              <Route exact path='/strefa-stylistki/konto' component={Info} />
-              <Route exact path='/strefa-stylistki/konto/dane' render={() => <PersonalData />} />
-              <Route exact path='/strefa-stylistki/konto/profil' render={() => <ProfileData />} />
-              <Route exact path='/strefa-stylistki/konto/zamowienia' render={() => <Orders />} />
-            </Switch>
-          </div>
+    <div className='container-fluid min-vh-100'>
+      <div className='row min-vh-100'>
+        <div className='col-2 bg-light p-0'>
+          <nav>
+            <ul>
+              <li className='text-center bg-primary text-white mb-2 py-3'>
+                Zalogowany: {user && user.login} <a onClick={handleClickLogOut}>(wyloguj)</a>
+              </li>
+              {user.accessLevel === 0 && (
+                <>
+                  <li className='text-center mb-2'>
+                    <Link to='/strefa-stylistki/konto'>Informacje</Link>
+                  </li>
+                  <li className='text-center mb-2'>
+                    <Link to='/strefa-stylistki/konto/profil'>Twój profil</Link>
+                  </li>
+                  <li className='text-center mb-2'>
+                    <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
+                  </li>
+                  <li className='text-center mb-2'>
+                    <Link to='/strefa-stylistki/konto/zamowienia'>Zamówienia</Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+        </div>
+        <div className='col-10'>
+          <Router>
+            {user && (
+              <Switch>
+                <Route exact path='/strefa-stylistki/konto' component={Info} />
+                <Route exact path='/strefa-stylistki/konto/dane' render={() => <PersonalData />} />
+                <Route exact path='/strefa-stylistki/konto/profil' render={() => <ProfileData />} />
+                <Route exact path='/strefa-stylistki/konto/zamowienia' render={() => <Orders />} />
+              </Switch>
+            )}
+          </Router>
         </div>
       </div>
-    </Router>
+    </div>
   );
 };
 

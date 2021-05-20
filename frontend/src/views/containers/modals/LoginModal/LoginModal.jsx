@@ -31,7 +31,7 @@ const LoginModal = (props) => {
       password: values.password,
     };
 
-    const { data, status } = await request.post("/usersTest", loginObject);
+    const { data, status } = await request.post("/users", loginObject);
 
     if (status === 200) {
       setUser(data.user);

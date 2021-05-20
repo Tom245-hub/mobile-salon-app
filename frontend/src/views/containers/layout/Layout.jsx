@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
-
-import { StoreContext } from "../../../store/StoreProvider";
+import React from "react";
 
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import LoginModal from "../modals/LoginModal/LoginModal";
 
-const Layout = (props) => {
+const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      {props.children}
+      {children}
       <Footer />
     </>
   );
