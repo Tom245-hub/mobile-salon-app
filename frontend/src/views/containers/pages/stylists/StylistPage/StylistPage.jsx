@@ -9,11 +9,11 @@ import PageTitle from "../../../../components/fonts/PageTitle";
 
 const StylistPage = () => {
   const { stylistList } = useContext(StoreContext);
-  const [infoModal, setInfoModal] = useState(true);
   let { id } = useParams();
+  const [infoModal, setInfoModal] = useState(true);
   const stylist = stylistList && stylistList.filter((stylist) => stylist._id == id)[0];
 
-  if (stylistList.lenght === 0 || !stylist) {
+  if (stylistList.length === 0 || !stylist) {
     return (
       <>
         <InfoModal setInfoModal={setInfoModal} infoModal={infoModal} titleText='Błąd' bodyText='Nie znaleźliśmy stylistki.' />
@@ -29,9 +29,15 @@ const StylistPage = () => {
 
   return (
     <>
-      <div className='container py-5'>{stylist && <SectionDetails stylist={stylist.profileData} />}</div>
-      <div className='container-fluid bg-light py-5'>{stylist && <SectionPortfolio portfolio={stylist.portfolio} />}</div>
-      <div className='container py-5'>{stylist && <SectionReviews reviews={stylist.reviews} />}</div>
+      <div className='container py-5'>
+        <SectionDetails stylist={stylist.profileData} />
+      </div>
+      <div className='container-fluid bg-light py-5'>
+        <SectionPortfolio portfolio={stylist.portfolio} />
+      </div>
+      <div className='container py-5'>
+        <SectionReviews reviews={stylist.reviews} />
+      </div>
     </>
   );
 };

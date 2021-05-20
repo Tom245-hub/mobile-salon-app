@@ -5,6 +5,7 @@ export default {
     success: "#9fdbad",
     info: "#f4ebf2",
     warning: "#ec8b83",
+    danger: "#E6102E",
     dark: "#31303b",
     light: "#f9f6f3",
 
