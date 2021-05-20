@@ -9,7 +9,7 @@ import PrevArrow from "../../../../../components/PrevArrow";
 import NextArrow from "../../../../../components/NextArrow";
 
 const SectionReviews = ({ reviews }) => {
-  console.log(reviews);
+  // console.log(reviews);
   const settings = {
     dots: false,
     infinite: true,

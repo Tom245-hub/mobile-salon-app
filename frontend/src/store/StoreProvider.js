@@ -16,7 +16,7 @@ const StoreProvider = ({ children }) => {
 
   const fetchDataStylist = async () => {
     try {
-      const { data } = await request.get("/stylistsTest");
+      const { data } = await request.get("/stylists");
       setStylistList(data);
     } catch (error) {
       console.log(error);
@@ -25,7 +25,7 @@ const StoreProvider = ({ children }) => {
 
   const fetchDataCity = async () => {
     try {
-      const { data } = await request.get("/citiesTest");
+      const { data } = await request.get("/cities");
       setCityList(data);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const StoreProvider = ({ children }) => {
 
   const fetchDataService = async () => {
     try {
-      const { data } = await request.get("/servicesTest");
+      const { data } = await request.get("/services");
       setServiceList(data);
     } catch (error) {
       console.log(error);
@@ -43,7 +43,7 @@ const StoreProvider = ({ children }) => {
 
   const fetchDataCategory = async () => {
     try {
-      const { data } = await request.get("/categoriesTest");
+      const { data } = await request.get("/categories");
       setCategoryList(data);
     } catch (error) {
       console.log(error);
@@ -52,7 +52,7 @@ const StoreProvider = ({ children }) => {
 
   const fetchDataSlide = async () => {
     try {
-      const { data } = await request.get("/sliderTest");
+      const { data } = await request.get("/slider");
       setSlideList(data);
     } catch (error) {
       console.log(error);

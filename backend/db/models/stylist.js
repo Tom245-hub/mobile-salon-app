@@ -8,6 +8,7 @@ const StylistSchema = new mongoose.Schema({
     phone: { type: Number },
     birthYear: { type: Number },
     zipcode: { type: String },
+    // fileHair: { type: String, required: true },
   },
   profileData: {
     title: { type: String },

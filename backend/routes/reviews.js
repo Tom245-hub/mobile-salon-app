@@ -1,10 +1,10 @@
 const express = require("express");
 
-const reviewsTest = require("../controllers/reviewsTest");
+const reviews = require("../controllers/reviews");
 
 const router = express.Router();
 
-router.get("/", reviewsTest.getReviewsTest);
+router.get("/", reviews.getReviews);
 router.use((request, response) => response.status(404).end());
 
 module.exports = router;

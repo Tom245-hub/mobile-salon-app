@@ -1,10 +1,12 @@
 const express = require("express");
 
-const picturesController = require("../controllers/pictures");
+const pictures = require("../controllers/pictures");
 
 const router = express.Router();
 
-router.get("/", picturesController.getPictures);
+router.get("/", pictures.getPictures);
+router.get("/:id", pictures.getPicture);
+
 router.use((request, response) => response.status(404).end());
 
 module.exports = router;

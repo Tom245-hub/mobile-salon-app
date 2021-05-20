@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const ClientSchema = new mongoose.Schema({
-  // client: {
   firstName: { type: String },
   secondName: { type: String },
   phone: { type: Number },
@@ -15,7 +14,6 @@ const ClientSchema = new mongoose.Schema({
     company: { type: String },
     NIP: { type: String },
   },
-  // },
 });
 
 const Client = mongoose.model("Client", ClientSchema);

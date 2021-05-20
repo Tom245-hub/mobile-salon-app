@@ -1,41 +1,10 @@
-const usersData = [
-  {
-    idUser: 1,
-    accessLevel: 0,
-    login: "e",
-    password: "1",
-  },
-  {
-    idUser: 2,
-    accessLevel: 0,
-    login: "patrycja",
-    password: "pat",
-  },
-  {
-    idUser: 150,
-    accessLevel: 0,
-    login: "d",
-    password: "1",
-  },
-  {
-    idUser: 501,
-    accessLevel: 1,
-    login: "AnnaNowak",
-    password: "clientaann",
-  },
-  {
-    idUser: 10001,
-    accessLevel: 2,
-    login: "Admin",
-    password: "******",
-  },
-];
+const User = require("../db/models/user");
 
-exports.postUser = (request, response, next) => {
+exports.postUser = async (req, res) => {
   try {
-    const { login, password } = request.body;
+    const { login, password } = req.body;
+    const user = await User.findOne({ login: login });
 
-    const user = usersData.find((u) => u.login === login);
     if (!user) {
       response.status(404).json({
         message: "Użytkownik o podanym loginie nie istnieje",
@@ -46,20 +15,20 @@ exports.postUser = (request, response, next) => {
 
     const isPasswordCorrect = user.password === password;
     if (!isPasswordCorrect) {
-      response.status(401).json({
+      res.status(401).json({
         message: "Hasło lub login się nie zgadza",
       });
 
       return;
     }
 
-    response.status(200).json({
+    res.status(200).json({
       user,
     });
   } catch (error) {
-    response.status(500).json({
+    res.status(500).json({
       error,
-      message: "Oops! Coś poszło nie tak, przy metodzie POST w endpointcie /users",
+      message: "Błąd w metodzie POST w endpointcie users",
     });
   }
 };

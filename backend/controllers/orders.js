@@ -1,12 +1,12 @@
 const { servicesData } = require("./services");
 
-const getServices = (array) => {
-  let services = [];
-  for (let i = 0; i < array.length; i++) {
-    services.push(servicesData.filter((service) => service.idService === array[i])[0]);
-  }
-  return services;
-};
+// const getServices = (array) => {
+//   let services = [];
+//   for (let i = 0; i < array.length; i++) {
+//     services.push(servicesData.filter((service) => service.idService === array[i])[0]);
+//   }
+//   return services;
+// };
 
 const ordersData = [
   {
@@ -24,7 +24,7 @@ const ordersData = [
       zipcode: "01-300",
       city: "Warszawa",
     },
-    services: getServices([1, 2]),
+    // services: getServices([1, 2]),
   },
   {
     idOrder: 2,
@@ -41,7 +41,7 @@ const ordersData = [
       zipcode: "03-322",
       city: "Warszawa",
     },
-    services: getServices([3, 3, 5]),
+    // services: getServices([3, 3, 5]),
   },
 ];
 

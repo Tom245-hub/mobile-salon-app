@@ -1,45 +1,13 @@
-const categoriesData = [
-  {
-    idCategory: 1,
-    title: "Fryzury ślubne z dojazdem",
-    url: "/uslugi/fryzury-slubne",
-    img: "/img/fryzury-slubne-mobile-salon.jpg",
-    text: "Upięcia, koki z welonem, warkocze, ozdoby.",
-  },
-  {
-    idCategory: 2,
-    title: "Makijaże ślubne z dojazdem",
-    url: "/uslugi/makijaze-slubne",
-    img: "/img/makijaze-slubne-mobile-salon.jpg",
-    text: "Trwałe i piękne, delikatne lub wyraźne.",
-  },
-  {
-    idCategory: 3,
-    title: "Fryzury okazyjne z dojazdem",
-    url: "/uslugi/fryzury-okazyjne",
-    img: "/img/fryzjerki-slubne-mobile-salon.jpg",
-    text: "Trwałe i piękne, delikatne lub wyraźne.",
-  },
-  {
-    idCategory: 4,
-    title: "Makijaże okazyjne z dojazdem",
-    url: "/uslugi/makijaze-okazyjne",
-    img: "/img/fryzjerki-slubne-mobile-salon.jpg",
-    text: "Trwałe i piękne, delikatne lub wyraźne.",
-  },
-];
+const Category = require("../db/models/category");
 
-exports.getCategories = (request, response, next) => {
+exports.getCategories = async (req, res) => {
   try {
-    response.status(200).json({
-      categories: categoriesData,
-    });
+    const categories = await Category.find({});
+    res.status(200).json(categories);
   } catch (error) {
-    response.status(500).json({
+    res.status(500).json({
       error,
-      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /categories",
+      message: "Błąd w metodzie GET w endpointcie /categoriesTest",
     });
   }
 };
-
-exports.categoriesData = categoriesData;

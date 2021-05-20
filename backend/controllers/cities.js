@@ -1,47 +1,13 @@
-const citiesData = [
-  {
-    idCity: 1,
-    title: "Warszawa",
-    titleMin: "warszawa",
-    url: "/stylistki?city=warszawa",
-  },
-  {
-    idCity: 2,
-    title: "Kraków",
-    titleMin: "krakow",
-    url: "/stylistki?city=krakow",
-  },
-  {
-    idCity: 3,
-    title: "Wrocław",
-    titleMin: "wroclaw",
-    url: "/stylistki?city=wroclaw",
-  },
-  {
-    idCity: 4,
-    title: "Poznań",
-    titleMin: "poznan",
-    url: "/stylistki?city=poznan",
-  },
-  {
-    idCity: 5,
-    title: "Gdańsk",
-    titleMin: "gdansk",
-    url: "/stylistki?city=gdansk",
-  },
-];
+const City = require("../db/models/city");
 
-exports.getCities = (request, response, next) => {
+exports.getCities = async (req, res) => {
   try {
-    response.status(200).json({
-      cities: citiesData,
-    });
+    const cities = await City.find({});
+    res.status(200).json(cities);
   } catch (error) {
-    response.status(500).json({
+    res.status(500).json({
       error,
-      message: "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /cities",
+      message: "Błąd w metodzie GET w endpointcie /cities",
     });
   }
 };
-
-exports.citiesData = citiesData;

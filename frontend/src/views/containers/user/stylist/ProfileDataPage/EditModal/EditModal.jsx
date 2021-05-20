@@ -35,6 +35,7 @@ const EditModal = ({ editModal, setEditModal }) => {
   const submitForm = async (values) => {
     const editObject = {
       title: values.title,
+      img: values.file.name,
       text: values.text,
       hairStylExp: values.hairStylExp,
       makeupStylExp: values.makeupStylExp,
@@ -47,6 +48,7 @@ const EditModal = ({ editModal, setEditModal }) => {
         setUserLogged(data);
         setEditModal({ open: false });
         setErrorServer({ isTrue: false });
+        console.log(editObject);
       })
       .catch((error) => {
         console.log(error);
@@ -64,7 +66,7 @@ const EditModal = ({ editModal, setEditModal }) => {
         <Modal.Body>
           <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
             {(formik) => {
-              const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid } = formik;
+              const { values, handleChange, handleSubmit, errors, touched, handleBlur, isValid, setFieldValue } = formik;
 
               return (
                 <div className='container'>
@@ -78,7 +80,16 @@ const EditModal = ({ editModal, setEditModal }) => {
                         <div className='form-row my-2'>
                           <div className='col-md-6'>{<Image img={userData.img} height='75%' /> ?? "brak"}</div>
                           <div className='col-md-6'>
-                            <input type='file' name='profileImg' className='mb-2' />
+                            <input
+                              className='form-control'
+                              id='file'
+                              type='file'
+                              name='file'
+                              className='mb-2'
+                              onChange={(event) => {
+                                setFieldValue("file", event.currentTarget.files[0]);
+                              }}
+                            />
                           </div>
                         </div>
 
