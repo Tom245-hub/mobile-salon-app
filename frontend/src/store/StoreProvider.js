@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import request from "../utils/request";
+import { useHttpClient } from "../hooks/http-hook";
 
 export const StoreContext = createContext(null);
 
@@ -10,32 +11,52 @@ const StoreProvider = ({ children }) => {
   const [cityList, setCityList] = useState(false);
   const [slideList, setSlideList] = useState(false);
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   const [userLogged, setUserLogged] = useState([]);
 
   const fetchDataStylist = async () => {
-    const { data } = await request.get("/stylistsTest");
-    setStylistList(data);
+    try {
+      const { data } = await request.get("/stylistsTest");
+      setStylistList(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchDataCity = async () => {
-    const { data } = await request.get("/citiesTest");
-    setCityList(data);
+    try {
+      const { data } = await request.get("/citiesTest");
+      setCityList(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchDataService = async () => {
-    const { data } = await request.get("/servicesTest");
-    setServiceList(data);
+    try {
+      const { data } = await request.get("/servicesTest");
+      setServiceList(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchDataCategory = async () => {
-    const { data } = await request.get("/categoriesTest");
-    setCategoryList(data);
+    try {
+      const { data } = await request.get("/categoriesTest");
+      setCategoryList(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchDataSlide = async () => {
-    const { data } = await request.get("/sliderTest");
-    setSlideList(data);
+    try {
+      const { data } = await request.get("/sliderTest");
+      setSlideList(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
