@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Link, Route, Switch, HashRouter as Router } from "react-router-dom";
+import { Link, Route, Switch, HashRouter as Router, NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 import { StoreContext } from "../../../../../store/StoreProvider";
@@ -52,16 +52,16 @@ const Account = (props) => {
               {user.accessLevel === 0 && (
                 <>
                   <li className='text-center mb-2'>
-                    <Link to='/strefa-stylistki/konto'>Informacje</Link>
+                    <NavLink to='/strefa-stylistki/konto'>Informacje</NavLink>
                   </li>
                   <li className='text-center mb-2'>
-                    <Link to='/strefa-stylistki/konto/profil'>Twój profil</Link>
+                    <NavLink to='/strefa-stylistki/konto/profil'>Twój profil</NavLink>
                   </li>
                   <li className='text-center mb-2'>
-                    <Link to='/strefa-stylistki/konto/dane'>Twoje dane</Link>
+                    <NavLink to='/strefa-stylistki/konto/dane'>Twoje dane</NavLink>
                   </li>
                   <li className='text-center mb-2'>
-                    <Link to='/strefa-stylistki/konto/zamowienia'>Zamówienia</Link>
+                    <NavLink to='/strefa-stylistki/konto/zamowienia'>Zamówienia</NavLink>
                   </li>
                 </>
               )}
