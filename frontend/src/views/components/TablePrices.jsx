@@ -1,6 +1,6 @@
 import React from "react";
 
-const TablePrices = () => {
+const TablePrices = ({ data }) => {
   return (
     <>
       <table className='table'>
@@ -12,7 +12,7 @@ const TablePrices = () => {
           </tr>
         </thead>
         <tbody>
-          {props.data.map((item) => (
+          {data.map((item) => (
             <tr key={item.idService}>
               <td>{item.title}</td>
               <td>{item.price} zł</td>
