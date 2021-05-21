@@ -20,6 +20,8 @@ import ServicePage from "./views/containers/pages/services/ServicePage/ServicePa
 import OrderForm from "./views/containers/user/client/OrderFormPage/OrderFormPage";
 import JobForm from "./views/containers/user/stylist/JobFormPage/JobForm";
 import Account from "./views/containers/user/stylist/AccountPage/AccountPage";
+import Header from "./views/containers/layout/Header/Header";
+import Footer from "./views/containers/layout/Footer/Footer";
 
 const App = () => {
   return (
@@ -27,25 +29,27 @@ const App = () => {
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
         <HashRouter>
-          <Layout>
-            <Switch>
-              <Route path='/' exact component={HomePage} />
+          <Header />
 
-              <Route path='/stylistki' exact component={StylistsListPage} />
-              <Route path='/stylistki/:id' component={StylistPage} />
+          <Switch>
+            <Route path='/' exact component={HomePage} />
 
-              <Route path='/uslugi' exact component={ServicesListPage} />
-              <Route path='/uslugi/:slug' exact component={ServicePage} />
+            <Route path='/stylistki' exact component={StylistsListPage} />
+            <Route path='/stylistki/:id' component={StylistPage} />
 
-              <Route path='/strefa-stylistki/rekrutacja' component={JobForm} />
-              <Route path='/strefa-stylistki/konto' component={Account} />
+            <Route path='/uslugi' exact component={ServicesListPage} />
+            <Route path='/uslugi/:slug' exact component={ServicePage} />
 
-              <Route path='/strefa-klientki/zamowienie' component={OrderForm} />
+            <Route path='/strefa-stylistki/rekrutacja' component={JobForm} />
+            <Route path='/strefa-stylistki/konto' component={Account} />
 
-              {/* <Route path="/stylistki/:idStylist(\d+)-:name" component={StylistScreen} />
+            <Route path='/strefa-klientki/zamowienie' component={OrderForm} />
+
+            {/* <Route path="/stylistki/:idStylist(\d+)-:name" component={StylistScreen} />
               <Route path="/zamowienie" exact component={OrderScreen} /> */}
-            </Switch>
-          </Layout>
+          </Switch>
+
+          <Footer />
         </HashRouter>
       </ThemeProvider>
     </StoreProvider>
