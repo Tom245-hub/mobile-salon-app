@@ -2,15 +2,25 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export const showAvailableCities = (data) => {
+export const showAvailableCities = (stylistList) => {
   let cities = [];
-  data.map((item) => !cities.includes(item.city) && cities.push(item.city));
+  stylistList.map(
+    (stylist) =>
+      !cities.includes(stylist.profileData.city) &&
+      stylist.profileData.city &&
+      cities.push(stylist.profileData.city)
+  );
   return cities;
 };
 
 export const showAvailableServices = (data) => {
   let avilableServices = [];
-  data.map((item) => Object.keys(item.services).map((service) => !avilableServices.includes(service) && avilableServices.push(service)));
+  data.map((item) =>
+    Object.keys(item.services).map(
+      (service) =>
+        !avilableServices.includes(service) && avilableServices.push(service)
+    )
+  );
   return avilableServices;
 };
 
