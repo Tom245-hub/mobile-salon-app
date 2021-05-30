@@ -2,15 +2,16 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../store/StoreProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faGoogle,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faInstagram, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import LoginModal from "../UIElements/LoginModal";
 import FormsGroup from "../FormElements/FormsGroup";
-import { StyledContainerFull, StyledContainer } from "./Footer.css";
+import {
+  StyledContainerFull,
+  StyledContainer,
+  StyledColTitle,
+  StyledText,
+} from "./Footer.css";
 
 const Footer = () => {
   const { isUserLogged } = useContext(StoreContext);
@@ -28,7 +29,7 @@ const Footer = () => {
           <StyledContainerFull>
             <StyledContainer>
               <ul>
-                <h5>STREFA STYLISTKI</h5>
+                <StyledColTitle>STREFA STYLISTKI</StyledColTitle>
                 <li>
                   <Link to='/strefa-stylistki/rekrutacja'>kariera</Link>
                 </li>
@@ -41,7 +42,7 @@ const Footer = () => {
               </ul>
 
               <ul>
-                <h5>NAWIGACJA</h5>
+                <StyledColTitle>NAWIGACJA</StyledColTitle>
                 <li>
                   <Link to='#'>usługi</Link>
                 </li>
@@ -59,7 +60,7 @@ const Footer = () => {
               </ul>
 
               <ul>
-                <h5>POMOC</h5>
+                <StyledColTitle>POMOC</StyledColTitle>
                 <li>
                   <Link to='#'>faq</Link>
                 </li>
@@ -72,13 +73,13 @@ const Footer = () => {
               </ul>
 
               <div>
-                <h5>NEWSLETTER</h5>
+                <StyledColTitle>NEWSLETTER</StyledColTitle>
                 <FormsGroup placeholder='Twój email' btnText='Zapisz się' />
               </div>
             </StyledContainer>
-            <h6>
+            <StyledText>
               Realizacja: <Link to='https://www.webite.pl/'>WEBite.pl</Link>
-            </h6>
+            </StyledText>
           </StyledContainerFull>
         </>
       )}

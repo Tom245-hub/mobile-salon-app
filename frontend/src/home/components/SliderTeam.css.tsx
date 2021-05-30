@@ -13,25 +13,25 @@ export const StyledCol = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
 
-  h3 {
-    font-family: ${({ theme }) => theme.fonts.secondary};
-    font-size: 2rem;
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.primary.dark};
-    text-align: center;
-    margin-bottom: 1rem;
-  }
+export const StyledTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: 2rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary.dark};
+  text-align: center;
+  margin-bottom: 1rem;
+`;
 
-  h5 {
-    font-size: 1.2rem;
-    color: ${({ theme }) => theme.colors.primary.normal};
-    text-align: center;
-  }
+export const StyledText = styled.h5`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.primary.normal};
+  text-align: center;
+`;
 
-  ul {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
+export const StyledList = styled.ul`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `;

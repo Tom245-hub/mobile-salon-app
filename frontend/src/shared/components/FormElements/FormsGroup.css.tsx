@@ -22,6 +22,7 @@ export const StyledButton = styled.button`
   border: none;
   padding: 0.5rem 1.5rem;
   transition: 1s ease-in-out;
+  cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.colors.gray.light};
     background-color: ${({ theme }) => theme.colors.secondary.dark};
