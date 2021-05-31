@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { StyledLoadingSpinner } from "./LoadingSpinner.css";
+import { StyledBox, StyledSpinner } from "./LoadingSpinner.css";
 
-const LoadingSpinner: React.FC = () => {
+const LoadingSpinner = () => {
   return (
-    <StyledLoadingSpinner>
-      <FontAwesomeIcon icon={faSpinner} size='3x' pulse />
-    </StyledLoadingSpinner>
+    <StyledBox>
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+      <StyledSpinner />
+    </StyledBox>
   );
 };
 
