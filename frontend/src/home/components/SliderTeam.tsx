@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getStylistList } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
@@ -21,26 +21,20 @@ import {
   StyledList,
 } from "./SliderTeam.css";
 
-interface SliderTeamProps {
-  stylistList: Stylist[];
-  loading: Loading | any;
-  getStylistList: Function;
-}
+const SliderTeam: React.FC = () => {
+  const dispatch = useDispatch();
+  const loading: Loading | any = useSelector((state: RootState) => state.stylist.loading);
+  const stylistList = useSelector((state: RootState) => state.stylist.stylistList);
 
-const SliderTeam: React.FC<SliderTeamProps> = ({
-  stylistList,
-  loading,
-  getStylistList,
-}) => {
   const isLoading = loading.STYLIST_LIST_GET_REQUEST;
   const [filterCity, setFilterCity] = useState<string>("Warszawa");
 
   useEffect(() => {
-    getStylistList();
+    dispatch(getStylistList());
   }, [getStylistList]);
 
   const filteredStylists = stylistList.filter(
-    (stylist) => stylist.profileData.city === filterCity
+    (stylist: Stylist) => stylist.profileData.city === filterCity
   );
 
   const settings = {
@@ -71,7 +65,7 @@ const SliderTeam: React.FC<SliderTeamProps> = ({
               kreatywnym podejściem do stylizacji.
             </StyledText>
             <SliderDefault settings={settings}>
-              {filteredStylists.map((stylist) => (
+              {filteredStylists.map((stylist: Stylist) => (
                 <Card
                   key={stylist._id}
                   img={stylist.profileData.img}
@@ -96,14 +90,4 @@ const SliderTeam: React.FC<SliderTeamProps> = ({
   );
 };
 
-export default connect(
-  (state: RootState) => {
-    return {
-      stylistList: state.stylist.stylistList,
-      loading: state.stylist.loading,
-    };
-  },
-  {
-    getStylistList,
-  }
-)(SliderTeam);
+export default SliderTeam;

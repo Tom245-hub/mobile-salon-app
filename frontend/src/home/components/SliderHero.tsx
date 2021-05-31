@@ -16,7 +16,7 @@ import { StyledContainerSlide, StyledContainerInfo } from "./SliderHero.css";
 const SliderHero: React.FC = () => {
   const dispatch = useDispatch();
   const loading: Loading | any = useSelector((state: RootState) => state.slide.loading);
-  const slideList = useSelector((state: RootState) => state.slide.slideList);
+  const slideList: Slide[] = useSelector((state: RootState) => state.slide.slideList);
 
   const isLoading = loading.SLIDE_LIST_GET_REQUEST;
 
@@ -38,7 +38,7 @@ const SliderHero: React.FC = () => {
         <LoadingSpinner />
       ) : (
         <SliderDefault settings={settings}>
-          {slideList.map((slide: Slide) => (
+          {slideList.map((slide) => (
             <StyledContainerSlide key={slide._id}>
               <Image margin='0' paddingTop='40%' img={slide.img} alt={slide.title} />
               <StyledContainerInfo>

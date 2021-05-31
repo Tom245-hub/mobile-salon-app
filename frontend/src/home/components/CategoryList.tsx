@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCategoryList } from "../../shared/data/actions/categoryActions";
@@ -24,7 +23,9 @@ const CategoryList: React.FC = () => {
   const loading: Loading | any = useSelector(
     (state: RootState) => state.category.loading
   );
-  const categoryList = useSelector((state: RootState) => state.category.categoryList);
+  const categoryList: Category[] = useSelector(
+    (state: RootState) => state.category.categoryList
+  );
   const isLoading = loading.CATEGORY_LIST_GET_REQUEST;
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const CategoryList: React.FC = () => {
           </StyledRowZipcode>
 
           <StyledRowCard>
-            {categoryList.map((category: Category) => (
+            {categoryList.map((category) => (
               <Card
                 key={category._id}
                 img={category.img}

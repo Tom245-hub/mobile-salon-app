@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,23 +20,24 @@ interface TopMenuProps {
   setActiveSubmenu: Function;
   handleMouseEnter: Function;
   handleMouseLeave: Function;
-  categoryList: Category[];
-  loading: Loading | any;
-  getCategoryList: Function;
 }
 
 const TopMenu: React.FC<TopMenuProps> = ({
   activeSubmenu,
   handleMouseEnter,
   handleMouseLeave,
-  categoryList,
-  loading,
-  getCategoryList,
 }) => {
+  const dispatch = useDispatch();
+  const loading: Loading | any = useSelector(
+    (state: RootState) => state.category.loading
+  );
+  const categoryList: Category[] = useSelector(
+    (state: RootState) => state.category.categoryList
+  );
   const isLoading = loading.CATEGORY_LIST_GET_REQUEST;
 
   useEffect(() => {
-    getCategoryList();
+    dispatch(getCategoryList());
   }, [getCategoryList]);
   return (
     <StyledMenu>
@@ -114,14 +115,4 @@ const TopMenu: React.FC<TopMenuProps> = ({
   );
 };
 
-export default connect(
-  (state: RootState) => {
-    return {
-      categoryList: state.category.categoryList,
-      loading: state.category.loading,
-    };
-  },
-  {
-    getCategoryList,
-  }
-)(TopMenu);
+export default TopMenu;
