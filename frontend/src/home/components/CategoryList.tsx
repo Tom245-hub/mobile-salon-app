@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getCategoryList } from "../../shared/data/actions/categoryActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
@@ -18,21 +19,16 @@ import {
   StyledText,
 } from "./CategoryList.css";
 
-interface CategoryListProps {
-  categoryList: Category[];
-  loading: Loading | any;
-  getCategoryList: Function;
-}
-
-const CategoryList: React.FC<CategoryListProps> = ({
-  categoryList,
-  loading,
-  getCategoryList,
-}) => {
+const CategoryList: React.FC = () => {
+  const dispatch = useDispatch();
+  const loading: Loading | any = useSelector(
+    (state: RootState) => state.category.loading
+  );
+  const categoryList = useSelector((state: RootState) => state.category.categoryList);
   const isLoading = loading.CATEGORY_LIST_GET_REQUEST;
 
   useEffect(() => {
-    getCategoryList();
+    dispatch(getCategoryList());
   }, [getCategoryList]);
 
   return (
@@ -49,7 +45,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
           </StyledRowZipcode>
 
           <StyledRowCard>
-            {categoryList.map((category) => (
+            {categoryList.map((category: Category) => (
               <Card
                 key={category._id}
                 img={category.img}
@@ -65,14 +61,4 @@ const CategoryList: React.FC<CategoryListProps> = ({
   );
 };
 
-export default connect(
-  (state: RootState) => {
-    return {
-      categoryList: state.category.categoryList,
-      loading: state.category.loading,
-    };
-  },
-  {
-    getCategoryList,
-  }
-)(CategoryList);
+export default CategoryList;
