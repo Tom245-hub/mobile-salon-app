@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getSlideList } from "../../shared/data/actions/slideActions";
@@ -13,16 +13,15 @@ import Button from "../../shared/components/UIElements/Button";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { StyledContainerSlide, StyledContainerInfo } from "./SliderHero.css";
 
-interface SliderHeroProps {
-  slideList: Slide[];
-  loading: Loading | any;
-  getSlideList: Function;
-}
-const SliderHero: React.FC<SliderHeroProps> = ({ slideList, loading, getSlideList }) => {
+const SliderHero: React.FC = () => {
+  const dispatch = useDispatch();
+  const loading: Loading | any = useSelector((state: RootState) => state.slide.loading);
+  const slideList = useSelector((state: RootState) => state.slide.slideList);
+
   const isLoading = loading.SLIDE_LIST_GET_REQUEST;
 
   useEffect(() => {
-    getSlideList();
+    dispatch(getSlideList());
   }, [getSlideList]);
 
   const settings = {
@@ -39,7 +38,7 @@ const SliderHero: React.FC<SliderHeroProps> = ({ slideList, loading, getSlideLis
         <LoadingSpinner />
       ) : (
         <SliderDefault settings={settings}>
-          {slideList.map((slide) => (
+          {slideList.map((slide: Slide) => (
             <StyledContainerSlide key={slide._id}>
               <Image margin='0' paddingTop='40%' img={slide.img} alt={slide.title} />
               <StyledContainerInfo>
@@ -56,14 +55,4 @@ const SliderHero: React.FC<SliderHeroProps> = ({ slideList, loading, getSlideLis
   );
 };
 
-export default connect(
-  (state: RootState) => {
-    return {
-      slideList: state.slide.slideList,
-      loading: state.slide.loading,
-    };
-  },
-  {
-    getSlideList,
-  }
-)(SliderHero);
+export default SliderHero;
