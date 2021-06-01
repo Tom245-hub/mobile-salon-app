@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import SliderHero from "../components/SliderHero";
 import CategoryList from "../components/CategoryList";
 import SliderTeam from "../components/SliderTeam";

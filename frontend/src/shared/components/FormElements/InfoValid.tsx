@@ -1,11 +1,7 @@
 import React from "react";
 import { StyledBox, StyledText } from "./InfoValid.css";
 
-interface InfoValidProps {
-  children: string;
-}
-
-const InfoValid: React.FC<InfoValidProps> = ({ children }) => {
+const InfoValid: React.FC = ({ children }) => {
   return (
     <StyledBox>
       <StyledText>{children}</StyledText>

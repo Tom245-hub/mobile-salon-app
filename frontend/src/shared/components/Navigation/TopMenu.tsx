@@ -62,7 +62,6 @@ const TopMenu: React.FC<TopMenuProps> = ({
                   img={category.img}
                   url={category.url}
                   title={category.title}
-                  text={category.text}
                   margin='0'
                 />
               ))}

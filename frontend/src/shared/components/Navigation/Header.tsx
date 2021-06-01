@@ -1,9 +1,7 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-
-import { StoreContext } from "../../store/StoreProvider";
 
 import TopBar from "./TopBar";
 import UserBox from "./UserBox";
@@ -11,17 +9,18 @@ import CityBox from "./CityBox";
 import TopMenu from "./TopMenu";
 
 import DrawerMenu from "./DrawerMenu";
-import {
-  StyledContainerHeader,
-  StyledLogoLink,
-  StyledLink,
-} from "./Header.css";
+import { StyledContainerHeader, StyledLogoLink, StyledLink } from "./Header.css";
+import { RootState } from "../../data/reducers/rootReducers";
 
 const Header: React.FC = () => {
-  const { isUserLogged } = useContext(StoreContext);
+  const user = useSelector((state: RootState) => state.user.user);
+
+  const isUserLogged = false; ////// do poprawy
+  // console.log(isUserLogged);
+
   const [activeSubmenu, setActiveSubmenu] = useState<number>(0);
   const [city, setCity] = useState<string>("");
-  const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(false);
+  const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(true);
   const [isActiveTopBar, setIsActiveTopBar] = useState<boolean>(false);
 
   const handleMouseEnter = (id: number) => {
@@ -32,11 +31,13 @@ const Header: React.FC = () => {
     setActiveSubmenu(id);
   };
 
+  const closeDrawerMenu = () => {
+    setIsOpenDrawerMenu(false);
+  };
+
   return (
     <>
-      {isOpenDrawerMenu && (
-        <DrawerMenu setIsOpenDrawerMenu={setIsOpenDrawerMenu} />
-      )}
+      {isOpenDrawerMenu && <DrawerMenu closeDrawerMenu={closeDrawerMenu} />}
 
       {!isUserLogged && (
         <TopBar

@@ -5,6 +5,7 @@ export const StyledBox = styled.div`
 `;
 
 export const StyledInput = styled.input`
+  font-size: 1rem;
   border-radius: 5px 0 0 5px;
   color: ${({ theme }) => theme.colors.gray};
   border 1px solid

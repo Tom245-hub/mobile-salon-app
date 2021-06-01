@@ -28,7 +28,10 @@ const slide = (state = initialState, action) => {
       delete newLoading.SLIDE_LIST_GET_REQUEST;
       return {
         ...state,
-        loading: LOADING_STATES.LOADED,
+        loading: {
+          ...state.loading,
+          [action.type]: LOADING_STATES.LOADED,
+        },
         slideList: action.payload,
       };
 

@@ -17,9 +17,13 @@ export const StyledContainer = styled.footer`
 `;
 
 export const StyledColTitle = styled.h5`
+  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 `;
 
 export const StyledText = styled.h6`
+  font-size: 1rem;
+  font-weight: 400;
   text-align: center;
 `;

@@ -21,11 +21,6 @@ const Footer = () => {
     <>
       {!isUserLogged && (
         <>
-          {/* <LoginModal
-            setIsOpenLoginModal={setIsOpenLoginModal}
-            isOpenLoginModal={isOpenLoginModal}
-            titleText='Logowanie Stylistki'
-          /> */}
           <StyledContainerFull>
             <StyledContainer>
               <ul>
@@ -35,9 +30,6 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to='#'>warunki</Link>
-                </li>
-                <li>
-                  <a onClick={() => setIsOpenLoginModal(true)}>logowanie</a>
                 </li>
               </ul>
 

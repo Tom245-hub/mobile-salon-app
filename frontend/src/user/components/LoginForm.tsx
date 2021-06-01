@@ -29,7 +29,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
   const dispatch = useDispatch();
   const user: object = useSelector((state: RootState) => state.user);
-  console.log(user);
+  // console.log(user);
 
   const submitForm = async (values: Login) => {
     const loginObject = {

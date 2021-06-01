@@ -16,7 +16,7 @@ export const postUser = (loginObject) => async (dispatch) => {
     if (status === 200) {
       dispatch({
         type: USER_POST_SUCCESS,
-        payload: data,
+        payload: data, ///////// do poprawienia - bez ustawiania hasła
       });
     } else if (status === 404) {
       dispatch({

@@ -28,7 +28,10 @@ const category = (state = initialState, action) => {
       delete newLoading.CATEGORY_LIST_GET_REQUEST;
       return {
         ...state,
-        loading: LOADING_STATES.LOADED,
+        loading: {
+          ...state.loading,
+          [action.type]: LOADING_STATES.LOADED,
+        },
         categoryList: action.payload,
       };
 

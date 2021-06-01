@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.input`
+  font-size: 1rem;
   width: 100%;
   border-radius: 5px;
   color: ${({ theme }) => theme.colors.gray};

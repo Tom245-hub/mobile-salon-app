@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-interface StyledContainerCardProps {
+interface StyledContainerProps {
   margin: string;
 }
 
-export const StyledContainerCard = styled.div<StyledContainerCardProps>`
+export const StyledContainer = styled.div<StyledContainerProps>`
   background-color: ${({ theme }) => theme.colors.gray.light};
   margin: ${({ margin }) => margin};
   transition: 0.5s ease-in-out;
@@ -25,13 +25,13 @@ export const StyledContainerCard = styled.div<StyledContainerCardProps>`
       transform: scale(1.05);
     }
   }
+`;
 
-  h2 {
-    font-family: ${({ theme }) => theme.fonts.secondary};
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.primary.dark};
-    margin: 1rem 0;
-    text-align: center;
-  }
+export const StyledTitle = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary.dark};
+  margin: 1rem 0;
+  text-align: center;
 `;

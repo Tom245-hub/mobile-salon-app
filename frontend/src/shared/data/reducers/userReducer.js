@@ -8,12 +8,12 @@ import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
-  isUserLogged: false,
   user: {},
 };
 
 const user = (state = initialState, action) => {
   const newLoading = { ...state.loading };
+  const changedIsUserLogged = { ...state.isUserLogged };
 
   switch (action.type) {
     case USER_POST_REQUEST:
@@ -23,15 +23,18 @@ const user = (state = initialState, action) => {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADING,
         },
+        user: {},
       };
 
     case USER_POST_SUCCESS:
       delete newLoading.USER_POST_REQUEST;
       return {
         ...state,
-        loading: newLoading,
+        loading: {
+          ...state.loading,
+          [action.type]: LOADING_STATES.LOADED,
+        },
         user: action.payload,
-        isUserLogged: true,
       };
 
     case USER_POST_FAILURE:
