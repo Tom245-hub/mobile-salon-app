@@ -9,8 +9,8 @@ import {
   StyledHeaderText,
   StyledIcon,
   StyledSection,
-  StyledBackdrop,
 } from "./Modal.css";
+import Backdrop from "./Backdrop";
 
 interface ModalProps {
   header: string;
@@ -19,17 +19,16 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ children, header, closeModal }) => {
   const content = (
-    <StyledBackdrop>
-      <StyledContainer>
-        <StyledHeader>
-          <StyledHeaderText>{header}</StyledHeaderText>{" "}
-          <StyledIcon onClick={closeModal}>
-            <FontAwesomeIcon icon={faTimes} />
-          </StyledIcon>
-        </StyledHeader>
-        <StyledSection>{children}</StyledSection>
-      </StyledContainer>
-    </StyledBackdrop>
+    <StyledContainer>
+      <Backdrop onClick={closeModal} />
+      <StyledHeader>
+        <StyledHeaderText>{header}</StyledHeaderText>{" "}
+        <StyledIcon onClick={closeModal}>
+          <FontAwesomeIcon icon={faTimes} />
+        </StyledIcon>
+      </StyledHeader>
+      <StyledSection>{children}</StyledSection>
+    </StyledContainer>
   );
   return ReactDOM.createPortal(
     content,
