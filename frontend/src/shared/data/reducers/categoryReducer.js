@@ -3,8 +3,8 @@ import {
   CATEGORY_LIST_GET_REQUEST,
   CATEGORY_LIST_GET_SUCCESS,
   CATEGORY_LIST_GET_FAILURE,
-  LOADING_STATES,
 } from "../constans/categoryConstans";
+import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
@@ -28,7 +28,7 @@ const category = (state = initialState, action) => {
       delete newLoading.CATEGORY_LIST_GET_REQUEST;
       return {
         ...state,
-        loading: newLoading,
+        loading: LOADING_STATES.LOADED,
         categoryList: action.payload,
       };
 

@@ -28,7 +28,7 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
   const dispatch = useDispatch();
-  const user: any = useSelector((state: RootState) => state.user.isUserLogged);
+  const user: object = useSelector((state: RootState) => state.user);
   console.log(user);
 
   const submitForm = async (values: Login) => {
@@ -63,42 +63,40 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
           } = formik;
 
           return (
-            <>
-              <form onSubmit={handleSubmit} noValidate>
-                <Input
-                  id='email'
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+            <form onSubmit={handleSubmit} noValidate>
+              <Input
+                id='email'
+                type='email'
+                name='email'
+                placeholder='Email'
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
 
-                <Input
-                  id='password'
-                  type='password'
-                  name='password'
-                  placeholder='Hasło'
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+              <Input
+                id='password'
+                type='password'
+                name='password'
+                placeholder='Hasło'
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
 
-                {errors.email && touched.email && <InfoValid>{errors.email}</InfoValid>}
+              {errors.email && touched.email && <InfoValid>{errors.email}</InfoValid>}
 
-                {errors.password && touched.password && (
-                  <InfoValid>{errors.password}</InfoValid>
-                )}
+              {errors.password && touched.password && (
+                <InfoValid>{errors.password}</InfoValid>
+              )}
 
-                <Button type='submit' margin='0 0.5rem 0 0'>
-                  Zaloguj się
-                </Button>
-                <Button type='button' onClick={closeModal}>
-                  Anuluj
-                </Button>
-              </form>
-            </>
+              <Button type='submit' margin='0 0.5rem 0 0'>
+                Zaloguj się
+              </Button>
+              <Button type='button' onClick={closeModal}>
+                Anuluj
+              </Button>
+            </form>
           );
         }}
       </Formik>

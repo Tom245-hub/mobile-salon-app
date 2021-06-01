@@ -3,8 +3,8 @@ import {
   USER_POST_REQUEST,
   USER_POST_SUCCESS,
   USER_POST_FAILURE,
-  LOADING_STATES,
 } from "../constans/userConstans";
+import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},

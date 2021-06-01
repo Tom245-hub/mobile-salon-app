@@ -3,8 +3,8 @@ import {
   STYLIST_LIST_GET_REQUEST,
   STYLIST_LIST_GET_SUCCESS,
   STYLIST_LIST_GET_FAILURE,
-  LOADING_STATES,
 } from "../constans/stylistConstans";
+import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
@@ -28,7 +28,10 @@ function stylist(state = initialState, action) {
       delete newLoading.STYLIST_LIST_GET_REQUEST;
       return {
         ...state,
-        loading: newLoading,
+        loading: {
+          ...state.loading,
+          [action.type]: LOADING_STATES.LOADED,
+        },
         stylistList: action.payload,
       };
 

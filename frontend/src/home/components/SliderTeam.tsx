@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStylistList } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 import { Stylist } from "../../shared/models/stylistModel";
-import { Loading } from "../../shared/models/loadingModel";
 
 import { showAvailableCities } from "../../shared/utils/utils";
 
@@ -23,17 +22,17 @@ import {
 
 const SliderTeam: React.FC = () => {
   const dispatch = useDispatch();
-  const loading: Loading | any = useSelector((state: RootState) => state.stylist.loading);
   const stylistList = useSelector((state: RootState) => state.stylist.stylistList);
 
-  const isLoading = loading.STYLIST_LIST_GET_REQUEST;
+  const isLoading = stylistList === 0;
+
   const [filterCity, setFilterCity] = useState<string>("Warszawa");
 
   useEffect(() => {
     dispatch(getStylistList());
   }, [getStylistList]);
 
-  const filteredStylists = stylistList.filter(
+  const filteredStylists: [] = stylistList.filter(
     (stylist: Stylist) => stylist.profileData.city === filterCity
   );
 

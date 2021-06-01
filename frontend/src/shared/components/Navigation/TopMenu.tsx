@@ -7,7 +7,6 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { getCategoryList } from "../../data/actions/categoryActions";
 import { RootState } from "../../data/reducers/rootReducers";
 import { Category } from "../../models/categoryModel";
-import { Loading } from "../../models/loadingModel";
 
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
 
@@ -28,13 +27,11 @@ const TopMenu: React.FC<TopMenuProps> = ({
   handleMouseLeave,
 }) => {
   const dispatch = useDispatch();
-  const loading: Loading | any = useSelector(
-    (state: RootState) => state.category.loading
-  );
   const categoryList: Category[] = useSelector(
     (state: RootState) => state.category.categoryList
   );
-  const isLoading = loading.CATEGORY_LIST_GET_REQUEST;
+
+  const isLoading = categoryList.length === 0;
 
   useEffect(() => {
     dispatch(getCategoryList());

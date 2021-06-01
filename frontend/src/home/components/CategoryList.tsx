@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategoryList } from "../../shared/data/actions/categoryActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 import { Category } from "../../shared/models/categoryModel";
-import { Loading } from "../../shared/models/loadingModel";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
@@ -20,13 +19,10 @@ import {
 
 const CategoryList: React.FC = () => {
   const dispatch = useDispatch();
-  const loading: Loading | any = useSelector(
-    (state: RootState) => state.category.loading
-  );
   const categoryList: Category[] = useSelector(
     (state: RootState) => state.category.categoryList
   );
-  const isLoading = loading.CATEGORY_LIST_GET_REQUEST;
+  const isLoading = categoryList.length === 0;
 
   useEffect(() => {
     dispatch(getCategoryList());

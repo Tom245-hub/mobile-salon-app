@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { getSlideList } from "../../shared/data/actions/slideActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 import { Slide } from "../../shared/models/slideModel";
-import { Loading } from "../../shared/models/loadingModel";
 
 import SliderDefault from "../../shared/components/Slider/SliderDefault";
 import Image from "../../shared/components/UIElements/Image";
@@ -15,10 +14,9 @@ import { StyledContainerSlide, StyledContainerInfo } from "./SliderHero.css";
 
 const SliderHero: React.FC = () => {
   const dispatch = useDispatch();
-  const loading: Loading | any = useSelector((state: RootState) => state.slide.loading);
   const slideList: Slide[] = useSelector((state: RootState) => state.slide.slideList);
 
-  const isLoading = loading.SLIDE_LIST_GET_REQUEST;
+  const isLoading = slideList.length === 0;
 
   useEffect(() => {
     dispatch(getSlideList());

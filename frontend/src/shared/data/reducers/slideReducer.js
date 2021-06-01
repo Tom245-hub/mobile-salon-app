@@ -3,8 +3,8 @@ import {
   SLIDE_LIST_GET_REQUEST,
   SLIDE_LIST_GET_SUCCESS,
   SLIDE_LIST_GET_FAILURE,
-  LOADING_STATES,
 } from "../constans/slideConstans";
+import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
@@ -28,7 +28,7 @@ const slide = (state = initialState, action) => {
       delete newLoading.SLIDE_LIST_GET_REQUEST;
       return {
         ...state,
-        loading: newLoading,
+        loading: LOADING_STATES.LOADED,
         slideList: action.payload,
       };
 
