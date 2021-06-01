@@ -9,6 +9,10 @@ import Input from "../../shared/components/FormElements/Input";
 import Modal from "../../shared/components/UIElements/Modal";
 import InfoValid from "../../shared/components/FormElements/InfoValid";
 
+import { postUser } from "../../shared/data/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../shared/data/reducers/rootReducers";
+
 const validationSchema = () =>
   Yup.object().shape({
     email: Yup.string().required("Musisz wpisać email"),
@@ -23,22 +27,17 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
+  const dispatch = useDispatch();
+  const user: any = useSelector((state: RootState) => state.user.isUserLogged);
+  console.log(user);
+
   const submitForm = async (values: Login) => {
     const loginObject = {
       login: values.email,
       password: values.password,
     };
 
-    // const { data, status } = await request.post("/users", loginObject);
-
-    // if (status === 200) {
-    //   // setIsUserLogged(data.user);
-    //   // setIsOpenLoginModal(false);
-    //   // history.push("/strefa-stylistki/konto");
-    // } else if (status === 404) {
-    //   // console.log("test3");
-    //   // obsługa błędów z serwera
-    // }
+    dispatch(postUser(loginObject));
   };
   const initialValues = {
     email: "",
