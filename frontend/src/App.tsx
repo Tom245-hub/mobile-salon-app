@@ -1,6 +1,5 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-// import StoreProvider from "./shared/store/StoreProvider";
 import { Provider } from "react-redux";
 import configureStore from "./shared/data/store";
 
@@ -18,7 +17,6 @@ const store = configureStore();
 
 const App = () => {
   return (
-    // <StoreProvider>
     <Provider store={store}>
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
@@ -37,7 +35,6 @@ const App = () => {
         </HashRouter>
       </ThemeProvider>
     </Provider>
-    // </StoreProvider>
   );
 };
 

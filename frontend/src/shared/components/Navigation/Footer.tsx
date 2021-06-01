@@ -4,7 +4,7 @@ import { StoreContext } from "../../store/StoreProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-import LoginModal from "../UIElements/LoginModal";
+import LoginModal from "../../../user/components/LoginForm";
 import FormsGroup from "../FormElements/FormsGroup";
 import {
   StyledContainerFull,
@@ -21,11 +21,11 @@ const Footer = () => {
     <>
       {!isUserLogged && (
         <>
-          <LoginModal
+          {/* <LoginModal
             setIsOpenLoginModal={setIsOpenLoginModal}
             isOpenLoginModal={isOpenLoginModal}
             titleText='Logowanie Stylistki'
-          />
+          /> */}
           <StyledContainerFull>
             <StyledContainer>
               <ul>

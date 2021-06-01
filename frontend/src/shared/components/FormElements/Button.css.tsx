@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
+interface StyledButtonProps {
+  margin?: string;
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
   font-family: ${({ theme }) => theme.fonts.secondary};
   font-size: 1.4rem;
   weight: 400;
@@ -9,6 +13,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
+  margin: ${({ margin }) => margin};
   transition: 1s ease-in-out;
   cursor: pointer;
   &:hover {

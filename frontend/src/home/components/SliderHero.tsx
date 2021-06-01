@@ -9,7 +9,7 @@ import { Loading } from "../../shared/models/loadingModel";
 
 import SliderDefault from "../../shared/components/Slider/SliderDefault";
 import Image from "../../shared/components/UIElements/Image";
-import Button from "../../shared/components/UIElements/Button";
+import Button from "../../shared/components/FormElements/Button";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { StyledContainerSlide, StyledContainerInfo } from "./SliderHero.css";
 

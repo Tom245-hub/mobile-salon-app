@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import LoginModal from "../UIElements/LoginModal";
-import Button from "../UIElements/Button";
+
+import Button from "../FormElements/Button";
+
+import LoginForm from "../../../user/components/LoginForm";
+
 import { StyledContainer, StyledLink } from "./UserBox.css";
 
 const UserBox: React.FC = () => {
-  const [isOpenLoginModal, setIsOpenLoginModal] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
 
   return (
     <>
-      <LoginModal
-        isOpenLoginModal={isOpenLoginModal}
-        setIsOpenLoginModal={setIsOpenLoginModal}
-        titleText='Logowanie Klientki'
-      />
-
+      {isOpenModal && <LoginForm closeModal={closeModal} />}
       <StyledContainer>
-        <StyledLink onClick={() => setIsOpenLoginModal(true)}>
+        <StyledLink onClick={() => setIsOpenModal(true)}>
           <FontAwesomeIcon icon={faUser} />
           ZALOGUJ
         </StyledLink>
