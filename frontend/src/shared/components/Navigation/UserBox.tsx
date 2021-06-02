@@ -10,17 +10,34 @@ import LoginForm from "../../../user/components/LoginForm";
 import { StyledContainer, StyledLink } from "./UserBox.css";
 
 const UserBox: React.FC = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
+
+  // const closeModal = () => {
+  //   setIsOpenModal(false);
+  // };
+
+  const openModal = () => {
+    setIsOpenModal(true);
+
+    setTimeout(() => {
+      setIsEnterSlide(true);
+    }, 50);
+  };
 
   const closeModal = () => {
-    setIsOpenModal(false);
+    setIsEnterSlide(false);
+
+    setTimeout(() => {
+      setIsOpenModal(false);
+    }, 300);
   };
 
   return (
     <>
-      {isOpenModal && <LoginForm closeModal={closeModal} />}
+      {isOpenModal && <LoginForm closeModal={closeModal} isEnterSlide={isEnterSlide} />}
       <StyledContainer>
-        <StyledLink onClick={() => setIsOpenModal(true)}>
+        <StyledLink onClick={openModal}>
           <FontAwesomeIcon icon={faUser} />
           ZALOGUJ
         </StyledLink>

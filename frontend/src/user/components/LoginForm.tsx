@@ -23,9 +23,10 @@ const validationSchema = () =>
 
 interface LoginFormProps {
   closeModal: () => void;
+  isEnterSlide: boolean;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ closeModal, isEnterSlide }) => {
   const dispatch = useDispatch();
   const user: object = useSelector((state: RootState) => state.user);
   // console.log(user);
@@ -44,7 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
   };
 
   return (
-    <Modal closeModal={closeModal} header='Logowanie'>
+    <Modal closeModal={closeModal} isEnterSlide={isEnterSlide} header='Logowanie'>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

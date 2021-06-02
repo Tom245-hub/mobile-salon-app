@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   const [isActiveTopBar, setIsActiveTopBar] = useState<boolean>(false);
 
   const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(false);
-  const [isEnterSlide, setIsEnterSlide] = useState(false);
+  const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
 
   const handleMouseEnter = (id: number) => {
     setActiveSubmenu(id);
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 
     setTimeout(() => {
       setIsEnterSlide(true);
-    }, 10);
+    }, 50);
   };
 
   const closeDrawerMenu = () => {
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
 
     setTimeout(() => {
       setIsOpenDrawerMenu(false);
-    }, 500);
+    }, 300);
   };
 
   return (

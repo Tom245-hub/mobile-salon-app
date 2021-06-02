@@ -13,5 +13,5 @@ export const StyledDrawerMenu = styled.div<StyledDrawerMenuProps>`
   background: ${({ theme }) => theme.colors.gray.light};
   padding: 1rem;
   z-index: 25;
-  transition: 0.5s;
+  transition: 0.5s ease-in-out;
 `;
