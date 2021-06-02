@@ -34,15 +34,21 @@ const Header: React.FC = () => {
     setActiveSubmenu(id);
   };
 
-  const closeDrawerMenu = () => {
-    setIsOpenDrawerMenu(false);
+  const openDrawerMenu = () => {
+    setIsOpenDrawerMenu(true);
+
+    setTimeout(() => {
+      setIsEnterSlide(true);
+    }, 10);
   };
 
-  useEffect(() => {
+  const closeDrawerMenu = () => {
+    setIsEnterSlide(false);
+
     setTimeout(() => {
-      setIsEnterSlide((prev) => !prev);
-    }, 10);
-  }, [isOpenDrawerMenu]);
+      setIsOpenDrawerMenu(false);
+    }, 500);
+  };
 
   return (
     <>
@@ -51,6 +57,7 @@ const Header: React.FC = () => {
           <Backdrop onClick={closeDrawerMenu} />
           <DrawerMenu
             isOpenDrawerMenu={isOpenDrawerMenu}
+            isEnterSlide={isEnterSlide}
             closeDrawerMenu={closeDrawerMenu}
           />
         </>
@@ -77,7 +84,7 @@ const Header: React.FC = () => {
               handleMouseLeave={handleMouseLeave}
             />
 
-            <StyledLink onClick={() => setIsOpenDrawerMenu(true)}>
+            <StyledLink onClick={openDrawerMenu}>
               <FontAwesomeIcon icon={faBars} />
             </StyledLink>
 

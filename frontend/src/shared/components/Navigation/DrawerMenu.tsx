@@ -7,19 +7,15 @@ import { StyledDrawerMenu } from "./DrawerMenu.css";
 
 interface DrawerMenuProps {
   isOpenDrawerMenu: boolean;
+  isEnterSlide: boolean;
   closeDrawerMenu: () => void;
 }
 
-const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpenDrawerMenu, closeDrawerMenu }) => {
-  const [isEnterSlide, setIsEnterSlide] = useState(false);
-  console.log(isEnterSlide);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsEnterSlide((prev) => !prev);
-    }, 10);
-  }, [isOpenDrawerMenu]);
-
+const DrawerMenu: React.FC<DrawerMenuProps> = ({
+  isOpenDrawerMenu,
+  isEnterSlide,
+  closeDrawerMenu,
+}) => {
   const content = (
     <StyledDrawerMenu isEnterSlide={isEnterSlide}>
       <a onClick={closeDrawerMenu}>
