@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -11,17 +11,20 @@ import TopMenu from "./TopMenu";
 import DrawerMenu from "./DrawerMenu";
 import { StyledContainerHeader, StyledLogoLink, StyledLink } from "./Header.css";
 import { RootState } from "../../data/reducers/rootReducers";
+import Backdrop from "../UIElements/Backdrop";
 
 const Header: React.FC = () => {
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.user);
 
   const isUserLogged = false; ////// do poprawy
   // console.log(isUserLogged);
 
   const [activeSubmenu, setActiveSubmenu] = useState<number>(0);
   const [city, setCity] = useState<string>("");
-  const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(true);
   const [isActiveTopBar, setIsActiveTopBar] = useState<boolean>(false);
+
+  const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(false);
+  const [isEnterSlide, setIsEnterSlide] = useState(false);
 
   const handleMouseEnter = (id: number) => {
     setActiveSubmenu(id);
@@ -35,9 +38,23 @@ const Header: React.FC = () => {
     setIsOpenDrawerMenu(false);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsEnterSlide((prev) => !prev);
+    }, 10);
+  }, [isOpenDrawerMenu]);
+
   return (
     <>
-      {isOpenDrawerMenu && <DrawerMenu closeDrawerMenu={closeDrawerMenu} />}
+      {isOpenDrawerMenu && (
+        <>
+          <Backdrop onClick={closeDrawerMenu} />
+          <DrawerMenu
+            isOpenDrawerMenu={isOpenDrawerMenu}
+            closeDrawerMenu={closeDrawerMenu}
+          />
+        </>
+      )}
 
       {!isUserLogged && (
         <TopBar

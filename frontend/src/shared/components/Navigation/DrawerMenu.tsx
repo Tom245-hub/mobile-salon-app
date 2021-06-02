@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { StyledDrawerMenu } from "./DrawerMenu.css";
-import Backdrop from "../UIElements/Backdrop";
 
 interface DrawerMenuProps {
+  isOpenDrawerMenu: boolean;
   closeDrawerMenu: () => void;
 }
 
-const DrawerMenu: React.FC<DrawerMenuProps> = ({ closeDrawerMenu }) => {
+const DrawerMenu: React.FC<DrawerMenuProps> = ({ isOpenDrawerMenu, closeDrawerMenu }) => {
+  const [isEnterSlide, setIsEnterSlide] = useState(false);
+  console.log(isEnterSlide);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsEnterSlide((prev) => !prev);
+    }, 10);
+  }, [isOpenDrawerMenu]);
+
   const content = (
-    <StyledDrawerMenu>
-      <Backdrop onClick={closeDrawerMenu} />
+    <StyledDrawerMenu isEnterSlide={isEnterSlide}>
       <a onClick={closeDrawerMenu}>
         <FontAwesomeIcon icon={faTimes} />
       </a>

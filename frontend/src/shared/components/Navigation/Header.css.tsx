@@ -22,7 +22,7 @@ export const StyledLogoLink = styled.a`
 
 export const StyledLink = styled.a`
   display: none;
-  @media (max-width: 768px) {
-    display: block;
-  }
+  // @media (max-width: 768px) {
+  display: block;
+  // }
 `;

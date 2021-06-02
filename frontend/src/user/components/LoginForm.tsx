@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import request from "../../shared/utils/request";
 import { Login } from "../../shared/models/loginModel";
 
 import Button from "../../shared/components/FormElements/Button";
