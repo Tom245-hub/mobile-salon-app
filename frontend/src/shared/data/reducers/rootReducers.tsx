@@ -3,14 +3,14 @@ import stylist from "./stylistReducer";
 import category from "./categoryReducer";
 import slide from "./slideReducer";
 import user from "./userReducer";
-import portal from "./portalReducer";
+import city from "./cityReducer";
 
 const rootReducer = combineReducers({
   stylist,
   category,
   slide,
   user,
-  portal,
+  city,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
