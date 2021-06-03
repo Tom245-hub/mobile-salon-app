@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Login } from "../../shared/models/loginModel";
+import { closePortal } from "../../shared/data/actions/portalActions";
 
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
@@ -22,14 +23,13 @@ const validationSchema = () =>
   });
 
 interface LoginFormProps {
-  closeModal: () => void;
   isEnterSlide: boolean;
+  toggleOpenLoginForm: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ closeModal, isEnterSlide }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenLoginForm }) => {
   const dispatch = useDispatch();
   const user: object = useSelector((state: RootState) => state.user);
-  // console.log(user);
 
   const submitForm = async (values: Login) => {
     const loginObject = {
@@ -45,7 +45,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal, isEnterSlide }) => {
   };
 
   return (
-    <Modal closeModal={closeModal} isEnterSlide={isEnterSlide} header='Logowanie'>
+    <Modal
+      header='Logowanie'
+      isEnterSlide={isEnterSlide}
+      toggleOpenLoginForm={toggleOpenLoginForm}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -90,10 +94,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal, isEnterSlide }) => {
                 <InfoValid>{errors.password}</InfoValid>
               )}
 
-              <Button type='submit' margin='0 0.5rem 0 0'>
+              <Button type='submit' variant='confirm' margin='0 0.5rem 0 0'>
                 Zaloguj się
               </Button>
-              <Button type='button' onClick={closeModal}>
+              <Button type='button' variant='cancel' onClick={toggleOpenLoginForm}>
                 Anuluj
               </Button>
             </form>
@@ -105,35 +109,3 @@ const LoginForm: React.FC<LoginFormProps> = ({ closeModal, isEnterSlide }) => {
 };
 
 export default LoginForm;
-
-// const LoginModal: React.FC<LoginModalProps> = ({
-//   isOpenLoginModal,
-//   setIsOpenLoginModal,
-//   titleText,
-// }) => {
-// const { setIsUserLogged } = useContext(StoreContext);
-
-// const history = useHistory();
-
-// const initialValues = {
-//   email: "",
-//   password: "",
-// };
-
-// const submitForm = async (values: Login) => {
-//   const loginObject = {
-//     login: values.email,
-//     password: values.password,
-//   };
-
-//   const { data, status } = await request.post("/users", loginObject);
-
-//   if (status === 200) {
-//     setIsUserLogged(data.user);
-//     setIsOpenLoginModal(false);
-//     history.push("/strefa-stylistki/konto");
-//   } else if (status === 404) {
-//     // console.log("test3");
-//     // obsługa błędów z serwera
-//   }
-// };

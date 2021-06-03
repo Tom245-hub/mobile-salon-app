@@ -11,10 +11,9 @@ export const StyledContainer = styled.div<StyledStyledContainerProps>`
   border-radius: 5px;
   z-index: 20;
   position: fixed;
-  top: ${({ isEnterSlide }) => (isEnterSlide ? "22vh" : "-50%")};
-  // top: 22vh;
+  top: ${({ isEnterSlide }) => (isEnterSlide ? "50%" : "-100%")};
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   transition: 0.5s ease-in-out;
 `;
 

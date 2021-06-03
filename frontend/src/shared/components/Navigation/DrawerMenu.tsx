@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { StyledDrawerMenu } from "./DrawerMenu.css";
 
 interface DrawerMenuProps {
-  isOpenDrawerMenu: boolean;
   isEnterSlide: boolean;
-  closeDrawerMenu: () => void;
+  toggleOpenDrawerMenu: () => void;
 }
 
 const DrawerMenu: React.FC<DrawerMenuProps> = ({
-  isOpenDrawerMenu,
   isEnterSlide,
-  closeDrawerMenu,
+  toggleOpenDrawerMenu,
 }) => {
   const content = (
     <StyledDrawerMenu isEnterSlide={isEnterSlide}>
-      <a onClick={closeDrawerMenu}>
+      <a onClick={toggleOpenDrawerMenu}>
         <FontAwesomeIcon icon={faTimes} />
       </a>
 

@@ -41,9 +41,7 @@ const SliderHero: React.FC = () => {
               <Image margin='0' paddingTop='40%' img={slide.img} alt={slide.title} />
               <StyledContainerInfo>
                 <h3>{slide.title}</h3>
-                <Link to={slide.url}>
-                  <Button>Zobacz więcej</Button>
-                </Link>
+                <Button link={slide.url}>Zobacz więcej</Button>
               </StyledContainerInfo>
             </StyledContainerSlide>
           ))}

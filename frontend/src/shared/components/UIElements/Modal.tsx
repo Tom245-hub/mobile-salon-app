@@ -2,6 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { openPortal, closePortal } from "../../data/actions/portalActions";
+
+import { RootState } from "../../data/reducers/rootReducers";
 
 import {
   StyledContainer,
@@ -14,17 +18,24 @@ import Backdrop from "./Backdrop";
 
 interface ModalProps {
   header: string;
-  closeModal: () => void;
   isEnterSlide: boolean;
+  toggleOpenLoginForm: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, header, closeModal, isEnterSlide }) => {
+const Modal: React.FC<ModalProps> = ({
+  children,
+  header,
+  isEnterSlide,
+  toggleOpenLoginForm,
+}) => {
+  const dispatch = useDispatch();
+
   const content = (
     <StyledContainer isEnterSlide={isEnterSlide}>
-      <Backdrop onClick={closeModal} />
+      <Backdrop onClick={toggleOpenLoginForm} />
       <StyledHeader>
-        <StyledHeaderText>{header}</StyledHeaderText>{" "}
-        <StyledIcon onClick={closeModal}>
+        <StyledHeaderText>{header}</StyledHeaderText>
+        <StyledIcon onClick={toggleOpenLoginForm}>
           <FontAwesomeIcon icon={faTimes} />
         </StyledIcon>
       </StyledHeader>
