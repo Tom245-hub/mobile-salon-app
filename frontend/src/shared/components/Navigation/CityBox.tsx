@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { StyledLink } from "./CityBox.css";
+import CityForm from "./CityForm";
 
-interface CityBoxProps {
-  isActiveTopBar: boolean;
-  setIsActiveTopBar: Function;
-  city: string;
-}
+const CityBox: React.FC = () => {
+  const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
+  const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
 
-const CityBox: React.FC<CityBoxProps> = ({
-  isActiveTopBar,
-  setIsActiveTopBar,
-  city,
-}) => {
+  const toggleOpenPortal = () => {
+    if (isOpenPortal) {
+      setIsEnterSlide(false);
+      setTimeout(() => {
+        setIsOpenPortal(false);
+      }, 300);
+    } else {
+      setIsOpenPortal(true);
+      setTimeout(() => {
+        setIsEnterSlide(true);
+      }, 50);
+    }
+  };
   return (
-    <StyledLink onClick={() => setIsActiveTopBar(true)}>
-      <FontAwesomeIcon icon={faMapMarkerAlt} />
-      {city ? city : "WYBIERZ MIASTO"}
-      {!isActiveTopBar && city ? " (zmień)" : ""}
-    </StyledLink>
+    <>
+      {isOpenPortal && (
+        <CityForm isEnterSlide={isEnterSlide} toggleOpenPortal={toggleOpenPortal} />
+      )}
+      <StyledLink onClick={toggleOpenPortal}>
+        <FontAwesomeIcon icon={faMapMarkerAlt} />
+        {"WYBIERZ MIASTO"}
+      </StyledLink>
+    </>
   );
 };
 
