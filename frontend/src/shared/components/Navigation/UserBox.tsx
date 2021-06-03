@@ -9,17 +9,17 @@ import { StyledContainer, StyledLink } from "./UserBox.css";
 
 const UserBox: React.FC = () => {
   ///////////////////
-  const [isOpenLoginForm, setIsOpenLoginForm] = useState<boolean>(false);
+  const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
   const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
 
-  const toggleOpenLoginForm = () => {
-    if (isOpenLoginForm) {
+  const toggleOpenPortal = () => {
+    if (isOpenPortal) {
       setIsEnterSlide(false);
       setTimeout(() => {
-        setIsOpenLoginForm(false);
+        setIsOpenPortal(false);
       }, 300);
     } else {
-      setIsOpenLoginForm(true);
+      setIsOpenPortal(true);
 
       setTimeout(() => {
         setIsEnterSlide(true);
@@ -29,14 +29,11 @@ const UserBox: React.FC = () => {
   ///////////////////////
   return (
     <>
-      {isOpenLoginForm && (
-        <LoginForm
-          isEnterSlide={isEnterSlide}
-          toggleOpenLoginForm={toggleOpenLoginForm}
-        />
+      {isOpenPortal && (
+        <LoginForm isEnterSlide={isEnterSlide} toggleOpenPortal={toggleOpenPortal} />
       )}
       <StyledContainer>
-        <StyledLink onClick={toggleOpenLoginForm}>
+        <StyledLink onClick={toggleOpenPortal}>
           <FontAwesomeIcon icon={faUser} />
           ZALOGUJ
         </StyledLink>

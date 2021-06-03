@@ -5,7 +5,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import { RootState } from "../../data/reducers/rootReducers";
 
-import TopBar from "./TopBar";
+import TopBar from "./CityForm";
 import UserBox from "./UserBox";
 import CityBox from "./CityBox";
 import TopMenu from "./TopMenu";
@@ -21,8 +21,6 @@ const Header: React.FC = () => {
   // console.log(isUserLogged);
 
   const [activeSubmenu, setActiveSubmenu] = useState<number>(0);
-  const [city, setCity] = useState<string>("");
-  const [isActiveTopBar, setIsActiveTopBar] = useState<boolean>(false);
 
   const handleMouseEnter = (id: number) => {
     setActiveSubmenu(id);
@@ -33,17 +31,17 @@ const Header: React.FC = () => {
   };
 
   ///////////////////
-  const [isOpenDrawerMenu, setIsOpenDrawerMenu] = useState<boolean>(false);
+  const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
   const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
 
-  const toggleOpenDrawerMenu = () => {
-    if (isOpenDrawerMenu) {
+  const toggleOpenPortal = () => {
+    if (isOpenPortal) {
       setIsEnterSlide(false);
       setTimeout(() => {
-        setIsOpenDrawerMenu(false);
+        setIsOpenPortal(false);
       }, 300);
     } else {
-      setIsOpenDrawerMenu(true);
+      setIsOpenPortal(true);
 
       setTimeout(() => {
         setIsEnterSlide(true);
@@ -53,50 +51,34 @@ const Header: React.FC = () => {
   ///////////////////////
   return (
     <>
-      {isOpenDrawerMenu && (
+      {isOpenPortal && (
         <>
-          <Backdrop onClick={toggleOpenDrawerMenu} />
+          <Backdrop onClick={toggleOpenPortal} />
           <DrawerMenu
             isEnterSlide={isEnterSlide}
-            toggleOpenDrawerMenu={toggleOpenDrawerMenu}
+            toggleOpenDrawerMenu={toggleOpenPortal}
           />
         </>
       )}
 
-      {!isUserLogged && (
-        <TopBar
-          isActiveTopBar={isActiveTopBar}
-          setisActiveTopBar={setIsActiveTopBar}
-          setCity={setCity}
-        />
-      )}
       <StyledContainerHeader>
         <StyledLogoLink href='/'>
           <img src='/img/logotyp_symbol_white.png' />
         </StyledLogoLink>
+        <TopMenu
+          activeSubmenu={activeSubmenu}
+          setActiveSubmenu={setActiveSubmenu}
+          handleMouseEnter={handleMouseEnter}
+          handleMouseLeave={handleMouseLeave}
+        />
 
-        {!isUserLogged && (
-          <>
-            <TopMenu
-              activeSubmenu={activeSubmenu}
-              setActiveSubmenu={setActiveSubmenu}
-              handleMouseEnter={handleMouseEnter}
-              handleMouseLeave={handleMouseLeave}
-            />
+        <StyledLink onClick={toggleOpenPortal}>
+          <FontAwesomeIcon icon={faBars} />
+        </StyledLink>
 
-            <StyledLink onClick={toggleOpenDrawerMenu}>
-              <FontAwesomeIcon icon={faBars} />
-            </StyledLink>
+        <CityBox />
 
-            <CityBox
-              city={city}
-              isActiveTopBar={isActiveTopBar}
-              setIsActiveTopBar={setIsActiveTopBar}
-            />
-
-            <UserBox />
-          </>
-        )}
+        <UserBox />
       </StyledContainerHeader>
     </>
   );

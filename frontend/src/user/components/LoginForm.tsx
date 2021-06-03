@@ -2,7 +2,6 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Login } from "../../shared/models/loginModel";
-import { closePortal } from "../../shared/data/actions/portalActions";
 
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
@@ -24,10 +23,10 @@ const validationSchema = () =>
 
 interface LoginFormProps {
   isEnterSlide: boolean;
-  toggleOpenLoginForm: () => void;
+  toggleOpenPortal: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenLoginForm }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenPortal }) => {
   const dispatch = useDispatch();
   const user: object = useSelector((state: RootState) => state.user);
 
@@ -48,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenLoginForm
     <Modal
       header='Logowanie'
       isEnterSlide={isEnterSlide}
-      toggleOpenLoginForm={toggleOpenLoginForm}
+      toggleOpenPortal={toggleOpenPortal}
     >
       <Formik
         initialValues={initialValues}
@@ -97,7 +96,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenLoginForm
               <Button type='submit' variant='confirm' margin='0 0.5rem 0 0'>
                 Zaloguj się
               </Button>
-              <Button type='button' variant='cancel' onClick={toggleOpenLoginForm}>
+              <Button type='button' variant='cancel' onClick={toggleOpenPortal}>
                 Anuluj
               </Button>
             </form>
