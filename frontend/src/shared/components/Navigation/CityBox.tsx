@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { StyledLink } from "./CityBox.css";
+
+import { RootState } from "../../data/reducers/rootReducers";
+
 import CityForm from "./CityForm";
+
+import { StyledLink, StyledText } from "./CityBox.css";
 
 const CityBox: React.FC = () => {
   const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
   const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
+
+  const selectedCity = useSelector((state: RootState) => state.city.city.city);
+  console.log(selectedCity);
 
   const toggleOpenPortal = () => {
     if (isOpenPortal) {
@@ -28,7 +36,7 @@ const CityBox: React.FC = () => {
       )}
       <StyledLink onClick={toggleOpenPortal}>
         <FontAwesomeIcon icon={faMapMarkerAlt} />
-        {"WYBIERZ MIASTO"}
+        <StyledText>{selectedCity ? selectedCity : "WYBIERZ MIASTO"}</StyledText>
       </StyledLink>
     </>
   );

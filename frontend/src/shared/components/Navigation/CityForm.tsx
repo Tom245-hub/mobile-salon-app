@@ -1,7 +1,10 @@
 import React from "react";
-
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
+
+import { updateCity } from "../../data/actions/cityActions";
+
 import InfoValid from "../FormElements/InfoValid";
 import Modal from "../UIElements/Modal";
 import Button from "../FormElements/Button";
@@ -18,11 +21,14 @@ interface CityFormProps {
 }
 
 const CityForm: React.FC<CityFormProps> = ({ isEnterSlide, toggleOpenPortal }) => {
-  const submitForm = async (values: object) => {
-    // const cityObject = {
-    //   city: values.city,
-    // };
-    // dispatch(postCity(cityObject));
+  const dispatch = useDispatch();
+
+  const submitForm = async (values: { city: string }) => {
+    const cityObject = {
+      city: values.city,
+    };
+    dispatch(updateCity(cityObject));
+    toggleOpenPortal();
   };
   const initialValues = {
     city: "",
