@@ -38,7 +38,7 @@ export const StyledSection = styled.section`
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const StyledFooter = styled.footer`
