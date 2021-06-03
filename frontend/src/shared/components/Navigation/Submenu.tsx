@@ -5,7 +5,6 @@ interface SubmenuProps {
   activeSubmenu: number;
   id: number;
   handleMouseLeave: Function;
-  children: any;
 }
 
 const Submenu: React.FC<SubmenuProps> = ({

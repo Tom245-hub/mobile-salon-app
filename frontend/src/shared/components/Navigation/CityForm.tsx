@@ -1,9 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import { RootState } from "../../data/reducers/rootReducers";
 import { updateCity } from "../../data/actions/cityActions";
+import { closeCityForm, openCityForm } from "../../data/actions/cityFormActions";
 
 import InfoValid from "../FormElements/InfoValid";
 import Modal from "../UIElements/Modal";
@@ -15,30 +17,28 @@ const validationSchema = () =>
     city: Yup.string().required("Musisz wybrać miasto lub anulować"),
   });
 
-interface CityFormProps {
-  isEnterSlide: boolean;
-  toggleOpenPortal: () => void;
-}
-
-const CityForm: React.FC<CityFormProps> = ({ isEnterSlide, toggleOpenPortal }) => {
+const CityForm: React.FC = () => {
   const dispatch = useDispatch();
+  const isEnterSlide = useSelector((state: RootState) => state.cityForm.isEnterSlide);
 
   const submitForm = async (values: { city: string }) => {
     const cityObject = {
       city: values.city,
     };
     dispatch(updateCity(cityObject));
-    toggleOpenPortal();
+    dispatch(closeCityForm());
   };
+
   const initialValues = {
     city: "",
   };
+
   return (
     <>
       <Modal
         header='Wybierz miasto'
         isEnterSlide={isEnterSlide}
-        toggleOpenPortal={toggleOpenPortal}
+        closePortal={() => dispatch(closeCityForm())}
       >
         <Formik
           initialValues={initialValues}
@@ -70,7 +70,11 @@ const CityForm: React.FC<CityFormProps> = ({ isEnterSlide, toggleOpenPortal }) =
                 <Button type='submit' variant='confirm' margin='0 0.5rem 0 0'>
                   Zapisz
                 </Button>
-                <Button type='button' variant='cancel' onClick={toggleOpenPortal}>
+                <Button
+                  type='button'
+                  variant='cancel'
+                  onClick={() => dispatch(closeCityForm())}
+                >
                   Anuluj
                 </Button>
               </form>

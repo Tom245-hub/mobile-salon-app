@@ -3,15 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
 import { getCategoryList } from "../../data/actions/categoryActions";
 import { RootState } from "../../data/reducers/rootReducers";
 import { Category } from "../../models/categoryModel";
 
 import LoadingSpinner from "../../components/UIElements/LoadingSpinner";
-
 import Submenu from "./Submenu";
 import Card from "../UIElements/Card";
+
 import { StyledMenu } from "./TopMenu.css";
 
 interface TopMenuProps {

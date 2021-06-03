@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-
 import { RootState } from "../../data/reducers/rootReducers";
+import { closeDrawerMenu, openDrawerMenu } from "../../data/actions/drawerActions";
 
-import TopBar from "./CityForm";
 import UserBox from "./UserBox";
 import CityBox from "./CityBox";
 import TopMenu from "./TopMenu";
@@ -15,6 +14,11 @@ import Backdrop from "../UIElements/Backdrop";
 import { StyledContainerHeader, StyledLogoLink, StyledLink } from "./Header.css";
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const isOpenDrawerMenu = useSelector(
+    (state: RootState) => state.drawerMenu.isOpenDrawerMenu
+  );
+
   const user = useSelector((state: RootState) => state.user);
 
   const isUserLogged = false; ////// do poprawy
@@ -30,34 +34,12 @@ const Header: React.FC = () => {
     setActiveSubmenu(id);
   };
 
-  ///////////////////
-  const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
-  const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
-
-  const toggleOpenPortal = () => {
-    if (isOpenPortal) {
-      setIsEnterSlide(false);
-      setTimeout(() => {
-        setIsOpenPortal(false);
-      }, 300);
-    } else {
-      setIsOpenPortal(true);
-
-      setTimeout(() => {
-        setIsEnterSlide(true);
-      }, 50);
-    }
-  };
-  ///////////////////////
   return (
     <>
-      {isOpenPortal && (
+      {isOpenDrawerMenu && (
         <>
-          <Backdrop onClick={toggleOpenPortal} />
-          <DrawerMenu
-            isEnterSlide={isEnterSlide}
-            toggleOpenDrawerMenu={toggleOpenPortal}
-          />
+          <Backdrop onClick={() => dispatch(closeDrawerMenu())} />
+          <DrawerMenu />
         </>
       )}
 
@@ -72,7 +54,7 @@ const Header: React.FC = () => {
           handleMouseLeave={handleMouseLeave}
         />
 
-        <StyledLink onClick={toggleOpenPortal}>
+        <StyledLink onClick={() => dispatch(openDrawerMenu())}>
           <FontAwesomeIcon icon={faBars} />
         </StyledLink>
 

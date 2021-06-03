@@ -1,16 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../../shared/models/loginModel";
+import { postUser } from "../../shared/data/actions/userActions";
+import { closeLoginForm } from "../../shared/data/actions/loginFormActions";
+import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
 import Modal from "../../shared/components/UIElements/Modal";
 import InfoValid from "../../shared/components/FormElements/InfoValid";
-
-import { postUser } from "../../shared/data/actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../shared/data/reducers/rootReducers";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -21,13 +21,15 @@ const validationSchema = () =>
     //   .max(10, "Hasło musi się składać z max. 10 znaków"),
   });
 
-interface LoginFormProps {
-  isEnterSlide: boolean;
-  toggleOpenPortal: () => void;
-}
+// interface LoginFormProps {
+//   isEnterSlide: boolean;
+//   toggleOpenPortal: () => void;
+// }
 
-const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenPortal }) => {
+const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
+  const isEnterSlide = useSelector((state: RootState) => state.loginForm.isEnterSlide);
+
   const user: object = useSelector((state: RootState) => state.user);
 
   const submitForm = async (values: Login) => {
@@ -47,7 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenPortal })
     <Modal
       header='Logowanie'
       isEnterSlide={isEnterSlide}
-      toggleOpenPortal={toggleOpenPortal}
+      closePortal={() => dispatch(closeLoginForm())}
     >
       <Formik
         initialValues={initialValues}
@@ -96,7 +98,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ isEnterSlide, toggleOpenPortal })
               <Button type='submit' variant='confirm' margin='0 0.5rem 0 0'>
                 Zaloguj się
               </Button>
-              <Button type='button' variant='cancel' onClick={toggleOpenPortal}>
+              <Button
+                type='button'
+                variant='cancel'
+                onClick={() => dispatch(closeLoginForm())}
+              >
                 Anuluj
               </Button>
             </form>

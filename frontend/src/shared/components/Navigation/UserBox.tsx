@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { RootState } from "../../data/reducers/rootReducers";
+import { openLoginForm } from "../../data/actions/loginFormActions";
 
 import Button from "../FormElements/Button";
 import LoginForm from "../../../user/components/LoginForm";
@@ -8,32 +11,16 @@ import LoginForm from "../../../user/components/LoginForm";
 import { StyledContainer, StyledLink } from "./UserBox.css";
 
 const UserBox: React.FC = () => {
-  ///////////////////
-  const [isOpenPortal, setIsOpenPortal] = useState<boolean>(false);
-  const [isEnterSlide, setIsEnterSlide] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const isOpenLoginForm = useSelector(
+    (state: RootState) => state.loginForm.isOpenLoginForm
+  );
 
-  const toggleOpenPortal = () => {
-    if (isOpenPortal) {
-      setIsEnterSlide(false);
-      setTimeout(() => {
-        setIsOpenPortal(false);
-      }, 300);
-    } else {
-      setIsOpenPortal(true);
-
-      setTimeout(() => {
-        setIsEnterSlide(true);
-      }, 50);
-    }
-  };
-  ///////////////////////
   return (
     <>
-      {isOpenPortal && (
-        <LoginForm isEnterSlide={isEnterSlide} toggleOpenPortal={toggleOpenPortal} />
-      )}
+      {isOpenLoginForm && <LoginForm />}
       <StyledContainer>
-        <StyledLink onClick={toggleOpenPortal}>
+        <StyledLink onClick={() => dispatch(openLoginForm())}>
           <FontAwesomeIcon icon={faUser} />
           ZALOGUJ
         </StyledLink>

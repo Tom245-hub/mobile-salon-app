@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
@@ -8,6 +9,11 @@ import {
   faTimes,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { RootState } from "../../data/reducers/rootReducers";
+import { closeDrawerMenu } from "../../data/actions/drawerActions";
+
+import Button from "../FormElements/Button";
+
 import {
   StyledDrawerMenu,
   StyledHeader,
@@ -19,14 +25,10 @@ import {
   StyledMenu,
   StyledSubmenu,
 } from "./DrawerMenu.css";
-import Button from "../FormElements/Button";
 
-interface DrawerMenuProps {
-  isEnterSlide: boolean;
-  toggleOpenPortal: () => void;
-}
-
-const DrawerMenu: React.FC<DrawerMenuProps> = ({ isEnterSlide, toggleOpenPortal }) => {
+const DrawerMenu: React.FC = () => {
+  const dispatch = useDispatch();
+  const isEnterSlide = useSelector((state: RootState) => state.drawerMenu.isEnterSlide);
   const content = (
     <StyledDrawerMenu isEnterSlide={isEnterSlide}>
       <StyledHeader>
@@ -38,7 +40,7 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ isEnterSlide, toggleOpenPortal 
           <StyledLink margin='0 0 0 0.5rem'>
             <FontAwesomeIcon icon={faMapMarkerAlt} />
           </StyledLink>
-          <StyledLink margin='0 0 0 0.5rem'>
+          <StyledLink margin='0 0 0 0.5rem' onClick={() => dispatch(closeDrawerMenu())}>
             <FontAwesomeIcon icon={faTimes} />
           </StyledLink>
         </div>
@@ -47,7 +49,7 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ isEnterSlide, toggleOpenPortal 
       <StyledSection>
         <StyledMenu>
           <li>
-            <StyledNavLink href='/uslugi' rotate={true}>
+            <StyledNavLink href='/uslugi'>
               usługi <FontAwesomeIcon icon={faChevronDown} />
             </StyledNavLink>
 

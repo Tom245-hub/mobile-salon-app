@@ -15,21 +15,16 @@ import Backdrop from "./Backdrop";
 interface ModalProps {
   header: string;
   isEnterSlide: boolean;
-  toggleOpenPortal: () => void;
+  closePortal: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  children,
-  header,
-  isEnterSlide,
-  toggleOpenPortal,
-}) => {
+const Modal: React.FC<ModalProps> = ({ children, header, isEnterSlide, closePortal }) => {
   const content = (
     <StyledContainer isEnterSlide={isEnterSlide}>
-      <Backdrop onClick={toggleOpenPortal} />
+      <Backdrop onClick={closePortal} />
       <StyledHeader>
         <StyledHeaderText>{header}</StyledHeaderText>
-        <StyledIcon onClick={toggleOpenPortal}>
+        <StyledIcon onClick={closePortal}>
           <FontAwesomeIcon icon={faTimes} />
         </StyledIcon>
       </StyledHeader>
