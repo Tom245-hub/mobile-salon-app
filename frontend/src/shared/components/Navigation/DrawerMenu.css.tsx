@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface StyledDrawerMenuProps {
@@ -8,8 +9,12 @@ interface StyledLinkProps {
   margin: string;
 }
 
+interface StyledSubmenuProps {
+  isOpen?: boolean;
+}
+
 interface StyledNavLinkProps {
-  rotate?: boolean;
+  isOpen?: boolean;
 }
 
 export const StyledDrawerMenu = styled.div<StyledDrawerMenuProps>`
@@ -65,17 +70,16 @@ export const StyledLink = styled.a<StyledLinkProps>`
   }
 `;
 
-export const StyledNavLink = styled.a<StyledNavLinkProps>`
+export const StyledNavLink = styled(Link)<StyledNavLinkProps>`
   font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
 
   svg {
-    color: red;
+    color: ${({ theme }) => theme.colors.gray.normal};
     transition: 0.5s ease-in-out;
-    // transform: rotate(180deg);
 
-    transform: ${({ rotate }) => rotate && "rotate(180deg)"};
+    transform: ${({ isOpen }) => isOpen && "rotate(180deg)"};
   }
 `;
 
@@ -83,7 +87,9 @@ export const StyledMenu = styled.ul`
   width: 100%;
 `;
 
-export const StyledSubmenu = styled.ul`
+export const StyledSubmenu = styled.ul<StyledSubmenuProps>`
   font-size: 1rem;
   margin-left: 1rem;
+  transition: 0.5s ease-in-out;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
 `;

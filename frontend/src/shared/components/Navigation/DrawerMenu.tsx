@@ -31,11 +31,8 @@ import {
 const DrawerMenu: React.FC = () => {
   const dispatch = useDispatch();
   const isEnterSlide = useSelector((state: RootState) => state.drawerMenu.isEnterSlide);
-  const [idActiveSubmenu, setIdActiveSubmenu] = useState<number>(0);
-
-  const toggleSubmenu = (id: number) => {
-    setIdActiveSubmenu((prevState: number) => (prevState !== id ? id : 0));
-  };
+  const [isOpenServices, setIsOpenServices] = useState<boolean>(false);
+  const [isOpenStylists, setIsOpenStylists] = useState<boolean>(false);
 
   const handleClickLogin = () => {
     dispatch(closeDrawerMenu());
@@ -66,57 +63,61 @@ const DrawerMenu: React.FC = () => {
       <StyledSection>
         <StyledMenu>
           <li>
-            <Link to='/uslugi' onClick={() => toggleSubmenu(1)}>
+            <StyledNavLink
+              to='/uslugi'
+              onClick={() => setIsOpenServices((prev) => !prev)}
+              isOpen={isOpenServices}
+            >
               usługi <FontAwesomeIcon icon={faChevronDown} />
-            </Link>
-            {idActiveSubmenu === 1 && (
-              <StyledSubmenu>
-                <li>
-                  <Link to='/uslugi/fryzury-slubne'>fryzury ślubne</Link>
-                </li>
-                <li>
-                  <Link to='/uslugi/makijaze-slubne'>makijaże ślubne</Link>
-                </li>
-                <li>
-                  <Link to='/uslugi/fryzury-okazyjne'>fryzury okazyjne</Link>
-                </li>
-                <li>
-                  <Link to='/uslugi/makijaze-okazyjne'>makijaże okazyjne</Link>
-                </li>
-              </StyledSubmenu>
-            )}
+            </StyledNavLink>
+            <StyledSubmenu isOpen={isOpenServices}>
+              <li>
+                <Link to='/uslugi/fryzury-slubne'>fryzury ślubne</Link>
+              </li>
+              <li>
+                <Link to='/uslugi/makijaze-slubne'>makijaże ślubne</Link>
+              </li>
+              <li>
+                <Link to='/uslugi/fryzury-okazyjne'>fryzury okazyjne</Link>
+              </li>
+              <li>
+                <Link to='/uslugi/makijaze-okazyjne'>makijaże okazyjne</Link>
+              </li>
+            </StyledSubmenu>
           </li>
           <li>
-            <Link to='/stylistki' onClick={() => toggleSubmenu(2)}>
+            <StyledNavLink
+              to='/stylistki'
+              onClick={() => setIsOpenStylists((prev) => !prev)}
+              isOpen={isOpenStylists}
+            >
               stylistki <FontAwesomeIcon icon={faChevronDown} />
-            </Link>
-            {idActiveSubmenu === 2 && (
-              <StyledSubmenu>
-                <li>
-                  <Link to='/'>warszawa</Link>
-                </li>
-                <li>
-                  <Link to='/'>kraków</Link>
-                </li>
-                <li>
-                  <Link to='/'>wrocław</Link>
-                </li>
-                <li>
-                  <Link to='/'>poznań</Link>
-                </li>
-                <li>
-                  <Link to='/'>gdańsk</Link>
-                </li>
-              </StyledSubmenu>
-            )}
+            </StyledNavLink>
+            <StyledSubmenu isOpen={isOpenStylists}>
+              <li>
+                <Link to='/'>warszawa</Link>
+              </li>
+              <li>
+                <Link to='/'>kraków</Link>
+              </li>
+              <li>
+                <Link to='/'>wrocław</Link>
+              </li>
+              <li>
+                <Link to='/'>poznań</Link>
+              </li>
+              <li>
+                <Link to='/'>gdańsk</Link>
+              </li>
+            </StyledSubmenu>
           </li>
           <li>
-            <StyledNavLink href='/blog'>
+            <StyledNavLink to='/blog'>
               blog <FontAwesomeIcon icon={faChevronDown} />
             </StyledNavLink>
           </li>
           <li>
-            <StyledNavLink href='/kontakt'>
+            <StyledNavLink to='/kontakt'>
               kontakt <FontAwesomeIcon icon={faChevronDown} />
             </StyledNavLink>
           </li>
