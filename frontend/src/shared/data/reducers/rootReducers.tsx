@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import stylist from "./stylistReducer";
+import stylistList from "./stylistListReducer";
 import category from "./categoryReducer";
 import slide from "./slideReducer";
 import user from "./userReducer";
@@ -10,6 +11,7 @@ import cityForm from "./cityFormReducer";
 
 const rootReducer = combineReducers({
   stylist,
+  stylistList,
   category,
   slide,
   user,

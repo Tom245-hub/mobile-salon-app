@@ -29,7 +29,29 @@ exports.postStylist = async (req, res) => {
   let stylist;
 
   try {
-    const { firstName, lastName, email, phone, birthYear, zipcode, hairStylExp, makeupStylExp, city } = req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      birthYear,
+      zipcode,
+      hairStylExp,
+      makeupStylExp,
+      city,
+    } = req.body;
+
+    // 1. Jeśli email jest w bazie:
+
+    // if (true) {
+    //   res.status(409).json({
+    //     message: "Stylistka o podanym adres email jest już zarejestrowana",
+    //   });
+
+    //   return;
+    // }
+
+    // 2. Jeśli email nie jest w bazie:
 
     const stylistData = {
       personalData: {
@@ -61,11 +83,13 @@ exports.postStylist = async (req, res) => {
     stylist = new Stylist(stylistData);
 
     await stylist.save();
+    res.status(201).json({
+      message: "Założyliśmy Twoje konto: Login: xx, hasło: yyy",
+      stylist,
+    });
   } catch (err) {
     return res.status(422).json({ message: err.message });
   }
-
-  res.status(201).json(stylist);
 };
 
 exports.putStylist = async (req, res) => {
@@ -73,7 +97,20 @@ exports.putStylist = async (req, res) => {
     const id = req.params.id;
 
     const stylist = await Stylist.findOne({ _id: id });
-    const { firstName, lastName, email, phone, birthYear, zipcode, title, img, text, hairStylExp, makeupStylExp, city } = req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      birthYear,
+      zipcode,
+      title,
+      img,
+      text,
+      hairStylExp,
+      makeupStylExp,
+      city,
+    } = req.body;
 
     firstName && (stylist.personalData.firstName = firstName);
     lastName && (stylist.personalData.lastName = lastName);

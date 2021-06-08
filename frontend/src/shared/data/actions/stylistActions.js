@@ -30,20 +30,23 @@ export const postStylist = (stylistObject) => async (dispatch) => {
   dispatch({
     type: STYLIST_POST_REQUEST,
   });
-  console.log("test1");
 
   try {
     const { data } = await request.post("/stylists", stylistObject);
+    // console.log(data);
     dispatch({
       type: STYLIST_POST_SUCCESS,
-      payload: data,
+      payload: {
+        stylist: data.stylist,
+        message: data.message,
+      },
     });
-
-    console.log("test2");
   } catch (error) {
     dispatch({
       type: STYLIST_POST_FAILURE,
+      payload: {
+        message: error.response.data,
+      },
     });
-    console.log("test3");
   }
 };

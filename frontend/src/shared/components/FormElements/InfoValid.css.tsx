@@ -1,12 +1,27 @@
 import styled from "styled-components";
 
-export const StyledBox = styled.div`
+interface StyledInputProps {
+  margin?: string;
+}
+
+const RootInfoValid = styled.div<StyledInputProps>`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.warning};
-  color: ${({ theme }) => theme.colors.primary.dark};
   border-radius: 5px;
-  padding: 0.5rem 1.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  margin: ${({ margin }) => (margin ? margin : "0 0 0.5rem 0")};
+  grid-column: 1/3;
+`;
+
+export const StyledInfoValidNegative = styled(RootInfoValid)`
+  background-color: ${({ theme }) => theme.colors.secondary.light};
+  color: ${({ theme }) => theme.colors.danger};
+  border: 2px solid ${({ theme }) => theme.colors.danger};
+`;
+
+export const StyledInfoValidPositive = styled(RootInfoValid)`
+  background-color: #fff;
+  color: ${({ theme }) => theme.colors.success};
+  border: 2px solid ${({ theme }) => theme.colors.success};
 `;
 
 export const StyledText = styled.h4`

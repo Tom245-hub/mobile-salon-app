@@ -22,7 +22,7 @@ import {
 
 const SliderTeam: React.FC = () => {
   const dispatch = useDispatch();
-  const stylistList = useSelector((state: RootState) => state.stylist.stylistList);
+  const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
 
   const isLoading = stylistList === 0;
 

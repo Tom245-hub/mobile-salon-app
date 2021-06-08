@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -5,14 +6,12 @@ import * as Yup from "yup";
 import { postStylist } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
-// import request from "../../shared/utils/request";
-// import InfoValid from "../../shared/components/FormElements/InfoValid";
-
 import { values } from "../../shared/models/valuesModel";
 
 import Input from "../../shared/components/FormElements/Input";
 import Select from "../../shared/components/FormElements/Select";
 import Button from "../../shared/components/FormElements/Button";
+import InfoValid from "../../shared/components/FormElements/InfoValid";
 
 import { StyledForm, StyledSubtitle, StyledText, StyledLine } from "./JobForm.css";
 
@@ -36,8 +35,9 @@ const validationSchema = () =>
   });
 
 const JobForm: React.FC = () => {
-  // const [errorServer, setErrorServer] = useState({ isTrue: false });
   const dispatch = useDispatch();
+  const infoServer: any = useSelector((state: RootState) => state.stylist.info);
+  console.log(infoServer);
 
   const initialValues: values = {
     firstName: "",
@@ -64,20 +64,7 @@ const JobForm: React.FC = () => {
       city: values.city,
     };
 
-    // console.log(stylistObject);
-
     dispatch(postStylist(stylistObject));
-
-    // try {
-    //   await request.post("/stylists", stylistObject);
-    //   setInfoModal(true);
-    // } catch (error) {
-    //   console.log(error);
-    //   // setErrorServer({
-    //   //   isTrue: true,
-    //   //   info: "Błąd serwera. Skontaktuj się z administratorem.",
-    //   // });
-    // }
   };
 
   return (
@@ -160,14 +147,26 @@ const JobForm: React.FC = () => {
               margin='0'
             />
 
-            {/* {errors.firstName && touched.firstName && (
-              <InfoValid>{errors.firstName}</InfoValid>
+            {errors.firstName && touched.firstName && (
+              <InfoValid variant='negative' margin='0'>
+                {errors.firstName}
+              </InfoValid>
             )}
             {errors.lastName && touched.lastName && (
-              <InfoValid>{errors.lastName}</InfoValid>
+              <InfoValid variant='negative' margin='0'>
+                {errors.lastName}
+              </InfoValid>
             )}
-            {errors.email && touched.email && <InfoValid>{errors.email}</InfoValid>}
-            {errors.phone && touched.phone && <InfoValid>{errors.phone}</InfoValid>} */}
+            {errors.email && touched.email && (
+              <InfoValid variant='negative' margin='0'>
+                {errors.email}
+              </InfoValid>
+            )}
+            {errors.phone && touched.phone && (
+              <InfoValid variant='negative' margin='0'>
+                {errors.phone}
+              </InfoValid>
+            )}
 
             <StyledLine />
 
@@ -250,6 +249,10 @@ const JobForm: React.FC = () => {
             {/* {errorServer.isTrue && (
                     <div className='alert alert-danger'>{errorServer.info}</div>
                   )} */}
+
+            {infoServer && infoServer.status && (
+              <InfoValid variant='positive'>{infoServer.message}</InfoValid>
+            )}
 
             <Button type='submit'>Wyślij</Button>
           </StyledForm>

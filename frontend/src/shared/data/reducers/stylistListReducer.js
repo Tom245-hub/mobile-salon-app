@@ -1,21 +1,20 @@
 import {
-  STYLIST_POST_REQUEST,
-  STYLIST_POST_SUCCESS,
-  STYLIST_POST_FAILURE,
+  STYLIST_LIST_GET_REQUEST,
+  STYLIST_LIST_GET_SUCCESS,
+  STYLIST_LIST_GET_FAILURE,
 } from "../constans/stylistConstans";
 import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
-  stylist: {},
-  info: {},
+  stylistList: [],
 };
 
-function stylist(state = initialState, action) {
+function stylistList(state = initialState, action) {
   const newLoading = { ...state.loading };
 
   switch (action.type) {
-    case STYLIST_POST_REQUEST:
+    case STYLIST_LIST_GET_REQUEST:
       return {
         ...state,
         loading: {
@@ -24,36 +23,26 @@ function stylist(state = initialState, action) {
         },
       };
 
-    case STYLIST_POST_SUCCESS:
-      delete newLoading.STYLIST_POST_REQUEST;
+    case STYLIST_LIST_GET_SUCCESS:
+      delete newLoading.STYLIST_LIST_GET_REQUEST;
       return {
         ...state,
         loading: {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
         },
-        stylist: action.payload.stylist,
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: true,
-        },
+        stylistList: action.payload,
       };
 
-    case STYLIST_POST_FAILURE:
-      delete newLoading.STYLIST_POST_REQUEST;
+    case STYLIST_LIST_GET_FAILURE:
+      delete newLoading.STYLIST_LIST_GET_REQUEST;
       return {
         ...state,
         loading: {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
         },
-        stylist: {},
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: false,
-        },
+        stylistList: [],
       };
 
     default:
@@ -61,4 +50,4 @@ function stylist(state = initialState, action) {
   }
 }
 
-export default stylist;
+export default stylistList;

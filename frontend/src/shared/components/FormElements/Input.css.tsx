@@ -10,7 +10,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   color: ${({ theme }) => theme.colors.gray};
   border 1px solid
     ${({ theme }) => theme.colors.gray.light};
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   margin: ${({ margin }) => (margin ? margin : "0 0 0.5rem 0")};
   :focus-visible {
     outline: none;
