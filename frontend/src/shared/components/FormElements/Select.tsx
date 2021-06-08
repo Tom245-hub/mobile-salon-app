@@ -7,6 +7,7 @@ interface SelectProps {
   value: string | number;
   onChange: (arg: object) => void;
   onBlur: (arg: object) => void;
+  margin?: string;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -16,9 +17,17 @@ const Select: React.FC<SelectProps> = ({
   value,
   onChange,
   onBlur,
+  margin,
 }) => {
   return (
-    <StyledSelect id={id} name={name} value={value} onChange={onChange} onBlur={onBlur}>
+    <StyledSelect
+      id={id}
+      name={name}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      margin={margin}
+    >
       {children}
     </StyledSelect>
   );

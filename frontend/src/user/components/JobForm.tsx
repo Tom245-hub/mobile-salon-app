@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -13,7 +12,17 @@ import Select from "../../shared/components/FormElements/Select";
 import Button from "../../shared/components/FormElements/Button";
 import InfoValid from "../../shared/components/FormElements/InfoValid";
 
-import { StyledForm, StyledSubtitle, StyledText, StyledLine } from "./JobForm.css";
+import {
+  StyledContainer,
+  StyledTitle,
+  StyledComment,
+  StyledForm,
+  StyledSubtitle,
+  StyledText,
+  StyledLine,
+  StyledBox,
+  StyledCommentText,
+} from "./JobForm.css";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -78,184 +87,205 @@ const JobForm: React.FC = () => {
           formik;
 
         return (
-          <StyledForm onSubmit={handleSubmit} noValidate>
-            <StyledSubtitle>Twoje dane</StyledSubtitle>
+          <StyledContainer>
+            <StyledTitle>Dołącz do nas</StyledTitle>
+            <StyledComment>
+              Wypełnij formularz i załóż konto w Mobile Salon. Po weryfikacji Twojego
+              doświadczenia wyślemy informacje o warunkach współpracy na Twój adres email.
+            </StyledComment>
 
-            <Input
-              id='firstName'
-              type='text'
-              name='firstName'
-              placeholder='Imię'
-              value={values.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+            <StyledForm onSubmit={handleSubmit} noValidate>
+              <StyledSubtitle>Twoje dane</StyledSubtitle>
 
-            <Input
-              id='lastName'
-              type='text'
-              name='lastName'
-              placeholder='Nazwisko'
-              value={values.lastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+              <Input
+                id='firstName'
+                type='text'
+                name='firstName'
+                placeholder='Imię'
+                value={values.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            <Input
-              id='email'
-              type='email'
-              name='email'
-              placeholder='Email'
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+              <Input
+                id='lastName'
+                type='text'
+                name='lastName'
+                placeholder='Nazwisko'
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            <Input
-              id='phone'
-              name='phone'
-              type='text'
-              placeholder='Telefon'
-              value={values.phone}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+              <Input
+                id='email'
+                type='email'
+                name='email'
+                placeholder='Email'
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            <Input
-              id='birthYear'
-              type='text'
-              name='birthYear'
-              placeholder='Rok urodzenia'
-              value={values.birthYear}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+              <Input
+                id='phone'
+                name='phone'
+                type='text'
+                placeholder='Telefon'
+                value={values.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            <Input
-              id='zipcode'
-              placeholder='Kod pocztowy'
-              name='zipcode'
-              type='text'
-              value={values.zipcode}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin='0'
-            />
+              <Input
+                id='birthYear'
+                type='text'
+                name='birthYear'
+                placeholder='Rok urodzenia'
+                value={values.birthYear}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            {errors.firstName && touched.firstName && (
-              <InfoValid variant='negative' margin='0'>
-                {errors.firstName}
-              </InfoValid>
-            )}
-            {errors.lastName && touched.lastName && (
-              <InfoValid variant='negative' margin='0'>
-                {errors.lastName}
-              </InfoValid>
-            )}
-            {errors.email && touched.email && (
-              <InfoValid variant='negative' margin='0'>
-                {errors.email}
-              </InfoValid>
-            )}
-            {errors.phone && touched.phone && (
-              <InfoValid variant='negative' margin='0'>
-                {errors.phone}
-              </InfoValid>
-            )}
+              <Input
+                id='zipcode'
+                placeholder='Kod pocztowy'
+                name='zipcode'
+                type='text'
+                value={values.zipcode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              />
 
-            <StyledLine />
+              {errors.firstName && touched.firstName && (
+                <InfoValid variant='negative' margin='0'>
+                  {errors.firstName}
+                </InfoValid>
+              )}
+              {errors.lastName && touched.lastName && (
+                <InfoValid variant='negative' margin='0'>
+                  {errors.lastName}
+                </InfoValid>
+              )}
+              {errors.email && touched.email && (
+                <InfoValid variant='negative' margin='0'>
+                  {errors.email}
+                </InfoValid>
+              )}
+              {errors.phone && touched.phone && (
+                <InfoValid variant='negative' margin='0'>
+                  {errors.phone}
+                </InfoValid>
+              )}
 
-            <StyledSubtitle>Doświadczenie</StyledSubtitle>
+              <StyledLine />
 
-            <StyledText>Ile lat zajmujesz się stylizacją fryzur?</StyledText>
+              <StyledSubtitle>Doświadczenie</StyledSubtitle>
 
-            <Select
-              id='hairStylExp'
-              name='hairStylExp'
-              value={values.hairStylExp}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value='0'>Nie mam doświadczenia</option>
-              <option value='0.5'>6 miesięcy</option>
-              <option value='1'>1 rok</option>
-              <option value='2'>2 lata</option>
-              <option value='3'>3 lata</option>
-            </Select>
+              <StyledText>Ile lat zajmujesz się stylizacją fryzur?</StyledText>
 
-            <StyledText>Ile lat zajmujesz się stylizacją makijaży?</StyledText>
+              <Select
+                id='hairStylExp'
+                name='hairStylExp'
+                value={values.hairStylExp}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              >
+                <option value='0'>Nie mam doświadczenia</option>
+                <option value='0.5'>6 miesięcy</option>
+                <option value='1'>1 rok</option>
+                <option value='2'>2 lata</option>
+                <option value='3'>3 lata</option>
+              </Select>
 
-            <Select
-              id='makeupStylExp'
-              name='makeupStylExp'
-              value={values.makeupStylExp}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value='0'>Nie mam doświadczenia</option>
-              <option value='0.5'>6 miesięcy</option>
-              <option value='1'>1 rok</option>
-              <option value='2'>2 lata</option>
-              <option value='3'>3 lata</option>
-            </Select>
+              <StyledText>Ile lat zajmujesz się stylizacją makijaży?</StyledText>
 
-            <StyledLine />
+              <Select
+                id='makeupStylExp'
+                name='makeupStylExp'
+                value={values.makeupStylExp}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              >
+                <option value='0'>Nie mam doświadczenia</option>
+                <option value='0.5'>6 miesięcy</option>
+                <option value='1'>1 rok</option>
+                <option value='2'>2 lata</option>
+                <option value='3'>3 lata</option>
+              </Select>
 
-            <StyledSubtitle>Informacje o usługach</StyledSubtitle>
+              <StyledLine />
 
-            <StyledText>W jakim oddziale chcesz pracować?</StyledText>
+              <StyledSubtitle>Informacje o usługach</StyledSubtitle>
 
-            <Select
-              id='city'
-              name='city'
-              value={values.city}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value='null'>Nie wybrano</option>
-              <option value='Warszawa'>Warszawa</option>
-              <option value='Kraków'>Kraków</option>
-              <option value='Wrocław'>Wrocław</option>
-              <option value='Poznań'>Poznań</option>
-              <option value='Gdańsk'>Gdańsk</option>
-            </Select>
+              <StyledText>W jakim oddziale chcesz pracować?</StyledText>
 
-            {Number(values.hairStylExp) > 0 && (
-              <>
-                <StyledText>Dodaj min. 3 zdjęcia swoich najlepszych fryzur</StyledText>
-                <div>
-                  <input type='file' name='fileHair1' />
-                  <input type='file' name='fileHair2' />
-                  <input type='file' name='fileHair3' />
-                </div>
-              </>
-            )}
-            {Number(values.makeupStylExp) > 0 && (
-              <>
-                <StyledText>Dodaj min. 3 zdjęcia swoich najlepszych makijaży</StyledText>
-                <div>
-                  <input type='file' name='fileMakeup1' className='mb-2' />
-                  <input type='file' name='fileMakeup2' className='mb-2' />
-                  <input type='file' name='fileMakeup3' className='mb-2' />
-                </div>
-              </>
-            )}
+              <Select
+                id='city'
+                name='city'
+                value={values.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin='0'
+              >
+                <option value='null'>Nie wybrano</option>
+                <option value='Warszawa'>Warszawa</option>
+                <option value='Kraków'>Kraków</option>
+                <option value='Wrocław'>Wrocław</option>
+                <option value='Poznań'>Poznań</option>
+                <option value='Gdańsk'>Gdańsk</option>
+              </Select>
 
-            {/* {errorServer.isTrue && (
-                    <div className='alert alert-danger'>{errorServer.info}</div>
-                  )} */}
+              {Number(values.hairStylExp) > 0 && (
+                <>
+                  <StyledText>Dodaj min. 3 zdjęcia swoich najlepszych fryzur</StyledText>
+                  <div>
+                    <input type='file' name='fileHair1' />
+                    <input type='file' name='fileHair2' />
+                    <input type='file' name='fileHair3' />
+                  </div>
+                </>
+              )}
+              {Number(values.makeupStylExp) > 0 && (
+                <>
+                  <StyledText>
+                    Dodaj min. 3 zdjęcia swoich najlepszych makijaży
+                  </StyledText>
+                  <div>
+                    <input type='file' name='fileMakeup1' className='mb-2' />
+                    <input type='file' name='fileMakeup2' className='mb-2' />
+                    <input type='file' name='fileMakeup3' className='mb-2' />
+                  </div>
+                </>
+              )}
 
-            {infoServer && infoServer.status && (
-              <InfoValid variant='positive'>{infoServer.message}</InfoValid>
-            )}
+              <StyledLine />
 
-            <Button type='submit'>Wyślij</Button>
-          </StyledForm>
+              <StyledBox>
+                <StyledCommentText>
+                  Firma Mobile Salon pełni funkcję administratora danych osobowych
+                  klientów platformy internetowej www.mobilesalon.pl. Twoje dane osobowe
+                  są zbierane i przetwarzane w celu rozważania możliwości nawiązania
+                  współpracy. Masz prawo dostępu do informacji, które Cię dotyczą,
+                  poprawiania, usuwania i przekazywania ich, jak również prawo do
+                  wyrażenia sprzeciwu i ograniczenia ich przetwarzania. Możesz skorzystać
+                  z tego prawa, kontaktując się z nami.
+                </StyledCommentText>
+                <Button type='submit'>Wyślij</Button>
+              </StyledBox>
+              {infoServer && infoServer.status && (
+                <InfoValid variant='positive'>{infoServer.message}</InfoValid>
+              )}
+            </StyledForm>
+          </StyledContainer>
         );
       }}
     </Formik>
