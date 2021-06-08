@@ -26,6 +26,8 @@ import {
   StyledNavLink,
   StyledMenu,
   StyledSubmenu,
+  StyledIcon,
+  StyledSubmenuLink,
 } from "./DrawerMenu.css";
 
 const DrawerMenu: React.FC = () => {
@@ -72,16 +74,28 @@ const DrawerMenu: React.FC = () => {
             </StyledNavLink>
             <StyledSubmenu isOpen={isOpenServices}>
               <li>
-                <Link to='/uslugi/fryzury-slubne'>fryzury ślubne</Link>
+                <StyledSubmenuLink to='/uslugi/fryzury-slubne'>
+                  <StyledIcon src='/icons/fullyblackringhair.svg' />
+                  fryzury ślubne
+                </StyledSubmenuLink>
               </li>
               <li>
-                <Link to='/uslugi/makijaze-slubne'>makijaże ślubne</Link>
+                <StyledSubmenuLink to='/uslugi/makijaze-slubne'>
+                  <StyledIcon src='/icons/mucoffee.svg' />
+                  makijaże ślubne
+                </StyledSubmenuLink>
               </li>
               <li>
-                <Link to='/uslugi/fryzury-okazyjne'>fryzury okazyjne</Link>
+                <StyledSubmenuLink to='/uslugi/fryzury-okazyjne'>
+                  <StyledIcon src='/icons/blacksimplehair.svg' />
+                  fryzury okazyjne
+                </StyledSubmenuLink>
               </li>
               <li>
-                <Link to='/uslugi/makijaze-okazyjne'>makijaże okazyjne</Link>
+                <StyledSubmenuLink to='/uslugi/makijaze-okazyjne'>
+                  <StyledIcon src='/icons/musimple.svg' />
+                  makijaże okazyjne
+                </StyledSubmenuLink>
               </li>
             </StyledSubmenu>
           </li>
@@ -112,14 +126,10 @@ const DrawerMenu: React.FC = () => {
             </StyledSubmenu>
           </li>
           <li>
-            <StyledNavLink to='/blog'>
-              blog <FontAwesomeIcon icon={faChevronDown} />
-            </StyledNavLink>
+            <StyledNavLink to='/blog'>blog</StyledNavLink>
           </li>
           <li>
-            <StyledNavLink to='/kontakt'>
-              kontakt <FontAwesomeIcon icon={faChevronDown} />
-            </StyledNavLink>
+            <StyledNavLink to='/kontakt'>kontakt</StyledNavLink>
           </li>
         </StyledMenu>
       </StyledSection>

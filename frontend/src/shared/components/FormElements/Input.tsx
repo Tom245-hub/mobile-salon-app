@@ -1,15 +1,15 @@
 import React from "react";
-import { Login } from "../../models/loginModel";
 import { StyledInput } from "./Input.css";
 
 interface InputProps {
   id: string;
-  type: "text" | "email" | "password";
+  type: "text" | "email" | "password" | "number";
   name: string;
   placeholder: string;
   value: string | number;
   onChange: (arg: object) => void;
   onBlur: (arg: object) => void;
+  margin?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   value,
   onChange,
   onBlur,
+  margin,
 }) => {
   return (
     <StyledInput
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      margin={margin}
     />
   );
 };

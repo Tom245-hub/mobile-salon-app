@@ -2,10 +2,12 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Login } from "../../shared/models/loginModel";
+import { RootState } from "../../shared/data/reducers/rootReducers";
+
 import { postUser } from "../../shared/data/actions/userActions";
 import { closeLoginForm } from "../../shared/data/actions/loginFormActions";
-import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";

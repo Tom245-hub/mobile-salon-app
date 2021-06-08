@@ -77,7 +77,7 @@ export const StyledNavLink = styled(Link)<StyledNavLinkProps>`
 
   svg {
     color: ${({ theme }) => theme.colors.gray.normal};
-    transition: 0.5s ease-in-out;
+    transition: 0.2s ease-in-out;
 
     transform: ${({ isOpen }) => isOpen && "rotate(180deg)"};
   }
@@ -92,4 +92,14 @@ export const StyledSubmenu = styled.ul<StyledSubmenuProps>`
   margin-left: 1rem;
   transition: 0.5s ease-in-out;
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+`;
+
+export const StyledSubmenuLink = styled(Link)`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledIcon = styled.img`
+  height: 2rem;
+  margin-right: 0.5rem;
 `;

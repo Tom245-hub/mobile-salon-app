@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledButton, StyledConfirmButton, StyledCancelButton } from "./Button.css";
+import { StyledConfirmButton, StyledCancelButton } from "./Button.css";
 
 interface ButtonProps {
-  children: string;
   variant?: "confirm" | "cancel";
   link?: string;
   type?: "submit" | "reset" | "button";
