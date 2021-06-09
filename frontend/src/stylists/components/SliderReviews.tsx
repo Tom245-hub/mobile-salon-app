@@ -4,7 +4,13 @@ import { Review } from "../../shared/models/reviewModel";
 import { showStars } from "../../shared/utils/utils";
 import SliderDefault from "../../shared/components/Slider/SliderDefault";
 
-import { StyledContainer, StyledText, StyledBoxStars } from "./SliderReviews.css";
+import {
+  StyledContainerFull,
+  StyledContainer,
+  StyledTitle,
+  StyledText,
+  StyledBoxStars,
+} from "./SliderReviews.css";
 
 interface SliderReviewsProps {
   reviewList: Review[];
@@ -20,17 +26,19 @@ const SliderReviews: React.FC<SliderReviewsProps> = ({ reviewList }) => {
   };
 
   return (
-    <StyledContainer>
-      <h2>Opinie naszych Klientek</h2>
-      <SliderDefault settings={settings}>
-        {reviewList.map((review) => (
-          <React.Fragment key={review._id}>
-            <StyledText>{review.comment}</StyledText>
-            <StyledBoxStars>{showStars(review.stars)}</StyledBoxStars>
-          </React.Fragment>
-        ))}
-      </SliderDefault>
-    </StyledContainer>
+    <StyledContainerFull>
+      <StyledContainer>
+        <StyledTitle>Opinie naszych Klientek</StyledTitle>
+        <SliderDefault settings={settings}>
+          {reviewList.map((review) => (
+            <React.Fragment key={review._id}>
+              <StyledText>{review.comment}</StyledText>
+              <StyledBoxStars>{showStars(review.stars)}</StyledBoxStars>
+            </React.Fragment>
+          ))}
+        </SliderDefault>
+      </StyledContainer>
+    </StyledContainerFull>
   );
 };
 

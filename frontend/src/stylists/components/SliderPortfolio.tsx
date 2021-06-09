@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { StyledContainer, StyledTitle } from "./SliderPortfolio.css";
 
+import { Slide } from "../../shared/models/slideModel";
 import SliderDefault from "../../shared/components/Slider/SliderDefault";
 import Image from "../../shared/components/UIElements/Image";
-import { Slide } from "../../shared/models/slideModel";
 
 interface SliderPortfolioProps {
   portfolioList: Slide[];
@@ -18,13 +18,22 @@ const SliderPortfolio: React.FC<SliderPortfolioProps> = ({ portfolioList }) => {
   };
 
   return (
-    <SliderDefault settings={settings}>
-      {portfolioList.map((slide: Slide) => (
-        <React.Fragment key={slide._id}>
-          <Image paddingTop='75%' alt={slide.title} img={slide.img} margin='0 0.5rem' />
-        </React.Fragment>
-      ))}
-    </SliderDefault>
+    <StyledContainer>
+      <StyledTitle>Portfolio stylistki</StyledTitle>
+      <SliderDefault settings={settings}>
+        {portfolioList.map((slide: Slide) => (
+          <React.Fragment key={slide._id}>
+            <Image
+              key={slide._id}
+              paddingTop='75%'
+              alt={slide.title}
+              img={slide.img}
+              margin='0 0.5rem'
+            />
+          </React.Fragment>
+        ))}
+      </SliderDefault>
+    </StyledContainer>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   StyledTitle,
   StyledSubtitle,
   StyledText,
+  StyledElement,
 } from "./IntroProfile.css";
 
 interface IntroProfileProps {
@@ -28,6 +29,7 @@ const IntroProfile: React.FC<IntroProfileProps> = ({ stylist: { profileData } })
           {hairStylist} / {makupStylist}
         </StyledSubtitle>
         <StyledText>{profileData.text}</StyledText>
+        <StyledElement></StyledElement>
       </StyledBox>
     </StyledContainer>
   );

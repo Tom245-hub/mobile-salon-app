@@ -9,6 +9,7 @@ import SliderReviews from "../components/SliderReviews";
 
 import IntroProfile from "../components/IntroProfile";
 import { Stylist } from "../../shared/models/stylistModel";
+import Consultation from "../components/Consultation";
 
 const StylistPage: React.FC = () => {
   let { id } = useParams<{ id: string }>();
@@ -30,7 +31,9 @@ const StylistPage: React.FC = () => {
 
       <SliderPortfolio portfolioList={stylist.portfolio} />
 
-      <SliderReviews reviewList={stylist.reviews} />
+      {stylist.reviews.length > 0 && <SliderReviews reviewList={stylist.reviews} />}
+
+      <Consultation />
     </>
   );
 };

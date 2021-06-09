@@ -12,7 +12,7 @@ export const StyledContainer = styled.div`
 
 export const StyledSubtitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.secondary};
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
   text-align: center;

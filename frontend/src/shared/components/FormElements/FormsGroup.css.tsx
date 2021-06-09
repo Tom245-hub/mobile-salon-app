@@ -11,6 +11,9 @@ export const StyledInput = styled.input`
   border 1px solid
     ${({ theme }) => theme.colors.gray.light};
   padding-left: 1rem;
+  :focus-visible {
+    outline: none;
+  };
 `;
 
 export const StyledButton = styled.button`

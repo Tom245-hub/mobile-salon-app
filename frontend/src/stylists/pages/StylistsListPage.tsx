@@ -1,19 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../shared/data/reducers/rootReducers";
-import { getStylistList } from "../../shared/data/actions/stylistActions";
 import StylistsList from "../components/StylistsList";
 import Consultation from "../components/Consultation";
 import { StyledBox, StyledPageTitle, StyledText } from "./StylistsListPage.css";
-import { useEffect } from "react";
 
 const StylistsListPage: React.FC = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getStylistList());
-  }, []);
-
   const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
-  console.log(stylistList);
 
   return (
     <>

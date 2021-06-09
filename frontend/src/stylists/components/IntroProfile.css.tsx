@@ -7,6 +7,16 @@ export const StyledContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 5rem 0;
+  position: relative;
+`;
+
+export const StyledElement = styled.div`
+  border-bottom: 5rem solid ${({ theme }) => theme.colors.primary.dark};
+  border-left: 12rem solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(-100%);
 `;
 
 export const StyledBox = styled.div`
