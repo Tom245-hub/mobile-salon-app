@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-import { getStylistList } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 import { Stylist } from "../../shared/models/stylistModel";
 
@@ -21,16 +20,11 @@ import {
 } from "./SliderTeam.css";
 
 const SliderTeam: React.FC = () => {
-  const dispatch = useDispatch();
   const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
 
   const isLoading = stylistList === 0;
 
   const [filterCity, setFilterCity] = useState<string>("Warszawa");
-
-  useEffect(() => {
-    dispatch(getStylistList());
-  }, [getStylistList]);
 
   const filteredStylists: [] = stylistList.filter(
     (stylist: Stylist) => stylist.profileData.city === filterCity

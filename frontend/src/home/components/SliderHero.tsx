@@ -1,8 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
-import { getSlideList } from "../../shared/data/actions/slideActions";
+import { useSelector } from "react-redux";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 import { Slide } from "../../shared/models/slideModel";
 
@@ -13,14 +9,9 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import { StyledContainerSlide, StyledContainerInfo } from "./SliderHero.css";
 
 const SliderHero: React.FC = () => {
-  const dispatch = useDispatch();
   const slideList: Slide[] = useSelector((state: RootState) => state.slide.slideList);
 
   const isLoading = slideList.length === 0;
-
-  useEffect(() => {
-    dispatch(getSlideList());
-  }, [getSlideList]);
 
   const settings = {
     dots: false,

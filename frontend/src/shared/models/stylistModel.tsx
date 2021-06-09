@@ -1,5 +1,5 @@
 export interface Stylist {
-  _id: number;
+  _id: string;
   personalData: {
     firstName: string;
     lastName: string;

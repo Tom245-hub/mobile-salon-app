@@ -26,6 +26,24 @@ export const getStylistList = () => async (dispatch) => {
   }
 };
 
+export const getStylist = () => async (dispatch) => {
+  dispatch({
+    type: STYLIST_LIST_GET_REQUEST,
+  });
+
+  try {
+    const { data } = await request.get("/stylists");
+    dispatch({
+      type: STYLIST_LIST_GET_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: STYLIST_LIST_GET_FAILURE,
+    });
+  }
+};
+
 export const postStylist = (stylistObject) => async (dispatch) => {
   dispatch({
     type: STYLIST_POST_REQUEST,

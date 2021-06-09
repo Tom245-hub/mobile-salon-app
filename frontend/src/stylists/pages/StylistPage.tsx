@@ -6,69 +6,31 @@ import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import SliderPortfolio from "../components/SliderPortfolio";
 import SliderReviews from "../components/SliderReviews";
-import Image from "../../shared/components/UIElements/Image";
+
+import IntroProfile from "../components/IntroProfile";
+import { Stylist } from "../../shared/models/stylistModel";
 
 const StylistPage: React.FC = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getStylistList());
-  }, []);
+  let { id } = useParams<{ id: string }>();
+  const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
+  const stylist = stylistList.filter((stylist: Stylist) => stylist._id == id)[0];
 
-  // const stylistList = useSelector((state: RootState) => state.stylist.stylist);
-  // console.log(stylist);
-
-  // let { id: any } = useParams();
-
-  // const stylist = stylistList && stylistList.filter((stylist) => stylist._id == id)[0];
-
-  // if (stylistList.length === 0 || !stylist) {
-  //   return (
-  //     <>
-  //       <div className='container py-5 my-5'>
-  //         <h2>Nie znaleźliśmy stylistki. Wróć do strony głównej</h2>
-  //         <div className='d-flex justify-content-center'>
-  //           <button className='btn btn-primary'>Strona Główna</button>
-  //         </div>
-  //       </div>
-  //     </>
-  //   );
-  // }
+  if (stylistList.length === 0 || !stylist) {
+    return (
+      <div>
+        <h2>Nie znaleźliśmy stylistki. Wróć do strony głównej</h2>
+        <button>Strona Główna</button>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div className='container py-5'>
-        <div className='row'>
-          <div className='col-md-5'>
-            aaaaaaaaaaa
-            {/* <Image paddingTop='80%' img={stylist.img} alt={stylist.title} margin='0' /> */}
-          </div>
-          <div className='col-md-7 d-flex align-items-center'>
-            <div>
-              {/* <h2>{stylist.title}</h2>
-              <h4>{stylist.city}</h4>
-              <h4>{stylist.text}</h4> */}
-            </div>
-          </div>
-        </div>
-      </div>
+      <IntroProfile stylist={stylist} />
 
-      <div className='container-fluid bg-light py-5'>
-        <h3>Prace stylistki</h3>
-        <div className='row'>
-          <div className='col-12'>
-            {/* <SliderPortfolio portfolioList={stylist.portfolio} /> */}
-          </div>
-        </div>
-      </div>
+      <SliderPortfolio portfolioList={stylist.portfolio} />
 
-      <div className='container py-5'>
-        <h3>Opinie Klientek</h3>
-        <div className='row'>
-          <div className='col-12'>
-            {/* <SliderReviews reviewList={stylist.reviews} /> */}
-          </div>
-        </div>
-      </div>
+      <SliderReviews reviewList={stylist.reviews} />
     </>
   );
 };
