@@ -3,5 +3,5 @@ export interface Slide {
   title: string;
   url: string;
   img: string;
-  text: string;
+  text?: string;
 }

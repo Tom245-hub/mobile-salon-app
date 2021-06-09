@@ -13,6 +13,8 @@ import HomePage from "./home/pages/HomePage";
 import RecrutationPage from "./user/pages/RecrutationPage";
 
 import "./index.scss";
+import StylistsListPage from "./stylists/pages/StylistsListPage";
+import StylistPage from "./stylists/pages/StylistPage";
 
 const store = configureStore();
 
@@ -27,6 +29,12 @@ const App = () => {
             <Switch>
               <Route path='/' exact>
                 <HomePage />
+              </Route>
+              <Route path='/stylistki' exact>
+                <StylistsListPage />
+              </Route>
+              <Route path='/stylistki/:id' exact>
+                <StylistPage />
               </Route>
               <Route path='/strefa-stylistki/rekrutacja' exact>
                 <RecrutationPage />
