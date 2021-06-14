@@ -42,6 +42,7 @@ const LoginForm: React.FC = () => {
     };
 
     dispatch(postUser(loginObject));
+    dispatch(closeLoginForm());
   };
   const initialValues = {
     email: "",

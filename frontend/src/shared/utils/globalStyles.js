@@ -21,6 +21,11 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
   }
 
+  main {
+    display: flex;
+    flex-grow: 1;
+  }
+
   section {
     flex-grow: 1;
   }

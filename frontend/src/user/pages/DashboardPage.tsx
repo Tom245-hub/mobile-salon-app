@@ -1,5 +1,9 @@
 const DashboardPage: React.FC = () => {
-  return <h1>DashboardPage</h1>;
+  return (
+    <div>
+      <h1>DashboardPage</h1>
+    </div>
+  );
 };
 
 export default DashboardPage;

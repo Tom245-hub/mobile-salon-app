@@ -24,6 +24,7 @@ import DashboardPage from "./user/pages/DashboardPage";
 import { RootState } from "./shared/data/reducers/rootReducers";
 
 import "./index.scss";
+import Aside from "./shared/components/Navigation/Aside";
 
 const store = configureStore();
 
@@ -43,43 +44,55 @@ const App: React.FC = () => {
     dispatch(getSlideList());
   }, [getSlideList]);
 
-  let routes;
+  let content;
 
-  if (!user.isLogged) {
-    routes = (
-      <Switch>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='/stylistki' exact>
-          <StylistsListPage />
-        </Route>
-        <Route path='/stylistki/:id' exact>
-          <StylistPage />
-        </Route>
-        <Route path='/strefa-stylistki/rekrutacja' exact>
-          <RecrutationPage />
-        </Route>
-        <Redirect to='/' />
-      </Switch>
-    );
-  } else if (user.isLogged && user.user.user.accessLevel === 1) {
-    routes = (
-      <Switch>
-        <Route path='/panel/' exact>
-          <DashboardPage />
-        </Route>
-        <Redirect to='/panel' />
-      </Switch>
+  if (user.isLogged && user.user.user.accessLevel === 1) {
+    content = (
+      <main>
+        <Aside />
+        <section>
+          <Switch>
+            <Route path='/panel/' exact>
+              <DashboardPage />
+            </Route>
+            <Redirect to='/panel' />
+          </Switch>
+        </section>
+      </main>
     );
   } else if (user.isLogged && user.user.user.accessLevel === 2) {
-    routes = (
-      <Switch>
-        <Route path='/panel/' exact>
-          <DashboardPage />
-        </Route>
-        <Redirect to='/panel' />
-      </Switch>
+    content = (
+      <main>
+        <Aside />
+        <section>
+          <Switch>
+            <Route path='/panel/' exact>
+              <DashboardPage />
+            </Route>
+            <Redirect to='/panel' />
+          </Switch>
+        </section>
+      </main>
+    );
+  } else {
+    content = (
+      <section>
+        <Switch>
+          <Route path='/' exact>
+            <HomePage />
+          </Route>
+          <Route path='/stylistki' exact>
+            <StylistsListPage />
+          </Route>
+          <Route path='/stylistki/:id' exact>
+            <StylistPage />
+          </Route>
+          <Route path='/strefa-stylistki/rekrutacja' exact>
+            <RecrutationPage />
+          </Route>
+          <Redirect to='/' />
+        </Switch>
+      </section>
     );
   }
 
@@ -88,7 +101,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <HashRouter>
         <Header />
-        <section>{routes}</section>
+        {content}
         <Footer />
       </HashRouter>
     </ThemeProvider>
