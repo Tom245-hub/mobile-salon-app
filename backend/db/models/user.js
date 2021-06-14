@@ -10,6 +10,16 @@ const UserSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Stylist",
   },
+  // portfolio: {
+  //   required: false,
+  //   type: [mongoose.Schema.Types.ObjectId],
+  //   ref: "Picture",
+  // },
+  // reviews: {
+  //   required: false,
+  //   type: [mongoose.Schema.Types.ObjectId],
+  //   ref: "Review",
+  // },
   clientData: {
     required: true,
     type: [mongoose.Schema.Types.ObjectId],

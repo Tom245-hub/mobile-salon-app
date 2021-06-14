@@ -3,6 +3,7 @@ import {
   USER_POST_REQUEST,
   USER_POST_SUCCESS,
   USER_POST_FAILURE,
+  USER_LOGOUT,
 } from "../constans/userConstans";
 
 export const postUser = (loginObject) => async (dispatch) => {
@@ -16,7 +17,7 @@ export const postUser = (loginObject) => async (dispatch) => {
     if (status === 200) {
       dispatch({
         type: USER_POST_SUCCESS,
-        payload: data, ///////// do poprawienia - bez ustawiania hasła
+        payload: data,
       });
     } else if (status === 404) {
       dispatch({
@@ -28,4 +29,10 @@ export const postUser = (loginObject) => async (dispatch) => {
       type: USER_POST_FAILURE,
     });
   }
+};
+
+export const logoutUser = (loginObject) => async (dispatch) => {
+  dispatch({
+    type: USER_LOGOUT,
+  });
 };

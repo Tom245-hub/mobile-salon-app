@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { RootState } from "../../data/reducers/rootReducers";
 import { openLoginForm } from "../../data/actions/loginFormActions";
+import { logoutUser } from "../../data/actions/userActions";
 
 import Button from "../FormElements/Button";
 import LoginForm from "../../../user/components/LoginForm";
@@ -15,20 +16,46 @@ const UserBox: React.FC = () => {
   const isOpenLoginForm = useSelector(
     (state: RootState) => state.loginForm.isOpenLoginForm
   );
+  const user = useSelector((state: RootState) => state.user);
 
-  return (
-    <>
-      {isOpenLoginForm && <LoginForm />}
+  if (user.isLogged && user.user.user.accessLevel === 1) {
+    return (
       <StyledContainer>
-        <StyledLink onClick={() => dispatch(openLoginForm())}>
+        <StyledLink onClick={() => dispatch(logoutUser())}>
           <FontAwesomeIcon icon={faUser} />
-          ZALOGUJ
+          WYLOGUJ
         </StyledLink>
-
-        <Button link='/strefa-klientki/zamowienie'>ZAREZERWUJ</Button>
       </StyledContainer>
-    </>
-  );
+    );
+  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+    return (
+      <>
+        {isOpenLoginForm && <LoginForm />}
+        <StyledContainer>
+          <StyledLink onClick={() => dispatch(logoutUser())}>
+            <FontAwesomeIcon icon={faUser} />
+            WYLOGUJ
+          </StyledLink>
+
+          <Button link='/strefa-klientki/zamowienie'>ZAREZERWUJ</Button>
+        </StyledContainer>
+      </>
+    );
+  } else {
+    return (
+      <>
+        {isOpenLoginForm && <LoginForm />}
+        <StyledContainer>
+          <StyledLink onClick={() => dispatch(openLoginForm())}>
+            <FontAwesomeIcon icon={faUser} />
+            ZALOGUJ
+          </StyledLink>
+
+          <Button link='/strefa-klientki/zamowienie'>ZAREZERWUJ</Button>
+        </StyledContainer>
+      </>
+    );
+  }
 };
 
 export default UserBox;

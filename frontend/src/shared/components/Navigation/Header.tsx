@@ -21,9 +21,6 @@ const Header: React.FC = () => {
 
   const user = useSelector((state: RootState) => state.user);
 
-  const isUserLogged = false; ////// do poprawy
-  // console.log(isUserLogged);
-
   const [activeSubmenu, setActiveSubmenu] = useState<number>(0);
 
   const handleMouseEnter = (id: number) => {
@@ -34,36 +31,58 @@ const Header: React.FC = () => {
     setActiveSubmenu(id);
   };
 
-  return (
-    <>
-      {isOpenDrawerMenu && (
-        <>
-          <Backdrop onClick={() => dispatch(closeDrawerMenu())} />
-          <DrawerMenu />
-        </>
-      )}
-
+  if (user.isLogged && user.user.user.accessLevel === 1) {
+    return (
       <StyledContainerHeader>
         <StyledLogoLink href='/'>
           <img src='/img/logotyp_symbol_white.png' />
         </StyledLogoLink>
-        <TopMenu
-          activeSubmenu={activeSubmenu}
-          setActiveSubmenu={setActiveSubmenu}
-          handleMouseEnter={handleMouseEnter}
-          handleMouseLeave={handleMouseLeave}
-        />
-
-        <StyledLink onClick={() => dispatch(openDrawerMenu())}>
-          <FontAwesomeIcon icon={faBars} />
-        </StyledLink>
-
-        <CityBox />
 
         <UserBox />
       </StyledContainerHeader>
-    </>
-  );
+    );
+  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+    return (
+      <StyledContainerHeader>
+        <StyledLogoLink href='/'>
+          <img src='/img/logotyp_symbol_white.png' />
+        </StyledLogoLink>
+
+        <UserBox />
+      </StyledContainerHeader>
+    );
+  } else {
+    return (
+      <>
+        {isOpenDrawerMenu && (
+          <>
+            <Backdrop onClick={() => dispatch(closeDrawerMenu())} />
+            <DrawerMenu />
+          </>
+        )}
+
+        <StyledContainerHeader>
+          <StyledLogoLink href='/'>
+            <img src='/img/logotyp_symbol_white.png' />
+          </StyledLogoLink>
+          <TopMenu
+            activeSubmenu={activeSubmenu}
+            setActiveSubmenu={setActiveSubmenu}
+            handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
+          />
+
+          <StyledLink onClick={() => dispatch(openDrawerMenu())}>
+            <FontAwesomeIcon icon={faBars} />
+          </StyledLink>
+
+          <CityBox />
+
+          <UserBox />
+        </StyledContainerHeader>
+      </>
+    );
+  }
 };
 
 export default Header;

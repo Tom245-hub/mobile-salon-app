@@ -2,12 +2,14 @@ import {
   USER_POST_REQUEST,
   USER_POST_SUCCESS,
   USER_POST_FAILURE,
+  USER_LOGOUT,
 } from "../constans/userConstans";
 import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
   user: {},
+  isLogged: false,
 };
 
 const user = (state = initialState, action) => {
@@ -23,6 +25,7 @@ const user = (state = initialState, action) => {
           [action.type]: LOADING_STATES.LOADING,
         },
         user: {},
+        isLogged: false,
       };
 
     case USER_POST_SUCCESS:
@@ -34,6 +37,7 @@ const user = (state = initialState, action) => {
           [action.type]: LOADING_STATES.LOADED,
         },
         user: action.payload,
+        isLogged: true,
       };
 
     case USER_POST_FAILURE:
@@ -45,6 +49,16 @@ const user = (state = initialState, action) => {
           [action.type]: LOADING_STATES.FAILED,
         },
         user: {},
+        isLogged: false,
+      };
+
+    case USER_LOGOUT:
+      delete newLoading.USER_POST_REQUEST;
+      return {
+        ...state,
+        loading: {},
+        user: {},
+        isLogged: false,
       };
 
     default:

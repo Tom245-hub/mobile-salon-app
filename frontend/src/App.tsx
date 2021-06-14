@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import configureStore from "./shared/data/store";
 
 import { ThemeProvider } from "styled-components";
@@ -15,9 +15,13 @@ import Header from "./shared/components/Navigation/Header";
 import Footer from "./shared/components/Navigation/Footer";
 
 import HomePage from "./home/pages/HomePage";
-import RecrutationPage from "./user/pages/RecrutationPage";
 import StylistsListPage from "./stylists/pages/StylistsListPage";
 import StylistPage from "./stylists/pages/StylistPage";
+
+import RecrutationPage from "./user/pages/RecrutationPage";
+import DashboardPage from "./user/pages/DashboardPage";
+
+import { RootState } from "./shared/data/reducers/rootReducers";
 
 import "./index.scss";
 
@@ -25,6 +29,8 @@ const store = configureStore();
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+
   useEffect(() => {
     dispatch(getCategoryList());
   }, [getCategoryList]);
@@ -37,27 +43,52 @@ const App: React.FC = () => {
     dispatch(getSlideList());
   }, [getSlideList]);
 
+  let routes;
+
+  if (!user.isLogged) {
+    routes = (
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+        <Route path='/stylistki' exact>
+          <StylistsListPage />
+        </Route>
+        <Route path='/stylistki/:id' exact>
+          <StylistPage />
+        </Route>
+        <Route path='/strefa-stylistki/rekrutacja' exact>
+          <RecrutationPage />
+        </Route>
+        <Redirect to='/' />
+      </Switch>
+    );
+  } else if (user.isLogged && user.user.user.accessLevel === 1) {
+    routes = (
+      <Switch>
+        <Route path='/panel/' exact>
+          <DashboardPage />
+        </Route>
+        <Redirect to='/panel' />
+      </Switch>
+    );
+  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+    routes = (
+      <Switch>
+        <Route path='/panel/' exact>
+          <DashboardPage />
+        </Route>
+        <Redirect to='/panel' />
+      </Switch>
+    );
+  }
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <HashRouter>
         <Header />
-        <section>
-          <Switch>
-            <Route path='/' exact>
-              <HomePage />
-            </Route>
-            <Route path='/stylistki' exact>
-              <StylistsListPage />
-            </Route>
-            <Route path='/stylistki/:id' exact>
-              <StylistPage />
-            </Route>
-            <Route path='/strefa-stylistki/rekrutacja' exact>
-              <RecrutationPage />
-            </Route>
-          </Switch>
-        </section>
+        <section>{routes}</section>
         <Footer />
       </HashRouter>
     </ThemeProvider>

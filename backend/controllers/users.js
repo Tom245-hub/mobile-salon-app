@@ -23,7 +23,10 @@ exports.postUser = async (req, res) => {
     }
 
     if (user.accessLevel === 1) {
-      const user = await User.findOne({ login: login }).populate("stylistData");
+      const user = await User.findOne({ login: login })
+        .populate("stylistData")
+        .populate("portfolio")
+        .populate("reviews");
       res.status(200).json({
         user,
       });
