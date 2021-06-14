@@ -6,7 +6,9 @@ router.get("/", stylists.getStylists);
 router.get("/:id", stylists.getStylist);
 router.post("/", stylists.postStylist);
 router.put("/:id", stylists.putStylist);
+router.patch("/:id", stylists.patchStylist);
+router.delete("/:id", stylists.deleteStylist);
 
-router.use((request, response) => response.status(404).end());
+router.use((response) => response.status(404).end());
 
 module.exports = router;

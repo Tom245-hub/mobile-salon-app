@@ -23,6 +23,7 @@ import {
   StyledBox,
   StyledCommentText,
 } from "./JobForm.css";
+import { Stylist } from "../../shared/models/stylistModel";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -55,6 +56,7 @@ const JobForm: React.FC = () => {
     phone: "",
     birthYear: "",
     zipcode: "",
+
     hairStylExp: 0,
     makeupStylExp: 0,
     city: "",
@@ -68,6 +70,7 @@ const JobForm: React.FC = () => {
       phone: values.phone,
       birthYear: values.birthYear,
       zipcode: values.zipcode,
+
       hairStylExp: values.hairStylExp,
       makeupStylExp: values.makeupStylExp,
       city: values.city,

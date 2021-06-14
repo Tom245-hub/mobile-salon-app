@@ -3,16 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 require("./db/mongoose");
-// const stylistsTest = require("./routes/stylistsTest");
-// const picturesTest = require("./routes/picturesTest");
-// const clientsTest = require("./routes/clientsTest");
-// const sliderTest = require("./routes/sliderTest");
-// const citiesTest = require("./routes/citiesTest");
-// const categoriesTest = require("./routes/categoriesTest");
-// const servicesTest = require("./routes/servicesTest");
-// const reviewsTest = require("./routes/reviewsTest");
-// const usersTest = require("./routes/usersTest");
-
 const stylistsRoutes = require("./routes/stylists");
 const citiesRoutes = require("./routes/cities");
 const clientsRoutes = require("./routes/clients");
@@ -28,16 +18,6 @@ const server = express();
 
 server.use(bodyParser.json());
 server.use(cors());
-
-// server.use("/stylistsTest", stylistsTest);
-// server.use("/picturesTest", picturesTest);
-// server.use("/clientsTest", clientsTest);
-// server.use("/sliderTest", sliderTest);
-// server.use("/citiesTest", citiesTest);
-// server.use("/categoriesTest", categoriesTest);
-// server.use("/servicesTest", servicesTest);
-// server.use("/reviewsTest", reviewsTest);
-// server.use("/usersTest", usersTest);
 
 server.use("/stylists", stylistsRoutes);
 server.use("/cities", citiesRoutes);

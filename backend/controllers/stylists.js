@@ -15,7 +15,9 @@ exports.getStylists = async (req, res) => {
 exports.getStylist = async (req, res) => {
   try {
     const id = req.params.id;
-    const stylist = await Stylist.findOne({ _id: id });
+    const stylist = await Stylist.findOne({ _id: id })
+      .populate("portfolio")
+      .populate("reviews");
     res.status(200).json(stylist);
   } catch (error) {
     res.status(500).json({
@@ -88,7 +90,7 @@ exports.postStylist = async (req, res) => {
       stylist,
     });
   } catch (err) {
-    return res.status(422).json({ message: err.message });
+    res.status(422).json({ message: err.message });
   }
 };
 
@@ -135,4 +137,69 @@ exports.putStylist = async (req, res) => {
       message: "Błąd w metodzie PUT w endpointcie stylist",
     });
   }
+};
+
+exports.patchStylist = async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    birthYear,
+    zipcode,
+    title,
+    img,
+    text,
+    hairStylExp,
+    makeupStylExp,
+    city,
+  } = req.body;
+  const id = req.params.id;
+  console.log(req.body);
+
+  let stylist;
+  try {
+    stylist = await Stylist.findOne({ _id: id });
+  } catch (err) {
+    console.log(err);
+  }
+
+  firstName && (stylist.personalData.firstName = firstName);
+  lastName && (stylist.personalData.lastName = lastName);
+  email && (stylist.personalData.email = email);
+  phone && (stylist.personalData.phone = phone);
+  birthYear && (stylist.personalData.birthYear = birthYear);
+  zipcode && (stylist.personalData.zipcode = zipcode);
+
+  title && (stylist.profileData.title = title);
+  img && (stylist.profileData.img = img);
+  text && (stylist.profileData.text = text);
+  hairStylExp && (stylist.profileData.hairStylExp = hairStylExp);
+  makeupStylExp && (stylist.profileData.makeupStylExp = makeupStylExp);
+  city && (stylist.profileData.city = city);
+
+  try {
+    await stylist.save();
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.status(200).json({
+    message: "Informacje zostały poprawnie wysłane",
+    stylist,
+  });
+};
+
+exports.deleteStylist = async (req, res) => {
+  const id = req.params.id;
+
+  let stylist;
+  try {
+    stylist = await Stylist.findOne({ _id: id });
+    await stylist.delete();
+  } catch (err) {
+    console.log(err);
+  }
+
+  res.status(200).json({ message: "Konto stylistki zostało usunięte" });
 };
