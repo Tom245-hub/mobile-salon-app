@@ -5,6 +5,16 @@ const UserSchema = new mongoose.Schema({
   login: { type: String },
   password: { type: String },
   user_id: { type: String },
+  stylistData: {
+    required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Stylist",
+  },
+  clientData: {
+    required: true,
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Client",
+  },
 });
 
 const User = mongoose.model("User", UserSchema, "users");

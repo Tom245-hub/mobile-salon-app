@@ -22,9 +22,17 @@ exports.postUser = async (req, res) => {
       return;
     }
 
-    res.status(200).json({
-      user,
-    });
+    if (user.accessLevel === 1) {
+      const user = await User.findOne({ login: login }).populate("stylistData");
+      res.status(200).json({
+        user,
+      });
+    } else if (user.accessLevel === 2) {
+      const user = await User.findOne({ login: login }).populate("clientData");
+      res.status(200).json({
+        user,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       error,
