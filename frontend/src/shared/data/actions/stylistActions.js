@@ -6,6 +6,9 @@ import {
   STYLIST_POST_REQUEST,
   STYLIST_POST_SUCCESS,
   STYLIST_POST_FAILURE,
+  STYLIST_PATCH_REQUEST,
+  STYLIST_PATCH_SUCCESS,
+  STYLIST_PATCH_FAILURE,
 } from "../constans/stylistConstans";
 
 export const getStylistList = () => async (dispatch) => {
@@ -62,6 +65,31 @@ export const postStylist = (stylistObject) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: STYLIST_POST_FAILURE,
+      payload: {
+        message: error.response.data,
+      },
+    });
+  }
+};
+
+export const editStylist = (stylistObject) => async (dispatch) => {
+  dispatch({
+    type: STYLIST_PATCH_REQUEST,
+  });
+
+  try {
+    const { data } = await request.patch("/stylists", stylistObject);
+    // console.log(data);
+    dispatch({
+      type: STYLIST_PATCH_SUCCESS,
+      payload: {
+        stylist: data.stylist,
+        message: data.message,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: STYLIST_PATCH_FAILURE,
       payload: {
         message: error.response.data,
       },

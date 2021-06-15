@@ -23,7 +23,6 @@ import {
   StyledBox,
   StyledCommentText,
 } from "./JobForm.css";
-import { Stylist } from "../../shared/models/stylistModel";
 
 const validationSchema = () =>
   Yup.object().shape({

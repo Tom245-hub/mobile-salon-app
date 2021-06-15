@@ -12,36 +12,37 @@ import {
   StyledLine,
 } from "./Aside.css";
 import { RootState } from "../../data/reducers/rootReducers";
+import PersonalDataPage from "../../../user/pages/PersonalDataPage";
 
 const Aside: React.FC = () => {
   const [isOpenOrders, setIsOpenOrders] = useState<boolean>(false);
   const user = useSelector((state: RootState) => state.user);
-
-  console.log(user.user.user);
+  const stylist = useSelector((state: RootState) => state.stylist);
+  // console.log(stylist.stylist.personalData.firstName);
 
   let content;
-
   if (user.isLogged && user.user.user.accessLevel === 1) {
     content = (
       <>
         <StyledImage src={user.user.user.stylistData.profileData.img} />
         <StyledTitle>
-          {user.user.user.stylistData.personalData.firstName}{" "}
-          {user.user.user.stylistData.personalData.lastName}
+          {stylist.stylist.personalData.firstName} {stylist.stylist.personalData.lastName}
         </StyledTitle>
-        <StyledText>{user.user.user.stylistData.personalData.email}</StyledText>
+        <StyledText>{stylist.stylist.personalData.email}</StyledText>
       </>
     );
   } else if (user.isLogged && user.user.user.accessLevel === 2) {
     content = (
       <>
         <StyledTitle>
-          {user.user.user.clientData.firstName} {user.user.user.clientData.secondName}
+          {user.user.user.clientData.firstName} {user.user.user.clientData.lastName}
         </StyledTitle>
         <StyledText>{user.user.user.clientData.email}</StyledText>
       </>
     );
   }
+
+  ///////////////////////////
 
   return (
     <StyledContainer>
@@ -49,14 +50,14 @@ const Aside: React.FC = () => {
       <StyledLine />
       <ul>
         <li>
-          <StyledNavLink to='/dashboard'>Dashboard</StyledNavLink>
+          <StyledNavLink to='/panel/'>Dashboard</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to='/dane'>Twoje dane</StyledNavLink>
+          <StyledNavLink to='/panel/dane'>Twoje dane</StyledNavLink>
         </li>
         <li>
           <StyledNavLink
-            to='/zamowienia'
+            to='/panel/zamowienia'
             onClick={() => setIsOpenOrders((prev) => !prev)}
             isOpen={isOpenOrders}
           >

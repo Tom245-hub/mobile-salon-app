@@ -20,6 +20,7 @@ import StylistPage from "./stylists/pages/StylistPage";
 
 import RecrutationPage from "./user/pages/RecrutationPage";
 import DashboardPage from "./user/pages/DashboardPage";
+import PersonalDataPage from "./user/pages/PersonalDataPage";
 
 import { RootState } from "./shared/data/reducers/rootReducers";
 
@@ -52,8 +53,11 @@ const App: React.FC = () => {
         <Aside />
         <section>
           <Switch>
-            <Route path='/panel/' exact>
+            <Route path='/panel' exact>
               <DashboardPage />
+            </Route>
+            <Route path='/panel/dane' exact>
+              <PersonalDataPage />
             </Route>
             <Redirect to='/panel' />
           </Switch>
@@ -66,8 +70,11 @@ const App: React.FC = () => {
         <Aside />
         <section>
           <Switch>
-            <Route path='/panel/' exact>
+            <Route path='/panel' exact>
               <DashboardPage />
+            </Route>
+            <Route path='/panel/dane' exact>
+              <PersonalDataPage />
             </Route>
             <Redirect to='/panel' />
           </Switch>

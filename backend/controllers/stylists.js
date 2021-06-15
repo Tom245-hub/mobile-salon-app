@@ -140,7 +140,9 @@ exports.putStylist = async (req, res) => {
 };
 
 exports.patchStylist = async (req, res) => {
+  console.log(5);
   const {
+    id,
     firstName,
     lastName,
     email,
@@ -154,14 +156,17 @@ exports.patchStylist = async (req, res) => {
     makeupStylExp,
     city,
   } = req.body;
-  const id = req.params.id;
+  // const id = req.params.id;
   console.log(req.body);
 
   let stylist;
   try {
     stylist = await Stylist.findOne({ _id: id });
   } catch (err) {
-    console.log(err);
+    res.status(404).json({
+      error,
+      message: "Nie znaleziono stylistki o tym ID",
+    });
   }
 
   firstName && (stylist.personalData.firstName = firstName);
@@ -181,7 +186,10 @@ exports.patchStylist = async (req, res) => {
   try {
     await stylist.save();
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      error,
+      message: "Błąd w metodzie PATCH w endpointcie stylists",
+    });
   }
 
   res.status(200).json({
