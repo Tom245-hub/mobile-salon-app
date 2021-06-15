@@ -13,22 +13,8 @@ import {
 } from "./Footer.css";
 
 const Footer: React.FC = () => {
-  const user = useSelector((state: RootState) => state.user);
-  let content;
-  if (user.isLogged && user.user.user.accessLevel === 1) {
-    content = (
-      <StyledText>
-        Wystąpił błąd techniczny? Zgłoś go: kontakt@webite.pl / 513-369-123
-      </StyledText>
-    );
-  } else if (user.isLogged && user.user.user.accessLevel === 2) {
-    content = (
-      <StyledText>
-        Wystąpił błąd techniczny? Zgłoś go: kontakt@webite.pl / 513-369-123
-      </StyledText>
-    );
-  } else {
-    content = (
+  return (
+    <StyledContainerFull>
       <StyledContainer>
         <ul>
           <StyledColTitle>STREFA STYLISTKI</StyledColTitle>
@@ -76,11 +62,6 @@ const Footer: React.FC = () => {
           <FormsGroup placeholder='Twój email' btnText='Zapisz się' />
         </div>
       </StyledContainer>
-    );
-  }
-  return (
-    <StyledContainerFull>
-      {content}
       <StyledText>
         Realizacja: <Link to='https://www.webite.pl/'>WEBite.pl</Link>
       </StyledText>

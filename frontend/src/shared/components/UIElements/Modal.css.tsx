@@ -20,7 +20,7 @@ export const StyledContainer = styled.div<StyledStyledContainerProps>`
 export const StyledHeader = styled.header`
   width: 100%;
   padding: 1rem;
-  background: ${({ theme }) => theme.colors.primary.dark};
+  background-color: ${({ theme }) => theme.colors.primary.dark};
   display: flex;
   justify-content: space-between;
   align-items: center;

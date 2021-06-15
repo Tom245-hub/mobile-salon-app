@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { RootState } from "../../data/reducers/rootReducers";
 import { openLoginForm } from "../../data/actions/loginFormActions";
 import { logoutUser } from "../../data/actions/userActions";
@@ -21,6 +21,10 @@ const UserBox: React.FC = () => {
   if (user.isLogged && user.user.user.accessLevel === 1) {
     return (
       <StyledContainer>
+        <StyledLink onClick={() => console.log("pomoc open")}>
+          <FontAwesomeIcon icon={faQuestionCircle} />
+          POMOC
+        </StyledLink>
         <StyledLink onClick={() => dispatch(logoutUser())}>
           <FontAwesomeIcon icon={faUser} />
           WYLOGUJ
@@ -32,6 +36,10 @@ const UserBox: React.FC = () => {
       <>
         {isOpenLoginForm && <LoginForm />}
         <StyledContainer>
+          <StyledLink onClick={() => console.log("pomoc open")}>
+            <FontAwesomeIcon icon={faQuestionCircle} />
+            POMOC
+          </StyledLink>
           <StyledLink onClick={() => dispatch(logoutUser())}>
             <FontAwesomeIcon icon={faUser} />
             WYLOGUJ

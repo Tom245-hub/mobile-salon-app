@@ -17,8 +17,8 @@ export default {
       dark: "#404040",
     },
 
-    success: "#9fdbad",
-    info: "#f4ebf2",
+    success: "#9FdbAD",
+    info: "#E6D54B",
     warning: "#FBC71F",
     danger: "#DB1D49",
     dark: "#4C395C",

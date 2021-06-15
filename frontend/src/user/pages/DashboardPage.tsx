@@ -1,8 +1,18 @@
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import BoxList from "../components/BoxList";
+import InfoTable from "../components/InfoTable";
+import { StyledContainer } from "./DashboardPage.css";
+
 const DashboardPage: React.FC = () => {
   return (
-    <div>
-      <h1>DashboardPage</h1>
-    </div>
+    <StyledContainer>
+      <BoxList />
+
+      <InfoTable />
+    </StyledContainer>
   );
 };
 

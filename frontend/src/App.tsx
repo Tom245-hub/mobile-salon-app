@@ -76,23 +76,26 @@ const App: React.FC = () => {
     );
   } else {
     content = (
-      <section>
-        <Switch>
-          <Route path='/' exact>
-            <HomePage />
-          </Route>
-          <Route path='/stylistki' exact>
-            <StylistsListPage />
-          </Route>
-          <Route path='/stylistki/:id' exact>
-            <StylistPage />
-          </Route>
-          <Route path='/strefa-stylistki/rekrutacja' exact>
-            <RecrutationPage />
-          </Route>
-          <Redirect to='/' />
-        </Switch>
-      </section>
+      <>
+        <section>
+          <Switch>
+            <Route path='/' exact>
+              <HomePage />
+            </Route>
+            <Route path='/stylistki' exact>
+              <StylistsListPage />
+            </Route>
+            <Route path='/stylistki/:id' exact>
+              <StylistPage />
+            </Route>
+            <Route path='/strefa-stylistki/rekrutacja' exact>
+              <RecrutationPage />
+            </Route>
+            <Redirect to='/' />
+          </Switch>
+        </section>
+        <Footer />
+      </>
     );
   }
 
@@ -102,7 +105,6 @@ const App: React.FC = () => {
       <HashRouter>
         <Header />
         {content}
-        <Footer />
       </HashRouter>
     </ThemeProvider>
   );

@@ -11,6 +11,7 @@ export const StyledContainerHeader = styled.header`
   justify-content: space-between;
   position: relative;
   z-index: 15;
+  box-shadow: 0 0 5px ${({ theme }) => theme.colors.gray.dark};
 `;
 
 export const StyledLogoLink = styled.a`

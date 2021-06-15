@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
   section {
     flex-grow: 1;
+    padding: 2rem;
   }
 
   a {
