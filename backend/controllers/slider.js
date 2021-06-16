@@ -4,10 +4,10 @@ exports.getSlider = async (req, res) => {
   try {
     const slider = await Slide.find({});
     res.status(200).json(slider);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
-      message: "Błąd w metodzie GET w endpointcie /slider",
+      err,
+      message: "Błąd serwera - 500.",
     });
   }
 };

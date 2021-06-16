@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getStylistList } from "../../shared/data/actions/stylistActions";
+import { getStylist, getStylistList } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import SliderPortfolio from "../components/SliderPortfolio";
@@ -13,25 +13,21 @@ import Consultation from "../components/Consultation";
 
 const StylistPage: React.FC = () => {
   let { id } = useParams<{ id: string }>();
-  const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
-  const stylist = stylistList.filter((stylist: Stylist) => stylist._id == id)[0];
+  const dispatch = useDispatch();
 
-  if (stylistList.length === 0 || !stylist) {
-    return (
-      <div>
-        <h2>Nie znaleźliśmy stylistki. Wróć do strony głównej</h2>
-        <button>Strona Główna</button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    dispatch(getStylist(id));
+  }, [getStylist]);
+
+  const stylist = useSelector((state: RootState) => state.stylist);
 
   return (
     <>
-      <IntroProfile stylist={stylist} />
+      {stylist && <IntroProfile stylist={stylist.stylist} />}
 
-      <SliderPortfolio portfolioList={stylist.portfolio} />
+      <SliderPortfolio portfolioList={stylist.stylist.portfolio} />
 
-      {stylist.reviews.length > 0 && <SliderReviews reviewList={stylist.reviews} />}
+      <SliderReviews reviewList={stylist.stylist.reviews} />
 
       <Consultation />
     </>

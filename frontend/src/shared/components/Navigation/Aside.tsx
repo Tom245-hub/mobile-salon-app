@@ -18,7 +18,7 @@ const Aside: React.FC = () => {
   const [isOpenOrders, setIsOpenOrders] = useState<boolean>(false);
   const user = useSelector((state: RootState) => state.user);
   const stylist = useSelector((state: RootState) => state.stylist);
-  // console.log(stylist.stylist.personalData.firstName);
+  // console.log(stylist);
 
   let content;
   if (user.isLogged && user.user.user.accessLevel === 1) {
@@ -26,9 +26,9 @@ const Aside: React.FC = () => {
       <>
         <StyledImage src={user.user.user.stylistData.profileData.img} />
         <StyledTitle>
-          {stylist.stylist.personalData.firstName} {stylist.stylist.personalData.lastName}
+          {/* {stylist.stylist.personalData.firstName} {stylist.stylist.personalData.lastName} */}
         </StyledTitle>
-        <StyledText>{stylist.stylist.personalData.email}</StyledText>
+        {/* <StyledText>{stylist.stylist.personalData.email}</StyledText> */}
       </>
     );
   } else if (user.isLogged && user.user.user.accessLevel === 2) {

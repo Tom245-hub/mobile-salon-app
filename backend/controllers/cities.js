@@ -4,10 +4,10 @@ exports.getCities = async (req, res) => {
   try {
     const cities = await City.find({});
     res.status(200).json(cities);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
-      message: "Błąd w metodzie GET w endpointcie /cities",
+      err,
+      message: "Błąd serwera - 500.",
     });
   }
 };

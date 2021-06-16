@@ -17,10 +17,10 @@ exports.getPicture = async (req, res) => {
     const id = req.params.id;
     const picture = await Picture.findOne({ _id: id });
     res.status(200).json(picture);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
-      message: "Błąd w metodzie GET w endpointcie picture",
+      err,
+      message: "Błąd serwera - 500.",
     });
   }
 };

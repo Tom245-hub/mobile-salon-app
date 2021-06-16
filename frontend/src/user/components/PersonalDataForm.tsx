@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { editStylist } from "../../shared/data/actions/stylistActions";
+import { postUser } from "../../shared/data/actions/userActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import { values } from "../../shared/models/valuesModel";
@@ -29,8 +31,6 @@ const validationSchema = () =>
       .min(9, "Telefon musi być dłuższy")
       .max(15, "Telefon jest za długi"),
     email: Yup.string().required("Musisz wpisać email").email("Niepoprawny adres email"),
-    birthYear: Yup.string().required("Musisz wpisać rok urodzenia"),
-    zipcode: Yup.string().required("Musisz wpisać kod pocztowy"),
   });
 
 const JobForm: React.FC = () => {
@@ -39,39 +39,26 @@ const JobForm: React.FC = () => {
   const stylist: any = useSelector(
     (state: RootState) => state.stylist.stylist.personalData
   );
-  // const infoServer: any = useSelector((state: RootState) => state.stylist.info);
-  // console.log(infoServer);
 
-  // if (user.isLogged && user.user.user.accessLevel === 1) {
-  //   //
-  // } else if (user.isLogged && user.user.user.accessLevel === 2) {
-  //   //
-  // } else {
-  //   //
-  // }
+  // console.log(user.stylistData.personalData.firstName);
+  console.log(stylist.firstName);
 
-  const initialValues: values = {
-    firstName: stylist.firstName,
-    lastName: stylist.lastName,
-    email: stylist.email,
-    phone: stylist.phone,
-    birthYear: stylist.birthYear,
-    zipcode: stylist.zipcode,
+  const history = useHistory();
 
-    hairStylExp: 0,
-    makeupStylExp: 0,
-    city: "",
+  const initialValues: any = {
+    firstName: user.stylistData.personalData.firstName,
+    lastName: user.stylistData.personalData.lastName,
+    email: user.stylistData.personalData.email,
+    phone: user.stylistData.personalData.phone,
   };
 
-  const submitForm = async (values: values) => {
+  const submitForm = (values: any) => {
     const stylistObject = {
       id: user.stylistData._id,
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
       phone: values.phone,
-      birthYear: values.birthYear,
-      zipcode: values.zipcode,
     };
 
     dispatch(editStylist(stylistObject));
@@ -136,28 +123,6 @@ const JobForm: React.FC = () => {
                 margin='0'
               />
 
-              <Input
-                id='birthYear'
-                type='text'
-                name='birthYear'
-                placeholder='Rok urodzenia'
-                value={values.birthYear}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                margin='0'
-              />
-
-              <Input
-                id='zipcode'
-                placeholder='Kod pocztowy'
-                name='zipcode'
-                type='text'
-                value={values.zipcode}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                margin='0'
-              />
-
               {errors.firstName && touched.firstName && (
                 <InfoValid variant='negative' margin='0'>
                   {errors.firstName}
@@ -183,6 +148,8 @@ const JobForm: React.FC = () => {
               <Button type='button' variant='cancel'>
                 Anuluj
               </Button>
+
+              <h1>{stylist.firstName}</h1>
 
               {/* {infoServer && infoServer.status && (
                 <InfoValid variant='positive'>{infoServer.message}</InfoValid> */}

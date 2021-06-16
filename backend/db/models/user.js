@@ -4,15 +4,14 @@ const UserSchema = new mongoose.Schema({
   accessLevel: { type: Number },
   login: { type: String },
   password: { type: String },
-  user_id: { type: String },
   stylistData: {
-    required: true,
+    required: false,
     type: mongoose.Schema.Types.ObjectId,
     ref: "Stylist",
   },
 
   clientData: {
-    required: true,
+    required: false,
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
   },

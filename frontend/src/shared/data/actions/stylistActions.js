@@ -3,6 +3,9 @@ import {
   STYLIST_LIST_GET_REQUEST,
   STYLIST_LIST_GET_SUCCESS,
   STYLIST_LIST_GET_FAILURE,
+  STYLIST_GET_REQUEST,
+  STYLIST_GET_SUCCESS,
+  STYLIST_GET_FAILURE,
   STYLIST_POST_REQUEST,
   STYLIST_POST_SUCCESS,
   STYLIST_POST_FAILURE,
@@ -29,20 +32,22 @@ export const getStylistList = () => async (dispatch) => {
   }
 };
 
-export const getStylist = () => async (dispatch) => {
+export const getStylist = (id) => async (dispatch) => {
   dispatch({
-    type: STYLIST_LIST_GET_REQUEST,
+    type: STYLIST_GET_REQUEST,
   });
 
   try {
-    const { data } = await request.get("/stylists");
+    const { data } = await request.get("/stylists/" + id);
     dispatch({
-      type: STYLIST_LIST_GET_SUCCESS,
-      payload: data,
+      type: STYLIST_GET_SUCCESS,
+      payload: {
+        stylist: data,
+      },
     });
   } catch (error) {
     dispatch({
-      type: STYLIST_LIST_GET_FAILURE,
+      type: STYLIST_GET_FAILURE,
     });
   }
 };

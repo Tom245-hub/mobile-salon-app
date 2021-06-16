@@ -7,7 +7,7 @@ exports.getStylists = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       error,
-      message: "Błąd w metodzie GET w endpointcie stylists",
+      message: "Błąd serwera - 500.",
     });
   }
 };
@@ -22,7 +22,7 @@ exports.getStylist = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       error,
-      message: "Błąd w metodzie GET w endpointcie stylist",
+      message: "Błąd serwera - 500.",
     });
   }
 };
@@ -42,18 +42,6 @@ exports.postStylist = async (req, res) => {
       makeupStylExp,
       city,
     } = req.body;
-
-    // 1. Jeśli email jest w bazie:
-
-    // if (true) {
-    //   res.status(409).json({
-    //     message: "Stylistka o podanym adres email jest już zarejestrowana",
-    //   });
-
-    //   return;
-    // }
-
-    // 2. Jeśli email nie jest w bazie:
 
     const stylistData = {
       personalData: {
@@ -94,67 +82,21 @@ exports.postStylist = async (req, res) => {
   }
 };
 
-exports.putStylist = async (req, res) => {
-  try {
-    const id = req.params.id;
-
-    const stylist = await Stylist.findOne({ _id: id });
-    const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      birthYear,
-      zipcode,
-      title,
-      img,
-      text,
-      hairStylExp,
-      makeupStylExp,
-      city,
-    } = req.body;
-
-    firstName && (stylist.personalData.firstName = firstName);
-    lastName && (stylist.personalData.lastName = lastName);
-    email && (stylist.personalData.email = email);
-    phone && (stylist.personalData.phone = phone);
-    birthYear && (stylist.personalData.birthYear = birthYear);
-    zipcode && (stylist.personalData.zipcode = zipcode);
-
-    title && (stylist.profileData.title = title);
-    img && (stylist.profileData.img = img);
-    text && (stylist.profileData.text = text);
-    hairStylExp && (stylist.profileData.hairStylExp = hairStylExp);
-    makeupStylExp && (stylist.profileData.makeupStylExp = makeupStylExp);
-    city && (stylist.profileData.city = city);
-
-    await stylist.save();
-
-    res.status(201).json(stylist);
-  } catch (error) {
-    res.status(500).json({
-      error,
-      message: "Błąd w metodzie PUT w endpointcie stylist",
-    });
-  }
-};
-
 exports.patchStylist = async (req, res) => {
-  console.log(5);
   const {
     id,
     firstName,
     lastName,
     email,
     phone,
-    birthYear,
-    zipcode,
-    title,
-    img,
-    text,
-    hairStylExp,
-    makeupStylExp,
-    city,
+    // birthYear,
+    // zipcode,
+    // title,
+    // img,
+    // text,
+    // hairStylExp,
+    // makeupStylExp,
+    // city,
   } = req.body;
   // const id = req.params.id;
   console.log(req.body);
@@ -173,27 +115,28 @@ exports.patchStylist = async (req, res) => {
   lastName && (stylist.personalData.lastName = lastName);
   email && (stylist.personalData.email = email);
   phone && (stylist.personalData.phone = phone);
-  birthYear && (stylist.personalData.birthYear = birthYear);
-  zipcode && (stylist.personalData.zipcode = zipcode);
 
-  title && (stylist.profileData.title = title);
-  img && (stylist.profileData.img = img);
-  text && (stylist.profileData.text = text);
-  hairStylExp && (stylist.profileData.hairStylExp = hairStylExp);
-  makeupStylExp && (stylist.profileData.makeupStylExp = makeupStylExp);
-  city && (stylist.profileData.city = city);
+  // birthYear && (stylist.personalData.birthYear = birthYear);
+  // zipcode && (stylist.personalData.zipcode = zipcode);
+
+  // title && (stylist.profileData.title = title);
+  // img && (stylist.profileData.img = img);
+  // text && (stylist.profileData.text = text);
+  // hairStylExp && (stylist.profileData.hairStylExp = hairStylExp);
+  // makeupStylExp && (stylist.profileData.makeupStylExp = makeupStylExp);
+  // city && (stylist.profileData.city = city);
 
   try {
     await stylist.save();
   } catch (err) {
     res.status(500).json({
-      error,
-      message: "Błąd w metodzie PATCH w endpointcie stylists",
+      err,
+      message: "Błąd serwera. Nie zapisano zmian.",
     });
   }
 
   res.status(200).json({
-    message: "Informacje zostały poprawnie wysłane",
+    message: "Informacje zostały poprawnie wysłane.",
     stylist,
   });
 };
@@ -206,7 +149,10 @@ exports.deleteStylist = async (req, res) => {
     stylist = await Stylist.findOne({ _id: id });
     await stylist.delete();
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      err,
+      message: "Błąd serwera - 500.",
+    });
   }
 
   res.status(200).json({ message: "Konto stylistki zostało usunięte" });

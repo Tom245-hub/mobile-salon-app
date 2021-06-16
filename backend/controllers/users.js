@@ -23,10 +23,7 @@ exports.postUser = async (req, res) => {
     }
 
     if (user.accessLevel === 1) {
-      const user = await User.findOne({ login: login })
-        .populate("stylistData")
-        .populate("portfolio")
-        .populate("reviews");
+      const user = await User.findOne({ login: login }).populate("stylistData");
       res.status(200).json({
         user,
       });
@@ -36,9 +33,9 @@ exports.postUser = async (req, res) => {
         user,
       });
     }
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
+      err,
       message: "Błąd w metodzie POST w endpointcie users",
     });
   }

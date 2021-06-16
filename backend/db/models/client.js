@@ -1,18 +1,27 @@
 const mongoose = require("mongoose");
 
 const ClientSchema = new mongoose.Schema({
-  firstName: { type: String },
-  lastName: { type: String },
-  phone: { type: Number },
-  email: { type: String },
-  adressInvoice: {
-    street: { type: String },
-    buildNumber: { type: String },
-    localNumber: { type: String },
-    zipcode: { type: String },
-    city: { type: String },
-    company: { type: String },
-    NIP: { type: String },
+  personalData: {
+    firstName: { type: String },
+    lastName: { type: String },
+    phone: { type: Number },
+    email: { type: String },
+    address: {
+      city: { type: String },
+      zipcode: { type: String },
+      street: { type: String },
+      numberBuild: { type: String },
+      numberLocal: { type: String },
+    },
+    company: {
+      name: { type: String },
+      NIP: { type: String },
+      city: { type: String },
+      zipcode: { type: String },
+      street: { type: String },
+      numberBuild: { type: String },
+      numberLocal: { type: String },
+    },
   },
 });
 

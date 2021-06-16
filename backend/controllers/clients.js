@@ -4,10 +4,10 @@ exports.getClients = async (req, res) => {
   try {
     const clients = await Client.find({});
     res.status(200).json(clients);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
-      message: "Błąd w metodzie GET w endpointcie /clients",
+      err,
+      message: "Błąd serwera - 500.",
     });
   }
 };
