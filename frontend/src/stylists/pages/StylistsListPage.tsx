@@ -5,7 +5,8 @@ import Consultation from "../components/Consultation";
 import { StyledBox, StyledPageTitle, StyledText } from "./StylistsListPage.css";
 
 const StylistsListPage: React.FC = () => {
-  const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
+  const stylistList = useSelector((state: RootState) => state.stylistList.data);
+  console.log(stylistList);
 
   return (
     <>

@@ -6,9 +6,9 @@ import SliderDefault from "../../shared/components/Slider/SliderDefault";
 import Image from "../../shared/components/UIElements/Image";
 
 interface SliderPortfolioProps {
-  portfolioList: Slide[];
+  portfolio: Slide[];
 }
-const SliderPortfolio: React.FC<SliderPortfolioProps> = ({ portfolioList }) => {
+const SliderPortfolio: React.FC<SliderPortfolioProps> = ({ portfolio }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -21,7 +21,7 @@ const SliderPortfolio: React.FC<SliderPortfolioProps> = ({ portfolioList }) => {
     <StyledContainer>
       <StyledTitle>Portfolio stylistki</StyledTitle>
       <SliderDefault settings={settings}>
-        {portfolioList.map((slide: Slide) => (
+        {portfolio.map((slide: Slide) => (
           <React.Fragment key={slide._id}>
             <Image
               key={slide._id}

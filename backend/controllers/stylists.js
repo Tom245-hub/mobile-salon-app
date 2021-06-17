@@ -2,11 +2,11 @@ const Stylist = require("../db/models/stylist");
 
 exports.getStylists = async (req, res) => {
   try {
-    const stylists = await Stylist.find({}).populate("portfolio").populate("reviews");
+    const stylists = await Stylist.find({});
     res.status(200).json(stylists);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
+      err,
       message: "Błąd serwera - 500.",
     });
   }
@@ -19,15 +19,15 @@ exports.getStylist = async (req, res) => {
       .populate("portfolio")
       .populate("reviews");
     res.status(200).json(stylist);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({
-      error,
+      err,
       message: "Błąd serwera - 500.",
     });
   }
 };
 
-exports.postStylist = async (req, res) => {
+exports.createStylist = async (req, res) => {
   let stylist;
 
   try {
@@ -73,18 +73,14 @@ exports.postStylist = async (req, res) => {
     stylist = new Stylist(stylistData);
 
     await stylist.save();
-    res.status(201).json({
-      message: "Założyliśmy Twoje konto: Login: xx, hasło: yyy",
-      stylist,
-    });
+    res.status(201).json(stylist);
   } catch (err) {
     res.status(422).json({ message: err.message });
   }
 };
 
-exports.patchStylist = async (req, res) => {
+exports.editStylist = async (req, res) => {
   const {
-    id,
     firstName,
     lastName,
     email,
@@ -99,14 +95,14 @@ exports.patchStylist = async (req, res) => {
     // city,
   } = req.body;
   // const id = req.params.id;
-  console.log(req.body);
 
   let stylist;
   try {
+    const id = req.params.id;
     stylist = await Stylist.findOne({ _id: id });
   } catch (err) {
     res.status(404).json({
-      error,
+      err,
       message: "Nie znaleziono stylistki o tym ID",
     });
   }
@@ -135,10 +131,7 @@ exports.patchStylist = async (req, res) => {
     });
   }
 
-  res.status(200).json({
-    message: "Informacje zostały poprawnie wysłane.",
-    stylist,
-  });
+  res.status(200).json(stylist);
 };
 
 exports.deleteStylist = async (req, res) => {

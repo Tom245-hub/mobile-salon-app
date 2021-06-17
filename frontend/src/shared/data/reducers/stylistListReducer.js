@@ -7,7 +7,7 @@ import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
-  stylistList: [],
+  data: [],
 };
 
 function stylistList(state = initialState, action) {
@@ -31,7 +31,7 @@ function stylistList(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
         },
-        stylistList: action.payload,
+        data: action.payload,
       };
 
     case STYLIST_LIST_GET_FAILURE:
@@ -42,7 +42,7 @@ function stylistList(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
         },
-        stylistList: [],
+        data: [],
       };
 
     default:

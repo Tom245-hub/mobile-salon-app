@@ -11,33 +11,36 @@ import {
   StyledText,
   StyledLine,
 } from "./Aside.css";
-import { RootState } from "../../data/reducers/rootReducers";
-import PersonalDataPage from "../../../user/pages/PersonalDataPage";
+import { RootState } from "../../shared/data/reducers/rootReducers";
+import PersonalDataPage from "../pages/PersonalDataPage";
 
 const Aside: React.FC = () => {
   const [isOpenOrders, setIsOpenOrders] = useState<boolean>(false);
-  const user = useSelector((state: RootState) => state.user);
-  const stylist = useSelector((state: RootState) => state.stylist);
+  const user = useSelector((state: RootState) => state.user.data);
+  const stylist = useSelector((state: RootState) => state.stylist.data);
+  const statusStylist = useSelector((state: RootState) => state.stylist.status);
   // console.log(stylist);
+  // console.log(user);
+  // console.log(user);
 
   let content;
-  if (user.isLogged && user.user.user.accessLevel === 1) {
+  if (statusStylist === "loaded" && user.accessLevel === 1) {
     content = (
       <>
-        <StyledImage src={user.user.user.stylistData.profileData.img} />
+        <StyledImage src={stylist.profileData.img} />
         <StyledTitle>
-          {/* {stylist.stylist.personalData.firstName} {stylist.stylist.personalData.lastName} */}
+          {stylist.personalData.firstName} {stylist.personalData.lastName}
         </StyledTitle>
-        {/* <StyledText>{stylist.stylist.personalData.email}</StyledText> */}
+        <StyledText>{stylist.personalData.email}</StyledText>
       </>
     );
-  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+  } else if (user.accessLevel === 2) {
     content = (
       <>
-        <StyledTitle>
-          {user.user.user.clientData.firstName} {user.user.user.clientData.lastName}
+        {/* <StyledTitle>
+          {user.data.user.clientData.firstName} {user.data.user.clientData.lastName}
         </StyledTitle>
-        <StyledText>{user.user.user.clientData.email}</StyledText>
+        <StyledText>{user.data.user.clientData.email}</StyledText> */}
       </>
     );
   }

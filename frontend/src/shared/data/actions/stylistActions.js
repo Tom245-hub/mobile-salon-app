@@ -41,9 +41,7 @@ export const getStylist = (id) => async (dispatch) => {
     const { data } = await request.get("/stylists/" + id);
     dispatch({
       type: STYLIST_GET_SUCCESS,
-      payload: {
-        stylist: data,
-      },
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -62,10 +60,7 @@ export const postStylist = (stylistObject) => async (dispatch) => {
     // console.log(data);
     dispatch({
       type: STYLIST_POST_SUCCESS,
-      payload: {
-        stylist: data.stylist,
-        message: data.message,
-      },
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -77,20 +72,17 @@ export const postStylist = (stylistObject) => async (dispatch) => {
   }
 };
 
-export const editStylist = (stylistObject) => async (dispatch) => {
+export const editStylist = (id, stylistObject) => async (dispatch) => {
   dispatch({
     type: STYLIST_PATCH_REQUEST,
   });
 
   try {
-    const { data } = await request.patch("/stylists", stylistObject);
+    const { data } = await request.patch("/stylists/" + id, stylistObject);
     // console.log(data);
     dispatch({
       type: STYLIST_PATCH_SUCCESS,
-      payload: {
-        stylist: data.stylist,
-        message: data.message,
-      },
+      payload: data,
     });
   } catch (error) {
     dispatch({

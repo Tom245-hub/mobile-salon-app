@@ -13,8 +13,8 @@ import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
   loading: {},
-  stylist: {},
-  info: {},
+  data: {},
+  status: "loading",
 };
 
 function stylist(state = initialState, action) {
@@ -26,8 +26,10 @@ function stylist(state = initialState, action) {
         ...state,
         loading: {
           ...state.loading,
+
           [action.type]: LOADING_STATES.LOADING,
         },
+        status: "loading",
       };
 
     case STYLIST_GET_SUCCESS:
@@ -38,12 +40,8 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
         },
-        stylist: action.payload.stylist,
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: true,
-        },
+        data: action.payload,
+        status: "loaded",
       };
 
     case STYLIST_GET_FAILURE:
@@ -54,12 +52,8 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
         },
-        stylist: {},
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: false,
-        },
+        data: {},
+        status: "failed",
       };
 
     case STYLIST_POST_REQUEST:
@@ -79,12 +73,7 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
         },
-        stylist: action.payload.stylist,
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: true,
-        },
+        data: action.payload,
       };
 
     case STYLIST_POST_FAILURE:
@@ -95,12 +84,7 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
         },
-        stylist: {},
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: false,
-        },
+        data: {},
       };
 
     case STYLIST_PATCH_REQUEST:
@@ -120,12 +104,7 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
         },
-        stylist: action.payload.stylist,
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: true,
-        },
+        data: action.payload,
       };
 
     case STYLIST_PATCH_FAILURE:
@@ -136,12 +115,7 @@ function stylist(state = initialState, action) {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
         },
-        stylist: {},
-        info: {
-          ...state.info,
-          message: action.payload.message,
-          status: false,
-        },
+        data: {},
       };
 
     default:

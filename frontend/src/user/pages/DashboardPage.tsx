@@ -9,21 +9,20 @@ import { StyledContainer } from "./DashboardPage.css";
 
 const DashboardPage: React.FC = () => {
   const dispatch = useDispatch();
-  const user: any = useSelector((state: RootState) => state.user);
+  const user: any = useSelector((state: RootState) => state.user.data);
 
   useEffect(() => {
-    if (user.user.user.accessLevel === 1) {
-      dispatch(getStylist(user.user.user.stylistData._id));
-    } else if (user.user.user.accessLevel === 2) {
-      console.log("bbb");
+    if (user.accessLevel === 1) {
+      dispatch(getStylist(user.userDataId));
+    } else if (user.accessLevel === 2) {
+      console.log("getClient action");
     } else {
     }
-  }, [user.isLogged]);
+  }, []);
 
   return (
     <StyledContainer>
       <BoxList />
-      {/* <h1>{user.stylistData._id}</h1> */}
 
       <InfoTable />
     </StyledContainer>

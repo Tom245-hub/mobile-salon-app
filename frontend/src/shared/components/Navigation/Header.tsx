@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     setActiveSubmenu(id);
   };
 
-  if (user.isLogged && user.user.user.accessLevel === 1) {
+  if (user.isLogged && user.data.accessLevel === 1) {
     return (
       <StyledContainerHeader>
         <StyledLogoLink href='/'>
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
         <UserBox />
       </StyledContainerHeader>
     );
-  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+  } else if (user.isLogged && user.data.accessLevel === 2) {
     return (
       <StyledContainerHeader>
         <StyledLogoLink href='/'>

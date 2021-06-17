@@ -4,10 +4,10 @@ const router = express.Router();
 
 router.get("/", stylists.getStylists);
 router.get("/:id", stylists.getStylist);
-router.post("/", stylists.postStylist);
-router.patch("/", stylists.patchStylist);
+router.post("/", stylists.createStylist);
+router.patch("/:id", stylists.editStylist);
 router.delete("/:id", stylists.deleteStylist);
 
-router.use((response) => response.status(404).end());
+router.use((res) => res.status(404).end());
 
 module.exports = router;

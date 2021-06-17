@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getStylist, getStylistList } from "../../shared/data/actions/stylistActions";
+import { getStylist } from "../../shared/data/actions/stylistActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import SliderPortfolio from "../components/SliderPortfolio";
 import SliderReviews from "../components/SliderReviews";
 
 import IntroProfile from "../components/IntroProfile";
-import { Stylist } from "../../shared/models/stylistModel";
 import Consultation from "../components/Consultation";
+
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const StylistPage: React.FC = () => {
   let { id } = useParams<{ id: string }>();
@@ -19,16 +20,22 @@ const StylistPage: React.FC = () => {
     dispatch(getStylist(id));
   }, [getStylist]);
 
-  const stylist = useSelector((state: RootState) => state.stylist);
+  const stylist = useSelector((state: RootState) => state.stylist.data);
+  const status: string = useSelector((state: RootState) => state.stylist.status);
+
+  if (status === "loading") {
+    return <LoadingSpinner />;
+  } else if (status === "failed") {
+    return <h2>Błąd serwera</h2>;
+  }
 
   return (
     <>
-      {stylist && <IntroProfile stylist={stylist.stylist} />}
+      <IntroProfile stylist={stylist} />
 
-      <SliderPortfolio portfolioList={stylist.stylist.portfolio} />
+      <SliderPortfolio portfolio={stylist.portfolio} />
 
-      <SliderReviews reviewList={stylist.stylist.reviews} />
-
+      {stylist.reviews.length !== 0 && <SliderReviews reviewList={stylist.reviews} />}
       <Consultation />
     </>
   );

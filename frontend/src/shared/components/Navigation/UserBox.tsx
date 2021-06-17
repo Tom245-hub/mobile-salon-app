@@ -18,7 +18,7 @@ const UserBox: React.FC = () => {
   );
   const user = useSelector((state: RootState) => state.user);
 
-  if (user.isLogged && user.user.user.accessLevel === 1) {
+  if (user.isLogged && user.data.accessLevel === 1) {
     return (
       <StyledContainer>
         <StyledLink onClick={() => console.log("pomoc open")}>
@@ -31,7 +31,7 @@ const UserBox: React.FC = () => {
         </StyledLink>
       </StyledContainer>
     );
-  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+  } else if (user.isLogged && user.data.accessLevel === 2) {
     return (
       <>
         {isOpenLoginForm && <LoginForm />}

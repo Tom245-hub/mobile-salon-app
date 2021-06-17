@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Login } from "../../shared/models/loginModel";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
-import { postUser } from "../../shared/data/actions/userActions";
+import { loginUser } from "../../shared/data/actions/userActions";
 import { closeLoginForm } from "../../shared/data/actions/loginFormActions";
 
 import Button from "../../shared/components/FormElements/Button";
@@ -23,11 +23,6 @@ const validationSchema = () =>
     //   .max(10, "Hasło musi się składać z max. 10 znaków"),
   });
 
-// interface LoginFormProps {
-//   isEnterSlide: boolean;
-//   toggleOpenPortal: () => void;
-// }
-
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
   const isEnterSlide = useSelector((state: RootState) => state.loginForm.isEnterSlide);
@@ -41,7 +36,7 @@ const LoginForm: React.FC = () => {
       password: values.password,
     };
 
-    dispatch(postUser(loginObject));
+    dispatch(loginUser(loginObject));
     dispatch(closeLoginForm());
   };
   const initialValues = {

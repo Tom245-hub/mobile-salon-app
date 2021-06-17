@@ -20,7 +20,7 @@ import {
 } from "./SliderTeam.css";
 
 const SliderTeam: React.FC = () => {
-  const stylistList = useSelector((state: RootState) => state.stylistList.stylistList);
+  const stylistList = useSelector((state: RootState) => state.stylistList.data);
 
   const isLoading = stylistList === 0;
 

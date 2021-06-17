@@ -25,7 +25,7 @@ import PersonalDataPage from "./user/pages/PersonalDataPage";
 import { RootState } from "./shared/data/reducers/rootReducers";
 
 import "./index.scss";
-import Aside from "./shared/components/Navigation/Aside";
+import Aside from "./user/components/Aside";
 
 const store = configureStore();
 
@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
   let content;
 
-  if (user.isLogged && user.user.user.accessLevel === 1) {
+  if (user.isLogged && user.data.accessLevel === 1) {
     content = (
       <main>
         <Aside />
@@ -64,7 +64,7 @@ const App: React.FC = () => {
         </section>
       </main>
     );
-  } else if (user.isLogged && user.user.user.accessLevel === 2) {
+  } else if (user.isLogged && user.data.accessLevel === 2) {
     content = (
       <main>
         <Aside />

@@ -45,8 +45,8 @@ const validationSchema = () =>
 
 const JobForm: React.FC = () => {
   const dispatch = useDispatch();
-  const infoServer: any = useSelector((state: RootState) => state.stylist.info);
-  console.log(infoServer);
+  // const infoServer: any = useSelector((state: RootState) => state.stylist.info);
+  // console.log(infoServer);
 
   const initialValues: values = {
     firstName: "",
@@ -283,9 +283,9 @@ const JobForm: React.FC = () => {
                 </StyledCommentText>
                 <Button type='submit'>Wyślij</Button>
               </StyledBox>
-              {infoServer && infoServer.status && (
+              {/* {infoServer && infoServer.status && (
                 <InfoValid variant='positive'>{infoServer.message}</InfoValid>
-              )}
+              )} */}
             </StyledForm>
           </StyledContainer>
         );

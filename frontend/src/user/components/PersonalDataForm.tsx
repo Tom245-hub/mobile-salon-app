@@ -4,7 +4,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { editStylist } from "../../shared/data/actions/stylistActions";
-import { postUser } from "../../shared/data/actions/userActions";
 import { RootState } from "../../shared/data/reducers/rootReducers";
 
 import { values } from "../../shared/models/valuesModel";
@@ -35,33 +34,27 @@ const validationSchema = () =>
 
 const JobForm: React.FC = () => {
   const dispatch = useDispatch();
-  const user: any = useSelector((state: RootState) => state.user.user.user);
-  const stylist: any = useSelector(
-    (state: RootState) => state.stylist.stylist.personalData
-  );
+  const user: any = useSelector((state: RootState) => state.user.data);
+  const stylist = useSelector((state: RootState) => state.stylist.data);
 
-  // console.log(user.stylistData.personalData.firstName);
-  console.log(stylist.firstName);
-
-  const history = useHistory();
+  console.log(stylist);
 
   const initialValues: any = {
-    firstName: user.stylistData.personalData.firstName,
-    lastName: user.stylistData.personalData.lastName,
-    email: user.stylistData.personalData.email,
-    phone: user.stylistData.personalData.phone,
+    firstName: stylist.personalData.firstName,
+    lastName: stylist.personalData.lastName,
+    email: stylist.personalData.email,
+    phone: stylist.personalData.phone,
   };
 
   const submitForm = (values: any) => {
     const stylistObject = {
-      id: user.stylistData._id,
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
       phone: values.phone,
     };
 
-    dispatch(editStylist(stylistObject));
+    dispatch(editStylist(stylist._id, stylistObject));
   };
 
   return (
@@ -148,8 +141,6 @@ const JobForm: React.FC = () => {
               <Button type='button' variant='cancel'>
                 Anuluj
               </Button>
-
-              <h1>{stylist.firstName}</h1>
 
               {/* {infoServer && infoServer.status && (
                 <InfoValid variant='positive'>{infoServer.message}</InfoValid> */}
