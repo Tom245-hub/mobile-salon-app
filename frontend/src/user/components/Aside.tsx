@@ -5,6 +5,7 @@ import { useState } from "react";
 import {
   StyledContainer,
   StyledNavLink,
+  StyledLink,
   StyledSubmenu,
   StyledImage,
   StyledTitle,
@@ -12,19 +13,16 @@ import {
   StyledLine,
 } from "./Aside.css";
 import { RootState } from "../../shared/data/reducers/rootReducers";
-import PersonalDataPage from "../pages/PersonalDataPage";
+import { LOADING_STATES } from "../../shared/data/constans/commonConstans";
 
 const Aside: React.FC = () => {
   const [isOpenOrders, setIsOpenOrders] = useState<boolean>(false);
   const user = useSelector((state: RootState) => state.user.data);
   const stylist = useSelector((state: RootState) => state.stylist.data);
-  const statusStylist = useSelector((state: RootState) => state.stylist.status);
-  // console.log(stylist);
-  // console.log(user);
-  // console.log(user);
+  const statusStylist = useSelector((state: RootState) => state.stylist.loading.status);
 
   let content;
-  if (statusStylist === "loaded" && user.accessLevel === 1) {
+  if (statusStylist === LOADING_STATES.LOADED && user.accessLevel === 1) {
     content = (
       <>
         <StyledImage src={stylist.profileData.img} />
@@ -59,13 +57,12 @@ const Aside: React.FC = () => {
           <StyledNavLink to='/panel/dane'>Twoje dane</StyledNavLink>
         </li>
         <li>
-          <StyledNavLink
-            to='/panel/zamowienia'
+          <StyledLink
             onClick={() => setIsOpenOrders((prev) => !prev)}
             isOpen={isOpenOrders}
           >
             Zamówienia <FontAwesomeIcon icon={faChevronDown} />
-          </StyledNavLink>
+          </StyledLink>
           <StyledSubmenu isOpen={isOpenOrders}>
             <li>
               <StyledNavLink variant='sub' to='/'>

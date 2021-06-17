@@ -1,10 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import { StyledBox, StyledSpinner } from "./LoadingSpinner.css";
 
-const LoadingSpinner = () => {
-  return (
-    <StyledBox>
+interface LoadingSpinnerProps {
+  variant?: "spinner" | "error";
+  errorText?: string;
+}
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ variant, errorText }) => {
+  const spinner = (
+    <>
       <StyledSpinner />
       <StyledSpinner />
       <StyledSpinner />
@@ -17,8 +20,20 @@ const LoadingSpinner = () => {
       <StyledSpinner />
       <StyledSpinner />
       <StyledSpinner />
-    </StyledBox>
+    </>
   );
+
+  if (variant === "spinner") {
+    return <StyledBox>{spinner}</StyledBox>;
+  } else if (variant === "error") {
+    return (
+      <StyledBox>
+        <h2>{errorText}</h2>
+      </StyledBox>
+    );
+  } else {
+    return <StyledBox>{spinner}</StyledBox>;
+  }
 };
 
 export default LoadingSpinner;

@@ -12,9 +12,10 @@ import {
 import { LOADING_STATES } from "../constans/commonConstans";
 
 const initialState = {
-  loading: {},
+  loading: {
+    status: LOADING_STATES.LOADING,
+  },
   data: {},
-  status: "loading",
 };
 
 function stylist(state = initialState, action) {
@@ -26,10 +27,9 @@ function stylist(state = initialState, action) {
         ...state,
         loading: {
           ...state.loading,
-
           [action.type]: LOADING_STATES.LOADING,
+          status: LOADING_STATES.LOADING,
         },
-        status: "loading",
       };
 
     case STYLIST_GET_SUCCESS:
@@ -39,9 +39,9 @@ function stylist(state = initialState, action) {
         loading: {
           ...state.loading,
           [action.type]: LOADING_STATES.LOADED,
+          status: LOADING_STATES.LOADED,
         },
         data: action.payload,
-        status: "loaded",
       };
 
     case STYLIST_GET_FAILURE:
@@ -51,9 +51,9 @@ function stylist(state = initialState, action) {
         loading: {
           ...state.loading,
           [action.type]: LOADING_STATES.FAILED,
+          status: LOADING_STATES.FAILED,
         },
         data: {},
-        status: "failed",
       };
 
     case STYLIST_POST_REQUEST:

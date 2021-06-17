@@ -6,6 +6,10 @@ interface StyledSubmenuProps {
 }
 
 interface StyledNavLinkProps {
+  variant?: "sub";
+}
+
+interface StyledLinkProps {
   isOpen?: boolean;
   variant?: "sub";
 }
@@ -20,6 +24,21 @@ export const StyledContainer = styled.aside`
 `;
 
 export const StyledNavLink = styled(Link)<StyledNavLinkProps>`
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${({ variant }) => (variant === "sub" ? "0 0.5rem" : "0.5rem 1rem")};
+
+  :hover {
+    background-color: ${({ theme, variant }) =>
+      variant === "sub" ? "" : theme.colors.primary.normal};
+    color: ${({ theme, variant }) =>
+      variant === "sub" ? "" : theme.colors.primary.light};
+  }
+`;
+
+export const StyledLink = styled.a<StyledLinkProps>`
   font-size: 1rem;
   display: flex;
   justify-content: space-between;

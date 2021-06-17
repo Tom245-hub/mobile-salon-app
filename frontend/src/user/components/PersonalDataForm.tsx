@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -9,7 +8,6 @@ import { RootState } from "../../shared/data/reducers/rootReducers";
 import { values } from "../../shared/models/valuesModel";
 
 import Input from "../../shared/components/FormElements/Input";
-import Select from "../../shared/components/FormElements/Select";
 import Button from "../../shared/components/FormElements/Button";
 import InfoValid from "../../shared/components/FormElements/InfoValid";
 
@@ -34,7 +32,6 @@ const validationSchema = () =>
 
 const JobForm: React.FC = () => {
   const dispatch = useDispatch();
-  const user: any = useSelector((state: RootState) => state.user.data);
   const stylist = useSelector((state: RootState) => state.stylist.data);
 
   console.log(stylist);

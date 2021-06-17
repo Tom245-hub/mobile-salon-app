@@ -10,11 +10,9 @@ const animation = keyframes`
 `;
 
 export const StyledBox = styled.div`
-  width: 80px;
-  height: 80px;
+  display: flex;
+  justify-content: center;
   padding: 5rem 0;
-  margin: 0 auto;
-  display: block;
   position: relative;
 `;
 

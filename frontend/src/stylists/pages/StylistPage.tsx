@@ -11,6 +11,7 @@ import IntroProfile from "../components/IntroProfile";
 import Consultation from "../components/Consultation";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import { LOADING_STATES } from "../../shared/data/constans/commonConstans";
 
 const StylistPage: React.FC = () => {
   let { id } = useParams<{ id: string }>();
@@ -21,12 +22,12 @@ const StylistPage: React.FC = () => {
   }, [getStylist]);
 
   const stylist = useSelector((state: RootState) => state.stylist.data);
-  const status: string = useSelector((state: RootState) => state.stylist.status);
+  const status: string = useSelector((state: RootState) => state.stylist.loading.status);
 
-  if (status === "loading") {
-    return <LoadingSpinner />;
-  } else if (status === "failed") {
-    return <h2>Błąd serwera</h2>;
+  if (status === LOADING_STATES.LOADING) {
+    return <LoadingSpinner variant='spinner' />;
+  } else if (status === LOADING_STATES.FAILED) {
+    return <LoadingSpinner variant='error' errorText='Nie znaleziono stylistki' />;
   }
 
   return (
