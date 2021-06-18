@@ -27,9 +27,6 @@ const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
   const isEnterSlide = useSelector((state: RootState) => state.loginForm.isEnterSlide);
 
-  const user: object = useSelector((state: RootState) => state.user);
-  // console.log(user);
-
   const submitForm = async (values: Login) => {
     const loginObject = {
       login: values.email,
