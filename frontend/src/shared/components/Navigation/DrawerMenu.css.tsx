@@ -13,7 +13,7 @@ interface StyledSubmenuProps {
   isOpen?: boolean;
 }
 
-interface StyledNavLinkProps {
+interface StyledNavLinkSubProps {
   isOpen?: boolean;
 }
 
@@ -70,7 +70,13 @@ export const StyledLink = styled.a<StyledLinkProps>`
   }
 `;
 
-export const StyledNavLink = styled(Link)<StyledNavLinkProps>`
+export const StyledNavLink = styled(Link)`
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StyledNavLinkSub = styled.a<StyledNavLinkSubProps>`
   font-size: 1.4rem;
   display: flex;
   justify-content: space-between;
@@ -78,7 +84,6 @@ export const StyledNavLink = styled(Link)<StyledNavLinkProps>`
   svg {
     color: ${({ theme }) => theme.colors.gray.normal};
     transition: 0.2s ease-in-out;
-
     transform: ${({ isOpen }) => isOpen && "rotate(180deg)"};
   }
 `;

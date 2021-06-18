@@ -24,6 +24,7 @@ import {
   StyledLogoLink,
   StyledLink,
   StyledNavLink,
+  StyledNavLinkSub,
   StyledMenu,
   StyledSubmenu,
   StyledIcon,
@@ -65,13 +66,12 @@ const DrawerMenu: React.FC = () => {
       <StyledSection>
         <StyledMenu>
           <li>
-            <StyledNavLink
-              to='/uslugi'
+            <StyledNavLinkSub
               onClick={() => setIsOpenServices((prev) => !prev)}
               isOpen={isOpenServices}
             >
               usługi <FontAwesomeIcon icon={faChevronDown} />
-            </StyledNavLink>
+            </StyledNavLinkSub>
             <StyledSubmenu isOpen={isOpenServices}>
               <li>
                 <StyledSubmenuLink to='/uslugi/fryzury-slubne'>
@@ -100,13 +100,12 @@ const DrawerMenu: React.FC = () => {
             </StyledSubmenu>
           </li>
           <li>
-            <StyledNavLink
-              to='/stylistki'
+            <StyledNavLinkSub
               onClick={() => setIsOpenStylists((prev) => !prev)}
               isOpen={isOpenStylists}
             >
               stylistki <FontAwesomeIcon icon={faChevronDown} />
-            </StyledNavLink>
+            </StyledNavLinkSub>
             <StyledSubmenu isOpen={isOpenStylists}>
               <li>
                 <Link to='/'>warszawa</Link>
